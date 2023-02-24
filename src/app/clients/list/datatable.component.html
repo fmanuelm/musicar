@@ -1,0 +1,91 @@
+<script src="https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"></script>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary card-header-icon">
+            <h2 class="card-title">
+              <b>
+                Listar clientes
+              </b>
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="toolbar">
+              <!-- <div class="row">
+                <div class="col">
+                  <button class="btn btn-success mr-2" (click)="exportExcel()">
+                    Excel
+                  </button>
+                  <button class="btn btn-danger" (click)="exportExcel()">
+                    PDF
+                  </button>
+                </div>
+                <div class="col d-flex flex-row-reverse">
+                  <div class="form-group">
+                    <input type="text" value="" placeholder="Buscar" class="form-control" />
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <div class="material-datatables">
+              <p-table [globalFilterFields]="[
+              'razon_social',
+              'razon_comercial',
+              'nit',
+              'tipo_cliente',
+              
+              ]" id="tableClients" #tableClients [columns]="cols" [value]="clients" [paginator]="true" [rows]="10"
+                [first]="first">
+                <ng-template pTemplate="caption">
+                  <div class="flex">
+                    <div class="row">
+                      <div class="col">
+                        <button class="btn btn-success mr-2" (click)="exportExcel()">
+                          Excel
+                        </button>
+                        <button class="btn btn-danger" (click)="exportPdf()">
+                          PDF
+                        </button>
+                      </div>
+                      <div class="col d-flex flex-row-reverse">
+                        <span class="p-input-icon-left ml-auto">
+                          <input pInputText type="text"
+                            (input)="tableClients.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Global seach" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+                      {{col.header}}
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr>
+                    <td *ngFor="let col of columns">
+                      {{rowData[col.field]}}
+                    </td>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorcenter">
+                  <button type="button" pButton icon="pi-cloud-upload"></button>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+          <!-- end content-->
+        </div>
+        <!--  end card  -->
+      </div>
+      <!-- end col-md-12 -->
+    </div>
+    <!-- end row -->
+  </div>
+</div>

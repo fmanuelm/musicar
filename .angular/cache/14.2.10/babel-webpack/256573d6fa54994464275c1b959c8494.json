@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { ClientsComponent } from './clients.component';\nexport const ClientsRoutes = [{\n  path: 'create',\n  children: [{\n    path: '',\n    component: ClientsComponent\n  }]\n}];","map":null,"metadata":{},"sourceType":"module"}
