@@ -33,11 +33,10 @@
               <p-table [globalFilterFields]="[
               'razon_social',
               'razon_comercial',
+              'paises.nombre',
               'nit',
-              'tipo_cliente',
-              
-              ]" id="tableClients" #tableClients [columns]="cols" [value]="clients" [paginator]="true" [rows]="10"
-                [first]="first">
+              'tipo_cliente.nombre',              
+              ]" id="tableClients" #tableClients [columns]="cols" [value]="clients" [paginator]="true" [rows]="10">
                 <ng-template pTemplate="caption">
                   <div class="flex">
                     <div class="row">
@@ -51,7 +50,7 @@
                       </div>
                       <div class="col d-flex flex-row-reverse">
                         <span class="p-input-icon-left ml-auto">
-                          <input pInputText type="text"
+                          <input pInputText type="text" class="form-control"
                             (input)="tableClients.filterGlobal($event.target.value, 'contains')"
                             placeholder="Global seach" />
                         </span>
@@ -64,13 +63,26 @@
                     <th [pSortableColumn]="col.field" *ngFor="let col of columns">
                       {{col.header}}
                       <p-sortIcon [field]="col.field"></p-sortIcon>
+                      <p-columnFilter type="text" [field]="col.field" display="menu"></p-columnFilter>
                     </th>
                   </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-rowData let-columns="columns">
-                  <tr>
-                    <td *ngFor="let col of columns">
-                      {{rowData[col.field]}}
+                <ng-template pTemplate="body" let-col>
+                  <tr style="cursor: pointer;" (click)="viewClient(col.id)">
+                    <td>
+                      {{ col.razon_social }}
+                    </td>
+                    <td>
+                      {{ col.razon_comercial }}
+                    </td>
+                    <td>
+                      {{ col.nit }}
+                    </td>
+                    <td>
+                      {{ col.tCliente}}
+                    </td>
+                    <td>
+                      {{ col.paises.nombre }}
                     </td>
                   </tr>
                 </ng-template>

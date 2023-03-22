@@ -17,8 +17,8 @@ import { FieldErrorDisplayComponent } from './validationforms/field-error-displa
 
 @NgModule({
   imports: [
-    CommonModule,
     RouterModule.forChild(FormsRoutes),
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NouisliderModule,

@@ -37,9 +37,21 @@ export const AppRoutes: Routes = [
                 path: 'calendar',
                 loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule)
             }, {
-                path: 'clients',
+                path: 'clientes',
                 loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule)
             }, {
+                path: 'contratos',
+                loadChildren: () => import('./contrats/contrats.module').then(m => m.ContratsModule)
+            }, {
+                path: 'sucursal-instalacion',
+                loadChildren: () => import('./branch-facility/branch-facility.module').then(m => m.BranchFacilityModule)
+            }, {
+                path: 'equipos',
+                loadChildren: () => import('./equipment/equipment.module').then(m => m.EquipmentModule)
+            }, {
+                path: 'puntos',
+                loadChildren: () => import('./points/points.module').then(m => m.PointsModule)
+            },{
                 path: '',
                 loadChildren: () => import('./userpage/user.module').then(m => m.UserModule)
             }, {

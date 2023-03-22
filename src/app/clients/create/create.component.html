@@ -1,1 +1,599 @@
-<p>create works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <div class="text-right">
+                        <button mat-raised-button type="button" (click)="clearForm()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                            Limpiar formulario
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos cliente</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="razon_social" placeholder="Razón social"
+                                            type="text">
+                                        <mat-error *ngIf="form.get('razon_social').hasError('required')">
+                                            La razón social es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6 ">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="razon_comercial" placeholder="Razón comercial"
+                                            type="text">
+                                        <mat-error *ngIf="form.get('razon_comercial').hasError('required')">
+                                            La razón comercial es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="nit" placeholder="NIT" type="text">
+                                        <mat-error *ngIf="form.get('nit').hasError('required')">
+                                            El NIT es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select formControlName="tipo_cliente" placeholder="Tipo de cliente"
+                                            name="typeClient">
+                                            <mat-option *ngFor="let tClient of typeClient" [value]="tClient.id">
+                                                {{ tClient.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('tipo_cliente').hasError('required')">
+                                            El tipo cliente es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select formControlName="paises" placeholder="País principal"
+                                            name="mainCountry">
+                                            <mat-option (click)="seletedMainCountry(country)"
+                                                *ngFor="let country of countriesInput" [value]="country.id">
+                                                {{ country.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('paises').hasError('required')">
+                                            El país es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row ml-4 pl-4 mt-3">
+                                <div class="col-sm-5">
+                                    <label for="">Paises de atención</label> <br>
+                                    <button mat-raised-button type="button" class="btn btn-fill btn-success"
+                                        data-toggle="modal" data-target="#modalPais">Agregar
+                                        país</button>
+                                    <button mat-raised-button type="button" class="btn btn-fill btn-danger"
+                                        (click)="deleteCountry()">Retirar
+                                        país</button>
+                                </div>
+                            </div>
+                            <div class="row ml-4 pl-4 mt-2">
+                                <div class="col-sm-12">
+                                    <p-table [globalFilterFields]="['nombre']" id="tableCountry" #tableCountry
+                                        [value]="countriesSelects" [paginator]="true" [rows]="10">
+                                        <ng-template pTemplate="caption">
+                                            <div class="flex">
+                                                <div class="row">
+                                                    <div class="col d-flex flex-row-reverse">
+                                                        <span class="p-input-icon-left ml-auto">
+                                                            <input pInputText type="text" class="form-control"
+                                                                (input)="tableCountry.filterGlobal($event.target.value, 'contains')"
+                                                                placeholder="Global seach" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template pTemplate="header" let-col>
+                                            <tr [pSelectableRow]="countries">
+                                                <th style="width: 4rem">
+                                                    <p-tableHeaderCheckbox (click)="selectAll(countries)">
+                                                    </p-tableHeaderCheckbox>
+                                                </th>
+                                                <th class="d-flex justify-content-center" pSortableColumn="nombre">
+                                                    País
+                                                    <p-sortIcon field="nombre"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="nombre" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-col>
+                                            <tr [pSelectableRow]="col">
+                                                <td>
+                                                    <p-tableCheckbox (click)="selectCountry(col)" [value]="col">
+                                                    </p-tableCheckbox>
+                                                </td>
+                                                <td class="d-flex justify-content-center">
+                                                    {{ col.nombre}}
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="paginatorcenter">
+                                            <button type="button" pButton icon="pi-cloud-upload"></button>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 mt-4">
+                                <div class="col-sm-12 ">
+                                    <mat-form-field>
+                                        <mat-select formControlName="subgrupo_economico" placeholder="Sector economico"
+                                            name="economicSectors">
+                                            <mat-option *ngFor="let eSector of economicSectors" [value]="eSector.id">
+                                                {{ eSector.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('subgrupo_economico').hasError('required')">
+                                            El sector economico es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 ">
+                                <div class="col-sm-12 ">
+                                    <mat-form-field>
+                                        <mat-select formControlName="usuario_comercial"
+                                            placeholder="Comercial que atiende" name="comercialAttend">
+                                            <mat-option *ngFor="let cAttend of comercialAttend" [value]="cAttend.id">
+                                                {{ cAttend.usuario.nombre+' '+cAttend.usuario.apellido }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('usuario_comercial').hasError('required')">
+                                            El comercial que atiende es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 ">
+                                <div class="col-sm-12 ">
+                                    <mat-form-field class="example-full-width">
+                                        <textarea formControlName="observaciones" placeholder="Observaciones" matInput
+                                            cols="30" rows="10"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos de contacto</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <form>
+                                <div class="row ml-4 pl-4">
+                                    <div class="col-sm-5">
+                                        <button mat-raised-button type="button" class="btn btn-fill btn-success"
+                                            data-toggle="modal" data-target="#modalContacto">Agregar
+                                            contacto</button>
+                                        <button mat-raised-button type="button" class="btn btn-fill btn-danger"
+                                            (click)="deleteContact()">Retirar
+                                            contacto</button>
+                                    </div>
+                                </div>
+                                <div class="row ml-4 pl-4 mt-2">
+                                    <div class="col-sm-12">
+                                        <p-table
+                                            [globalFilterFields]="['nombre_contacto','correo_contacto','telefono_contacto','cliente_tipo_contacto.tipo_contacto']"
+                                            id="tableContact" #tableContact [value]="contacts" [paginator]="true"
+                                            [rows]="10">
+                                            <ng-template pTemplate="caption">
+                                                <div class="flex">
+                                                    <div class="row">
+                                                        <div class="col d-flex flex-row-reverse">
+                                                            <span class="p-input-icon-left ml-auto">
+                                                                <input pInputText type="text" class="form-control"
+                                                                    (input)="tableContact.filterGlobal($event.target.value, 'contains')"
+                                                                    placeholder="Global seach" />
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                            <ng-template pTemplate="header" let-col>
+                                                <tr [pSelectableRow]="contact">
+                                                    <th style="width: 4rem">
+                                                    </th>
+                                                    <th pSortableColumn="nombre_contacto">
+                                                        Nombre
+                                                        <p-sortIcon field="nombre_contacto"></p-sortIcon>
+                                                        <p-columnFilter type="text" field="nombre_contacto"
+                                                            display="menu"></p-columnFilter>
+                                                    </th>
+                                                    <th pSortableColumn="cliente_tipo_contacto.tipo_contacto">
+                                                        Tipo contacto
+                                                        <p-sortIcon field="cliente_tipo_contacto.tipo_contacto">
+                                                        </p-sortIcon>
+                                                        <p-columnFilter type="text"
+                                                            field="cliente_tipo_contacto.tipo_contacto" display="menu">
+                                                        </p-columnFilter>
+                                                    </th>
+                                                    <th pSortableColumn="telefono_contacto">
+                                                        Telefono
+                                                        <p-sortIcon field="telefono_contacto"></p-sortIcon>
+                                                        <p-columnFilter type="text" field="telefono_contacto"
+                                                            display="menu"></p-columnFilter>
+                                                    </th>
+                                                    <th pSortableColumn="correo_contacto">
+                                                        Correo
+                                                        <p-sortIcon field="correo_contacto"></p-sortIcon>
+                                                        <p-columnFilter type="text" field="correo_contacto"
+                                                            display="menu"></p-columnFilter>
+                                                    </th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-col>
+                                                <tr [pSelectableRow]="col">
+                                                    <td>
+                                                        <p-tableCheckbox (click)="selectContact(col)" [value]="col">
+                                                        </p-tableCheckbox>
+                                                    </td>
+                                                    <td>
+                                                        {{ col.nombre_contacto}}
+                                                    </td>
+                                                    <td>
+                                                        {{ col.cliente_tipo_contacto.tipo_contacto}}
+                                                    </td>
+                                                    <td>
+                                                        {{ col.telefono_contacto}}
+                                                    </td>
+                                                    <td>
+                                                        {{ col.correo_contacto}}
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="paginatorcenter">
+                                                <button type="button" pButton icon="pi-cloud-upload"></button>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Horarios de atención</h4>
+                            </div>
+                        </div>
+                        <div class="card-body mt-2">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Lunes</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="lunes_hora_inicial" matInput placeholder="Hora inicial"
+                                            type="time">
+                                        <mat-error *ngIf="form.get('lunes_hora_inicial').hasError('max')">
+                                            La hora de apertura debe ser menor a la hora de cierre
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="lunes_hora_final" matInput placeholder="Hora final"
+                                            type="time">
+                                        <mat-error *ngIf="form.get('lunes_hora_final').hasError('min')">
+                                            La hora de cierre debe ser mayor a la hora de apertura
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Martes</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="martes_hora_inicial" matInput placeholder="Hora inicial"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="martes_hora_final" matInput placeholder="Hora final"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Miercoles</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="miercoles_hora_inicial" matInput
+                                            placeholder="Hora inicial" type="time">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="miercoles_hora_final" matInput placeholder="Hora final"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Jueves</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="jueves_hora_inicial" matInput placeholder="Hora inicial"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="jueves_hora_final" matInput placeholder="Hora final"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Viernes</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="viernes_hora_inicial" matInput
+                                            placeholder="Hora inicial" type="time">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="viernes_hora_final" matInput placeholder="Hora final"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Sabado</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="sabado_hora_inicial" matInput placeholder="Hora inicial"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="sabado_hora_final" matInput placeholder="Hora final"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Domingo</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="domingo_hora_inicial" matInput
+                                            placeholder="Hora inicial" type="time">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="domingo_hora_final" matInput placeholder="Hora final"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Festivos</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="festivos_hora_inicial" matInput
+                                            placeholder="Hora inicial" type="time">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="festivos_hora_final" matInput placeholder="Hora final"
+                                            type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="sendForm()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined mr-1">
+                                send
+                            </span>
+                            Crear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- modals del componente -->
+<!-- modal pais -->
+<div id="modalPais" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header mb-3">
+                <h4 class="modal-title text-left" id="exampleModalLabel"><b>Agregar paises</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <p-table [globalFilterFields]="['nombre']" id="tableCountrySelect" #tableCountrySelect
+                        [value]="countries" [paginator]="true" [rows]="10">
+                        <ng-template pTemplate="caption">
+                            <div class="flex">
+                                <div class="row">
+                                    <div class="col d-flex flex-row-reverse">
+                                        <span class="p-input-icon-left ml-auto">
+                                            <input pInputText type="text" class="form-control"
+                                                (input)="tableCountrySelect.filterGlobal($event.target.value, 'contains')"
+                                                placeholder="Global seach" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-col>
+                            <tr [pSelectableRow]="countries">
+                                <th style="width: 4rem">
+                                    <!-- <p-tableHeaderCheckbox (click)="selectAll(countries)">
+                                    </p-tableHeaderCheckbox> -->
+                                </th>
+                                <th class="d-flex justify-content-center" pSortableColumn="nombre">
+                                    País
+                                    <p-sortIcon field="nombre"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-col>
+                            <tr [pSelectableRow]="col">
+                                <td>
+                                    <p-tableCheckbox (click)="selectCountriesSend(col)" [value]="col"></p-tableCheckbox>
+                                </td>
+                                <td class="d-flex justify-content-center">
+                                    {{ col.nombre}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorcenter">
+                            <button type="button" pButton icon="pi-cloud-upload"></button>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-3" data-dismiss="modal"
+                    (click)="cancelModal()">Cancelar</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="aceptModal()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal contacto -->
+<div id="modalContacto" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header mb-3">
+                <h4 class="modal-title text-left" id="exampleModalLabel"><b>Agregar contacto</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- <form> -->
+            <form [formGroup]="formModalContact">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-select placeholder="Tipo de contacto" name="typeContact"
+                                    formControlName="cliente_tipo_contacto">
+                                    <mat-option *ngFor="let tContact of typeContact" [value]="tContact">
+                                        {{ tContact.tipo_contacto }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="formModalContact.get('cliente_tipo_contacto').hasError('required')">
+                                    El tipo de contacto es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field class="example-full-width">
+                                <input formControlName="nombre_contacto" matInput placeholder="Nombre" type="text">
+                                <mat-error *ngIf="formModalContact.get('nombre_contacto').hasError('required')">
+                                    El nombre es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field class="example-full-width">
+                                <input formControlName="telefono_contacto" matInput placeholder="Telefono"
+                                    type="number">
+                                <mat-error *ngIf="formModalContact.get('telefono_contacto').hasError('required')">
+                                    El telefono es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field class="example-full-width">
+                                <input formControlName="correo_contacto" matInput placeholder="Correo" type="email">
+                                <mat-error *ngIf="formModalContact.get('correo_contacto').hasError('required')">
+                                    El correo es requerido
+                                </mat-error>
+                                <mat-error *ngIf="formModalContact.get('correo_contacto').hasError('pattern')">
+                                    Por favor, digite un correo valido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-3" data-dismiss="modal"
+                    (click)="cancelModalContact()">Cancelar</button>
+                <button type="submit" class="btn btn-success" (click)="addContact()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

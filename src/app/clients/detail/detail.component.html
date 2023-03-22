@@ -1,1 +1,368 @@
-<p>detail works!</p>
+<div class="main-content" *ngIf="client">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Datos cliente</h4>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="text" readonly [value]="client.razon_social">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-6 ">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="text" readonly [value]="client.razon_comercial">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="text" readonly [value]="client.nit">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input matInput type="text" readonly
+                                        [value]="client.tipo_cliente?client.tipo_cliente.nombre: '---'">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input matInput type="text" readonly [value]="client.paises.nombre">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4 mt-4">
+                            <div class="col-sm-12 ">
+                                <mat-form-field>
+                                    <input matInput type="text" readonly
+                                        [value]="client.subgrupo_economico.actividad_economica.nombre">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4 mt-4">
+                            <div class="col-sm-12 ">
+                                <p-table [globalFilterFields]="['paises.nombre']" id="tableCountrySelect"
+                                    #tableCountrySelect [value]="countries" [paginator]="true" [rows]="10">
+                                    <ng-template pTemplate="caption">
+                                        <div class="flex">
+                                            <div class="row">
+                                                <div class="col d-flex flex-row-reverse">
+                                                    <span class="p-input-icon-left ml-auto">
+                                                        <input pInputText type="text" class="form-control"
+                                                            (input)="tableCountrySelect.filterGlobal($event.target.value, 'contains')"
+                                                            placeholder="Global seach" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template pTemplate="header" let-col>
+                                        <tr [pSelectableRow]="countries">
+                                            <th class="d-flex justify-content-center" pSortableColumn="paises.nombre">
+                                                País
+                                                <p-sortIcon field="paises.nombre"></p-sortIcon>
+                                                <p-columnFilter type="text" field="paises.nombre" display="menu">
+                                                </p-columnFilter>
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-col>
+                                        <tr [pSelectableRow]="col">
+
+                                            <td class="d-flex justify-content-center">
+                                                {{ col.paises.nombre}}
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="paginatorcenter">
+                                        <button type="button" pButton icon="pi-cloud-upload"></button>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Datos de contacto</h4>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row d-flex px-4 mx-4 mt-4">
+                            <div class="col-sm-12 ">
+                                <p-table
+                                    [globalFilterFields]="['nombre_contacto','correo_contacto','telefono_contacto','cliente_tipo_contacto.tipo_contacto']"
+                                    id="tableContact" #tableContact [value]="contacts" [paginator]="true" [rows]="10">
+                                    <ng-template pTemplate="caption">
+                                        <div class="flex">
+                                            <div class="row">
+                                                <div class="col d-flex flex-row-reverse">
+                                                    <span class="p-input-icon-left ml-auto">
+                                                        <input pInputText type="text" class="form-control"
+                                                            (input)="tableContact.filterGlobal($event.target.value, 'contains')"
+                                                            placeholder="Global seach" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template pTemplate="header" let-col>
+                                        <tr [pSelectableRow]="contact">
+                                            <th pSortableColumn="nombre_contacto">
+                                                Nombre
+                                                <p-sortIcon field="nombre_contacto"></p-sortIcon>
+                                                <p-columnFilter type="text" field="nombre_contacto" display="menu">
+                                                </p-columnFilter>
+                                            </th>
+                                            <th pSortableColumn="cliente_tipo_contacto.tipo_contacto">
+                                                Tipo contacto
+                                                <p-sortIcon field="cliente_tipo_contacto.tipo_contacto">
+                                                </p-sortIcon>
+                                                <p-columnFilter type="text" field="cliente_tipo_contacto.tipo_contacto"
+                                                    display="menu">
+                                                </p-columnFilter>
+                                            </th>
+                                            <th pSortableColumn="telefono_contacto">
+                                                Telefono
+                                                <p-sortIcon field="telefono_contacto"></p-sortIcon>
+                                                <p-columnFilter type="text" field="telefono_contacto" display="menu">
+                                                </p-columnFilter>
+                                            </th>
+                                            <th pSortableColumn="correo_contacto">
+                                                Correo
+                                                <p-sortIcon field="correo_contacto"></p-sortIcon>
+                                                <p-columnFilter type="text" field="correo_contacto" display="menu">
+                                                </p-columnFilter>
+                                            </th>
+                                            <th class="d-flex justify-content-center" pSortableColumn="correo_contacto">
+                                                Ver datos
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-col>
+                                        <tr [pSelectableRow]="col">
+                                            <td>
+                                                {{ col.nombre_contacto}}
+                                            </td>
+                                            <td>
+                                                {{ col.cliente_tipo_contacto.tipo_contacto}}
+                                            </td>
+                                            <td>
+                                                {{ col.telefono_contacto}}
+                                            </td>
+                                            <td>
+                                                {{ col.correo_contacto}}
+                                            </td>
+                                            <td class="d-flex justify-content-center">
+                                                <span class="material-symbols-outlined">
+                                                    visibility
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="paginatorcenter">
+                                        <button type="button" pButton icon="pi-cloud-upload"></button>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" *ngIf="openingHours">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Horarios de atención</h4>
+                        </div>
+                    </div>
+                    <div class="card-body mt-2">
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <b>Lunes</b>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora inicial"
+                                        [value]="openingHours.lunes.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora final"
+                                        [value]="openingHours.lunes.hora_final" type="time">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <b>Martes</b>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora inicial"
+                                        [value]="openingHours.martes.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora final"
+                                        [value]="openingHours.martes.hora_final" type="time">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <b>Miercoles</b>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora inicial"
+                                        [value]="openingHours.miercoles.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora final"
+                                        [value]="openingHours.miercoles.hora_final" type="time">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <b>Jueves</b>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora inicial"
+                                        [value]="openingHours.jueves.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora final"
+                                        [value]="openingHours.jueves.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <b>Viernes</b>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora inicial"
+                                        [value]="openingHours.viernes.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora final"
+                                        [value]="openingHours.viernes.hora_final" type="time">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <b>Sabado</b>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora inicial"
+                                        [value]="openingHours.sabado.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora final"
+                                        [value]="openingHours.sabado.hora_final" type="time">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <b>Domingo</b>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora inicial"
+                                        [value]="openingHours.domingo.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora final"
+                                        [value]="openingHours.domingo.hora_final" type="time">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4" *ngIf="openingHours.festivos">
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <b>Festivos</b>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora inicial"
+                                        [value]="openingHours.festivos.hora_inicial" type="time">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field class="example-full-width">
+                                    <input readonly matInput placeholder="Hora final"
+                                        [value]="openingHours.festivos.hora_final" type="time">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="text-center">
+                    <button mat-raised-button type="button" (click)="editClient()" class="btn btn-fill btn-warning mr-3">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                        Editar
+                    </button>
+                    <button mat-raised-button type="button" (click)="deleteClient()" class="btn btn-fill btn-rose">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modals del componente -->

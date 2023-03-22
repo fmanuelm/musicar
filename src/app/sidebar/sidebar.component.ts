@@ -109,7 +109,7 @@ export interface ChildrenItems {
 // }
 // ];
 export const ROUTES: RouteInfo[] = [{
-    path: '/clients/',
+    path: '/clientes/',
     title: 'Clientes',
     type: 'sub',
     icontype: 'apps',
@@ -117,6 +117,58 @@ export const ROUTES: RouteInfo[] = [{
     children: [
         { path: 'list', title: 'Listar clientes', ab: 'LC' },
         { path: 'create', title: 'Crear cliente', ab: 'CC' },
+    ]
+}, {
+    path: '/sucursal-instalacion/',
+    title: 'Sucursal instalación',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'sucursal-instalacion',
+    children: [
+        { path: 'list', title: 'Listar sucursales instalación', ab: 'LSI' },
+        { path: 'create', title: 'Crear sucursal de instalación', ab: 'CSI' },
+    ]
+}, {
+    path: '/contratos/',
+    title: 'Contratos',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'contratos',
+    children: [
+        { path: 'list', title: 'Listar contratos', ab: 'LC' },
+        { path: 'create', title: 'Crear contrato', ab: 'CC' },
+    ]
+}, {
+    path: '/equipos/',
+    title: 'Equipos',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'equipos',
+    children: [
+        { path: 'list', title: 'Listar equipos', ab: 'LE' },
+        // { path: 'create', title: 'Crear cliente', ab: 'CC' },
+    ]
+}, {
+    path: '/puntos/',
+    title: 'Puntos',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'puntos',
+    children: [
+        { path: 'list', title: 'Listar puntos', ab: 'LP' },
+        // { path: 'create', title: 'Crear cliente', ab: 'CC' },
+    ]
+}, {
+    path: '/forms',
+    title: 'Forms',
+    type: 'sub',
+    icontype: 'content_paste',
+    collapse: 'forms',
+    children: [
+        { path: 'regular', title: 'Regular Forms', ab: 'RF' },
+        { path: 'extended', title: 'Extended Forms', ab: 'EF' },
+        { path: 'validation', title: 'Validation Forms', ab: 'VF' },
+        { path: 'wizard', title: 'Wizard', ab: 'W' }
     ]
 }];
 
