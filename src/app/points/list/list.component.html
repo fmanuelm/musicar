@@ -1,85 +1,86 @@
 <div class="main-content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header card-header-primary card-header-icon">
-              <h2 class="card-title">
-                <b>
-                  Listar sucursales de instalación
-                </b>
-              </h2>
-            </div>
-            <div class="card-body">
-              <div class="toolbar">
-  
-              </div>
-              <div class="material-datatables">
-                <p-table id="tableBranchFacility" #tableBranchFacility [columns]="cols" [value]="points"
-                  [paginator]="true" [rows]="10">
-                  <ng-template pTemplate="caption">
-                    <div class="flex">
-                      <div class="row">
-                        <div class="col">
-                          <button class="btn btn-success mr-2" (click)="exportExcel()">
-                            Excel
-                          </button>
-                          <button class="btn btn-danger" (click)="exportPdf()">
-                            PDF
-                          </button>
-                        </div>
-                        <div class="col d-flex flex-row-reverse">
-                          <span class="p-input-icon-left ml-auto">
-                            <input pInputText type="text" class="form-control"
-                              (input)="tableBranchFacility.filterGlobal($event.target.value, 'contains')"
-                              placeholder="Global seach" />
-                          </span>
-                        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 mt-3">
+        <app-buttons-link view="list"></app-buttons-link>
+      </div>
+      <app-breadcrumb view="list"></app-breadcrumb>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary card-header-icon">
+            <h2 class="card-title">
+              <b>
+                Listar puntos
+              </b>
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="material-datatables">
+              <p-table id="tableBranchFacility" #tableBranchFacility [columns]="cols" [value]="points"
+                [paginator]="true" [rows]="10">
+                <ng-template pTemplate="caption">
+                  <div class="flex">
+                    <div class="row">
+                      <div class="col">
+                        <button class="btn btn-success mr-2" (click)="exportExcel()">
+                          Excel
+                        </button>
+                        <button class="btn btn-danger" (click)="exportPdf()">
+                          PDF
+                        </button>
+                      </div>
+                      <div class="col d-flex flex-row-reverse">
+                        <span class="p-input-icon-left ml-auto">
+                          <input pInputText type="text" class="form-control"
+                            (input)="tableBranchFacility.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Global seach" />
+                        </span>
                       </div>
                     </div>
-                  </ng-template>
-                  <ng-template pTemplate="header" let-columns>
-                    <tr>
-                      <th [pSortableColumn]="col.field" *ngFor="let col of columns">
-                        {{col.header}}
-                        <p-sortIcon [field]="col.field"></p-sortIcon>
-                        <p-columnFilter type="text" [field]="col.field" display="menu"></p-columnFilter>
-                      </th>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-col>
-                    <tr *ngIf="points.status == 204">
-                      <td rowspan="4">
-                        No hay datos
-                      </td>
-                    </tr>
-                    <tr *ngIf="points.status != 204" style="cursor: pointer;">
-                      <td>
-                        {{ col.nombre }}
-                      </td>
-                      <td>
-                        {{ col.alias }}
-                      </td>
-                      <td>
-                        {{ col.cliente }}
-                      </td>                    
-                      <td>
-                        {{ col.pais }}
-                      </td>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="paginatorcenter">
-                    <button type="button" pButton icon="pi-cloud-upload"></button>
-                  </ng-template>
-                </p-table>
-              </div>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+                      {{col.header}}
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                      <p-columnFilter type="text" [field]="col.field" display="menu"></p-columnFilter>
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-col>
+                  <tr *ngIf="points.status == 204">
+                    <td rowspan="4">
+                      No hay datos
+                    </td>
+                  </tr>
+                  <tr *ngIf="points.status != 204" style="cursor: pointer;" (click)="viewPoint(col.id)">
+                    <td>
+                      {{ col.id }}
+                    </td>
+                    <td>
+                      {{ col.pais }}
+                    </td>
+                    <td>
+                      {{ col.cliente }}
+                    </td>
+                    <td>
+                      {{ col.sucursal }}
+                    </td>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorcenter">
+                  <button type="button" pButton icon="pi-cloud-upload"></button>
+                </ng-template>
+              </p-table>
             </div>
-            <!-- end content-->
           </div>
-          <!--  end card  -->
+          <!-- end content-->
         </div>
-        <!-- end col-md-12 -->
+        <!--  end card  -->
       </div>
-      <!-- end row -->
+      <!-- end col-md-12 -->
     </div>
+    <!-- end row -->
   </div>
+</div>

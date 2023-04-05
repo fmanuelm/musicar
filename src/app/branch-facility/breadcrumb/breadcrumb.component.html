@@ -1,0 +1,24 @@
+<nav *ngIf="view == 'create'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['sucursal-instalacion/list']);">Listar sucursales</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Crear sucursal</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'list'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['sucursal-instalacion/create']);">Crear sucursales</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Listar sucursales</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'edit'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['sucursal-instalacion/detail',id]);">Ver sucursal</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Editar sucursales</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'detail'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['sucursal-instalacion/list']);">Listar sucursales</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Ver sucursal</b></li>
+    </ol>
+</nav>

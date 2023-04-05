@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContratsService } from '../service/contrats.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,13 +10,13 @@ export class ListComponent implements OnInit {
 
   public contrats: any[];
   public cols = [
-    { field: 'razon_social', header: 'Contrato' },
-    { field: 'razon_comercial', header: 'Estado' },
-    { field: 'razon_comercial', header: 'Sucursal instalación' },
-    { field: 'nit', header: 'Cliente' },
-    { field: 'pais_nombre', header: 'Sublínea' },
+    { field: 'codigo_contrato', header: 'Contrato' },
+    { field: 'estado', header: 'Estado' },
+    { field: 'cliente', header: 'Cliente' },
+    { field: 'sucursal', header: 'Sucursal instalación' },
+    { field: 'sublinea', header: 'Sublínea' },
   ];
-  constructor(private contractsService: ContratsService) { }
+  constructor(private contractsService: ContratsService, private router: Router) { }
 
   ngOnInit(): void {
     this.getContracts()
@@ -27,6 +28,20 @@ export class ListComponent implements OnInit {
 
       this.contrats = resp;
     })
+  }
+
+  viewContract(id) {
+    this.router.navigate(
+      ['contratos/detail', id]
+    );
+  }
+
+  exportExcel() {
+    this.contractsService.exportExcel(this.contrats);
+  }
+
+  exportPdf() {
+    this.contractsService.exportPdf(this.contrats, this.cols);
   }
 
 }

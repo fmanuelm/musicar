@@ -1,6 +1,17 @@
 <div class="main-content" *ngIf="client">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-md-12 mt-3">
+                <app-buttons-link view="detail"></app-buttons-link>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>{{ client.razon_social }}</h1>
+                    </div>
+                </div>
+            </div>
+            <app-breadcrumb view="detail"></app-breadcrumb>              
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header card-header-rose card-header-text">
@@ -348,9 +359,10 @@
             </div>
             <div class="col-md-12 mt-3">
                 <div class="text-center">
-                    <button mat-raised-button type="button" (click)="editClient()" class="btn btn-fill btn-warning mr-3">
+                    <button mat-raised-button type="button" (click)="editClient()"
+                        class="btn btn-fill btn-warning mr-3">
                         <span class="material-symbols-outlined">
-                            delete
+                            edit
                         </span>
                         Editar
                     </button>

@@ -41,7 +41,7 @@ export class DataTableComponent implements OnInit {
 
   viewClient(id) {
     this.router.navigate(
-      ['clientes/datail', id]
+      ['clientes/detail', id]
     );
   }
 

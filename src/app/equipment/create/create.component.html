@@ -1,0 +1,206 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <app-buttons-link view="create"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Crear equipos</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-right">
+                                <button mat-raised-button type="button" (click)="clearForm()"
+                                    class="btn btn-fill btn-rose">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                    Limpiar formulario
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <app-breadcrumb view="create"></app-breadcrumb>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del equipo</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nombre" formControlName="nombre" type="text">
+                                        <mat-error *ngIf="form.get('nombre').hasError('required')">
+                                            El nombre es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Equipo estado" formControlName="equipo_estado">
+                                            <mat-option *ngFor="let s of state" [value]="s.id">
+                                                {{ s.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('equipo_estado').hasError('required')">
+                                            El equipo estado es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Tipo de equipo" formControlName="equipo_tipo">
+                                            <mat-option *ngFor="let te of typeEquipment" [value]="te.id">
+                                                {{ te.tipo_equipo }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('equipo_placa').hasError('required')">
+                                            El tipo de equipo es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Estado inventario"
+                                            formControlName="equipo_estado_inventario">
+                                            <mat-option *ngFor="let se of equipmentState" [value]="se.id">
+                                                {{ se.estado_inventario }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('equipo_estado_inventario').hasError('required')">
+                                            El estado de inventario es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Estado sistema"
+                                            formControlName="equipo_estado_sisitema">
+                                            <mat-option *ngFor="let ss of systemState" [value]="ss.id">
+                                                {{ ss.estado_sistema }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('equipo_estado_sisitema').hasError('required')">
+                                            El estado de sistema es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Placa equipo" formControlName="equipo_placa"
+                                            type="text">
+                                        <mat-error *ngIf="form.get('equipo_placa').hasError('required')">
+                                            La placa del equipo es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="MAC" formControlName="MAC" type="text">
+                                        <mat-error *ngIf="form.get('MAC').hasError('required')">
+                                            El MAC es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Version software"
+                                            formControlName="version_software" type="text">
+                                        <mat-error *ngIf="form.get('version_software').hasError('required')">
+                                            La version del software es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del punto</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="País" formControlName="pais">
+                                            <mat-option *ngFor="let c of countries" [value]="c.id">
+                                                {{ c.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('pais').hasError('required')">
+                                            El país es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Cliente" formControlName="cliente">
+                                            <mat-option *ngFor="let c of clients" [value]="c.id">
+                                                {{ c.razon_social }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('cliente').hasError('required')">
+                                            El cliente es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Sucursal de instalación" formControlName="sucursal">
+                                            <mat-option *ngFor="let s of branchFacility" [value]="s.id">
+                                                {{ s.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('sucursal').hasError('required')">
+                                            La sucursal es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select placeholder="Punto de instalación" formControlName="punto">
+                                            <mat-option *ngFor="let p of points" [value]="p.id">
+                                                {{ p.id }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('punto').hasError('required')">
+                                            El punto es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="sendForm()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined mr-1">
+                                send
+                            </span>
+                            Crear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

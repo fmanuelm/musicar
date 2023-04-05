@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Client, DatosContacto, Pais } from '../interfaces/Client.interface';
+import { Client, DatosContacto, Pais, Horarios } from '../interfaces/Client.interface';
 import { Country } from '../interfaces/Country.interface';
 import { EconomicSector } from '../interfaces/EconomicSector.interface';
 import { TypeClient } from '../interfaces/TypeClient.interface';
@@ -19,7 +19,7 @@ export class EditComponent implements OnInit {
 
   public comercialAttend: any;
   public clientGruops: any;
-  public clientSend: Client = {
+  public clientSend: any = {
     razon_social: '',
     razon_comercial: '',
     nit: '',
@@ -31,6 +31,7 @@ export class EditComponent implements OnInit {
     usuario_comercial: 0,
     datos_contacto: [],
     horarios: {
+      id: null,
       lunes: {
         hora_inicial: null,
         hora_final: null,
@@ -89,9 +90,8 @@ export class EditComponent implements OnInit {
   ];
   form: FormGroup;
   formModalContact: FormGroup;
-  public lunesMin;
-  public lunesMax;
-  private idClient: any;
+  public idClient: any;
+  private idHorario: any;
   constructor(private clientService: ClientsService, private router: Router, private route: ActivatedRoute, private _formBuilder: FormBuilder,) {
 
 
@@ -99,13 +99,13 @@ export class EditComponent implements OnInit {
 
   async ngOnInit() {
     this.idClient = this.route.snapshot.paramMap.get('id');
-   await  this.getTypeClient();
-   await  this.getCountry();
-   await  this.getEconomicSector();
-   await  this.getComercialAttend();
-   await  this.getTypeContact();
-   await  this.getClientGroups();
-   await  this.getClienteById(this.idClient);
+    await this.getTypeClient();
+    await this.getCountry();
+    await this.getEconomicSector();
+    await this.getComercialAttend();
+    await this.getTypeContact();
+    await this.getClientGroups();
+    await this.getClienteById(this.idClient);
 
     this.form = this._formBuilder.group({
       razon_social: [this.clientSend.razon_social, [Validators.required]],
@@ -118,29 +118,29 @@ export class EditComponent implements OnInit {
 
       observaciones: [null],
 
-      lunes_hora_inicial: [null],
-      lunes_hora_final: [null],
+      lunes_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      lunes_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      martes_hora_inicial: [null],
-      martes_hora_final: [null],
+      martes_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      martes_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      miercoles_hora_inicial: [null],
-      miercoles_hora_final: [null],
+      miercoles_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      miercoles_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      jueves_hora_inicial: [null],
-      jueves_hora_final: [null],
+      jueves_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      jueves_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      viernes_hora_inicial: [null],
-      viernes_hora_final: [null],
+      viernes_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      viernes_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      sabado_hora_inicial: [null],
-      sabado_hora_final: [null],
+      sabado_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      sabado_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      domingo_hora_inicial: [null],
-      domingo_hora_final: [null],
+      domingo_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      domingo_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      festivos_hora_inicial: [null],
-      festivos_hora_final: [null],
+      festivos_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      festivos_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
     });
 
@@ -150,6 +150,109 @@ export class EditComponent implements OnInit {
       correo_contacto: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       cliente_tipo_contacto: [null, [Validators.required]],
     });
+
+    this.form.valueChanges.subscribe(() => {
+      const lunes_hora_inicial = this.form.controls['lunes_hora_inicial'].value;
+      const lunes_hora_final = this.form.controls['lunes_hora_final'].value;
+
+      if (lunes_hora_inicial && lunes_hora_final && lunes_hora_inicial >= lunes_hora_final) {
+        this.form.controls['lunes_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['lunes_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['lunes_hora_inicial'].setErrors(null);
+        this.form.controls['lunes_hora_final'].setErrors(null);
+      }
+
+
+      const martes_hora_inicial = this.form.controls['martes_hora_inicial'].value;
+      const martes_hora_final = this.form.controls['martes_hora_final'].value;
+
+      if (martes_hora_inicial && martes_hora_final && martes_hora_inicial >= martes_hora_final) {
+        this.form.controls['martes_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['martes_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['martes_hora_inicial'].setErrors(null);
+        this.form.controls['martes_hora_final'].setErrors(null);
+      }
+
+
+      const miercoles_hora_inicial = this.form.controls['miercoles_hora_inicial'].value;
+      const miercoles_hora_final = this.form.controls['miercoles_hora_final'].value;
+
+      if (miercoles_hora_inicial && miercoles_hora_final && miercoles_hora_inicial >= miercoles_hora_final) {
+        this.form.controls['miercoles_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['miercoles_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['miercoles_hora_inicial'].setErrors(null);
+        this.form.controls['miercoles_hora_final'].setErrors(null);
+      }
+
+
+      const jueves_hora_inicial = this.form.controls['jueves_hora_inicial'].value;
+      const jueves_hora_final = this.form.controls['jueves_hora_final'].value;
+
+      if (jueves_hora_inicial && jueves_hora_final && jueves_hora_inicial >= jueves_hora_final) {
+        this.form.controls['jueves_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['jueves_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['jueves_hora_inicial'].setErrors(null);
+        this.form.controls['jueves_hora_final'].setErrors(null);
+      }
+
+
+      const viernes_hora_inicial = this.form.controls['viernes_hora_inicial'].value;
+      const viernes_hora_final = this.form.controls['viernes_hora_final'].value;
+
+      if (viernes_hora_inicial && viernes_hora_final && viernes_hora_inicial >= viernes_hora_final) {
+        this.form.controls['viernes_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['viernes_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['viernes_hora_inicial'].setErrors(null);
+        this.form.controls['viernes_hora_final'].setErrors(null);
+      }
+
+
+      const sabado_hora_inicial = this.form.controls['sabado_hora_inicial'].value;
+      const sabado_hora_final = this.form.controls['sabado_hora_final'].value;
+
+      if (sabado_hora_inicial && sabado_hora_final && sabado_hora_inicial >= sabado_hora_final) {
+        this.form.controls['sabado_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['sabado_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['sabado_hora_inicial'].setErrors(null);
+        this.form.controls['sabado_hora_final'].setErrors(null);
+      }
+
+
+      const domingo_hora_inicial = this.form.controls['domingo_hora_inicial'].value;
+      const domingo_hora_final = this.form.controls['domingo_hora_final'].value;
+
+      if (domingo_hora_inicial && domingo_hora_final && domingo_hora_inicial >= domingo_hora_final) {
+        this.form.controls['domingo_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['domingo_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['domingo_hora_inicial'].setErrors(null);
+        this.form.controls['domingo_hora_final'].setErrors(null);
+      }
+
+
+
+      const festivos_hora_inicial = this.form.controls['festivos_hora_inicial'].value;
+      const festivos_hora_final = this.form.controls['festivos_hora_final'].value;
+
+      if (festivos_hora_inicial && festivos_hora_final && festivos_hora_inicial >= festivos_hora_final) {
+        this.form.controls['festivos_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['festivos_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['festivos_hora_inicial'].setErrors(null);
+        this.form.controls['festivos_hora_final'].setErrors(null);
+      }
+
+
+
+
+    });
+
   }
 
   clearForm() {
@@ -162,6 +265,8 @@ export class EditComponent implements OnInit {
   getClienteById(id) {
     this.clientService.getClienteById(id).subscribe(resp => {
       this.clientSend = resp;
+      console.log('resp del cliente: ', resp);
+      this.idHorario = this.clientSend.horarios_cliente.id;
       let arrAllCountriesSelects = [];
       arrAllCountriesSelects.push(this.clientSend.paises);
       this.clientSend.paises_extras.forEach(c => {
@@ -246,10 +351,16 @@ export class EditComponent implements OnInit {
       this.clientSend.usuario_comercial = clientTemp.usuario_comercial.id;
 
 
-      delete this.clientSend.horarios_cliente
-      delete this.clientSend.paises_extras
-      
+      // delete this.clientSend.horarios_cliente
+      delete this.clientSend.copywriters_asociados;
+      delete this.clientSend.creado;
+      delete this.clientSend.actualizado;
+      delete this.clientSend.grupos_asociados;
+      delete this.clientSend.usuarios_asociados;
+      delete this.clientSend.regionales_asociadas;
+      this.clientSend.horarios_id = this.idHorario;
       this.clientSend.horarios = {
+
         lunes: {
           hora_inicial: null,
           hora_final: null,
@@ -282,6 +393,7 @@ export class EditComponent implements OnInit {
           hora_inicial: null,
           hora_final: null,
         }
+
       };
 
       this.clientSend.horarios.lunes.hora_inicial = clientTemp.lunes_hora_inicial || null;
@@ -309,14 +421,18 @@ export class EditComponent implements OnInit {
       this.clientSend.horarios.festivos.hora_final = clientTemp.festivos_hora_final;
 
       delete this.clientSend.pais_nombre;
+      // this.clientSend.horarios_cliente.horarios_id =
 
+      console.log(this.clientSend);
+
+      // return 0;
 
       this.clientService.updateClient(this.clientSend).subscribe(resp => {
 
         if (resp.status == 202) {
           swal.fire({
             title: 'Confirmación.',
-             text: resp.message,
+            text: resp.message,
             buttonsStyling: false,
             customClass: {
               confirmButton: "btn btn-success",
@@ -324,7 +440,7 @@ export class EditComponent implements OnInit {
             icon: 'success'
           });
           this.router.navigate(
-            ['clientes/datail',this.idClient]
+            ['clientes/detail', this.idClient]
           );
         } else {
           swal.fire({

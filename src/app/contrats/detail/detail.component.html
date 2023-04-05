@@ -1,0 +1,129 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <form>
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <app-buttons-link view="detail" [id]="contract.sucursal_instalacion.id"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Número del contrato {{ contract.codigo_contrato }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <app-breadcrumb view="detail"></app-breadcrumb>
+                <div *ngIf="contract" class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del contrato</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput
+                                            [value]="contract.sucursal_instalacion.regionales_ciudades.regionales.paises.nombre"
+                                            readonly placeholder="País" type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput [value]="contract.sucursal_instalacion.clientes.razon_social"
+                                            readonly placeholder="Cliente" type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput [value]="contract.sucursal_instalacion.nombre" readonly
+                                            placeholder="Sucursal de instalación" type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput [value]="contract.negocio_sublineas.codigo_sublineas" readonly
+                                            placeholder="Sublínea" type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [value]="contract.codigo_contrato" readonly
+                                            placeholder="Número de contrato" type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput [value]="contract.contratos_estado.referencia" readonly
+                                            placeholder="Estado del contrato" type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [value]="contract.fecha_inicio_contrato" readonly
+                                            placeholder="Fecha inicio del contrato" type="date">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [value]="contract.fecha_fin_contrato" readonly
+                                            placeholder="Fecha fin del contrato" type="date">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Sublínea voice</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [value]="contract.mensajes_contador_administracion" readonly
+                                            placeholder="Mensajes administrados" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [value]="contract.mensajes_contador_creacion" readonly
+                                            placeholder="Mensajes para creación" type="number">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="editContract()" class="btn btn-fill btn-warning mr-3">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                            Editar
+                        </button>
+                        <button mat-raised-button type="button" (click)="deleteContract()"
+                            class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

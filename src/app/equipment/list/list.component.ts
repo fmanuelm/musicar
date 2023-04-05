@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipmentService } from '../service/equipment.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-list',
@@ -10,21 +12,28 @@ export class ListComponent implements OnInit {
   public equiments: any[];
   public cols = [
     { field: 'nombre', header: 'Nombre' },
-    { field: 'alias', header: 'Tipo equipo' },
-    { field: 'cliente', header: 'Placa' },
-    { field: 'pais', header: 'MAC' },
-    { field: 'pais', header: 'Punto' },
+    { field: 'tEquipo', header: 'Tipo equipo' },
+    { field: 'equipo_placa', header: 'Placa' },
+    { field: 'MAC', header: 'MAC' },
+    { field: 'punto', header: 'Punto' },
   ];
-  constructor(private equipmentService: EquipmentService) { }
+  constructor(private equipmentService: EquipmentService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getBranchFacility()
+    this.getEquipments()
   }
 
-  getBranchFacility() {
+  viewEquipment(idEquipment) {
+    this.router.navigate(
+      ['equipos/detail', idEquipment]
+    );
+  }
+
+  getEquipments() {
     this.equipmentService.getEquipments().subscribe(resp => {
       this.equiments = resp;
       console.log(resp);
+      
     })
   }
 

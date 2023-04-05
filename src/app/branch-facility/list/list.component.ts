@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BranchFacilityService } from '../service/branch-facility.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-list',
@@ -11,29 +13,35 @@ export class ListComponent implements OnInit {
   public cols = [
     { field: 'nombre', header: 'Sucursal' },
     { field: 'alias', header: 'Nombre comercial' },
-    { field: 'cliente', header: 'Cliente' },
     { field: 'pais', header: 'País' },
+    { field: 'cliente', header: 'Cliente' },
   ];
-  constructor(private branchFacility: BranchFacilityService) { }
+  constructor(private branchFacilityService: BranchFacilityService, private router: Router) { }
 
   ngOnInit(): void {
     this.getBranchFacility()
   }
 
   getBranchFacility() {
-    this.branchFacility.getBranchsFacility().subscribe(resp => {
+    this.branchFacilityService.getBranchsFacility().subscribe(resp => {
       this.branchFacilities = resp;
       console.log(resp);
 
     })
   }
 
+  viewBranchFacility(id) {
+    this.router.navigate(
+      ['sucursal-instalacion/detail', id]
+    );
+  }
+
   exportExcel() {
-    this.branchFacility.exportExcel(this.branchFacilities);
+    this.branchFacilityService.exportExcel(this.branchFacilities);
   }
 
   exportPdf() {
-    this.branchFacility.exportPdf(this.branchFacilities, this.cols);
+    this.branchFacilityService.exportPdf(this.branchFacilities, this.cols);
   }
 
 }

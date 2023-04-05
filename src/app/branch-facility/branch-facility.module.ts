@@ -11,11 +11,19 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
 import { MaterialModule } from '../app.module';
 import { ClientsService } from '../clients/service/clients.service';
+import { DetailComponent } from './detail/detail.component';
+import { EditComponent } from './edit/edit.component';
+import { ButtonsLinkComponent } from './buttons-link/buttons-link.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
     ListComponent,
-    CreateComponent
+    CreateComponent,
+    DetailComponent,
+    EditComponent,
+    ButtonsLinkComponent,
+    BreadcrumbComponent
   ],
   imports: [
     RouterModule.forChild(BranchFacilityRoutes),
