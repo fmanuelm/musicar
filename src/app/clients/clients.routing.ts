@@ -27,7 +27,7 @@ export const ClientsRoutes: Routes = [
   }, {
     path: '',
     children: [{
-      path: 'datail/:id',
+      path: 'detail/:id',
       component: DetailComponent
     }]
   }

@@ -1,0 +1,47 @@
+<div *ngIf="view == 'list' || view == 'create'" class="text-left">
+    <button mat-raised-button type="button" (click)="router.navigate(['puntos/list']);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Puntos
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline">
+        Usuarios
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+</div>
+
+<div *ngIf="view == 'detail'" class="text-left">
+    <button mat-raised-button type="button" (click)="router.navigate(['puntos/detail',id]);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Ver puntos
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+</div>
+
+<div *ngIf="view == 'edit'" class="text-left">
+    <button mat-raised-button type="button" (click)="router.navigate(['puntos/detail',id]);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Ver puntos
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2">
+        Crear usuario
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2">
+        Ver usuario
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+</div>

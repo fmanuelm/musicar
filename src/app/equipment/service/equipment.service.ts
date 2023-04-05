@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators'
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable'
 import * as FileSaver from "file-saver";
+import { Client } from 'src/app/clients/interfaces/Client.interface';
+
 
 
 @Injectable({
@@ -22,20 +24,77 @@ export class EquipmentService {
 
 
   getEquipments(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}equipos/equipo-inventario/all`, { headers: this.headers });
+    return this.http.get<any[]>(`${this.url}equipos/equipo-inventario/all`, { headers: this.headers }).pipe(map(equipments => {
+      return equipments.map(e => ({
+        ...e,
+        tEquipo: e.equipo_tipo.tipo_equipo,
+        punto: e.puntos.id
+      }));
+    }));
+  }
+
+  getEquipmentById(idEquipment): Observable<any> {
+    return this.http.get<any>(`${this.url}equipos/equipo-inventario/${idEquipment}`, { headers: this.headers })
+  }
+
+
+  getClientById(idEquipment): Observable<Client> {
+    return this.http.get<Client>(`${this.url}clientes/${idEquipment}`, { headers: this.headers })
+  }
+
+  deleteEquipment(idEquipment): Observable<any> {
+    return this.http.delete<any>(`${this.url}equipos/equipo-inventario/${idEquipment}`, { headers: this.headers })
+  }
+
+  storeEquipments(request): Observable<any> {
+    return this.http.post<any>(`${this.url}equipos/equipo-inventario`, request, { headers: this.headers });
+  }
+
+  updateEquipments(request): Observable<any> {
+    return this.http.patch<any>(`${this.url}equipos/equipo-inventario`, request, { headers: this.headers });
+  }
+
+  getClientsByCountry(idCountry): Observable<Client[]> {
+    return this.http.get<Client[]>(`${this.url}clientes/xpais/${idCountry}`, { headers: this.headers });
+  }
+
+  getBranchFacilityByClient(idClient): Observable<any> {
+    return this.http.get<any>(`${this.url}ubicacion/sucursal-instalacion/xcliente/${idClient}`, { headers: this.headers });
+  }
+
+  getPointByBranchFacility(idClient): Observable<any> {
+    return this.http.get<any>(`${this.url}puntos/xcliente/${idClient}`, { headers: this.headers });
+  }
+
+  getTypeEquipment(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/equipo-tipo/all`, { headers: this.headers });
+  }
+
+  getEquipmentState(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/equipo-estado-inventario/all`, { headers: this.headers });
+  }
+
+  getSystemState(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/equipo-estado-sistema/all`, { headers: this.headers });
+  }
+
+  getState(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/equipo-estado/all`, { headers: this.headers });
+  }
+
+  getCountries(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/paises/all`, { headers: this.headers });
   }
 
 
 
 
-  exportPdf(branchFacility: any[], cols: any[]) {
-    const datos = branchFacility.map(cliente => {
+  exportPdf(equipments: any[], cols: any[]) {
+    const datos = equipments.map(e => {
       return {
-        razon_social: cliente.razon_social,
-        razon_comercial: cliente.razon_comercial,
-        nit: cliente.nit,
-        tipo_cliente: cliente.tipo_cliente,
-        pais: cliente.pais_nombre,
+        ...e,
+        tEquipo: e.equipo_tipo.tipo_equipo,
+        punto: e.puntos.id
       }
     });
     const exportColumns = cols.map(col => ({
@@ -48,22 +107,22 @@ export class EquipmentService {
       columns: exportColumns,
       body: datos,
       didDrawPage: (dataArg) => {
-        doc.text('sucursalInstalacion', dataArg.settings.margin.left, datos.length);
+        doc.text('equipos', dataArg.settings.margin.left, datos.length);
       }
     })
 
-    doc.save(`sucursalInstalacion.pdf`);
+    doc.save(`equipos.pdf`);
   }
 
 
-  exportExcel(clients: any[]) {
-    const datos = clients.map(cliente => {
+  exportExcel(equipments: any[]) {
+    const datos = equipments.map(e => {
       return {
-        razon_social: cliente.razon_social,
-        razon_comercial: cliente.razon_comercial,
-        nit: cliente.nit,
-        tipo_cliente: cliente.tipo_cliente,
-        pais: cliente.pais_nombre,
+        nombre: e.nombre,
+        equipo_placa: e.equipo_placa,
+        MAC: e.MAC,
+        tipo_equipo: e.equipo_tipo.tipo_equipo,
+        punto: e.puntos.id
       }
     });
     import('xlsx').then(xlsx => {
@@ -74,7 +133,7 @@ export class EquipmentService {
           bookType: 'xlsx',
           type: 'array'
         });
-      this.saveAsExcelFile(excelBuffer, 'sucursalInstalacion');
+      this.saveAsExcelFile(excelBuffer, 'equipos');
     });
   }
 

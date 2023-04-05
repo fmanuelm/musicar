@@ -1,0 +1,37 @@
+<div *ngIf="view == 'edit' || view == 'detail'" class="text-left">
+    <button mat-raised-button type="button" (click)="router.navigate(['sucursal-instalacion/create']);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Crear sucursal
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" (click)="router.navigate(['sucursal-instalacion/list']);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Ver sucursales
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline">
+        Crear grupos clientes
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+</div>
+
+<div *ngIf="view == 'create'" class="text-left">
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2">
+        Grupos clientes
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2">
+        Crear grupos clientes
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+</div>

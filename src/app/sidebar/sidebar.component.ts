@@ -139,16 +139,6 @@ export const ROUTES: RouteInfo[] = [{
         { path: 'create', title: 'Crear contrato', ab: 'CC' },
     ]
 }, {
-    path: '/equipos/',
-    title: 'Equipos',
-    type: 'sub',
-    icontype: 'apps',
-    collapse: 'equipos',
-    children: [
-        { path: 'list', title: 'Listar equipos', ab: 'LE' },
-        // { path: 'create', title: 'Crear cliente', ab: 'CC' },
-    ]
-}, {
     path: '/puntos/',
     title: 'Puntos',
     type: 'sub',
@@ -156,7 +146,17 @@ export const ROUTES: RouteInfo[] = [{
     collapse: 'puntos',
     children: [
         { path: 'list', title: 'Listar puntos', ab: 'LP' },
-        // { path: 'create', title: 'Crear cliente', ab: 'CC' },
+        { path: 'create', title: 'Crear punto', ab: 'CP' },
+    ]
+}, {
+    path: '/equipos/',
+    title: 'Equipos',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'equipos',
+    children: [
+        { path: 'list', title: 'Listar equipos', ab: 'LE' },
+        { path: 'create', title: 'Crear equipo', ab: 'CE' },
     ]
 }, {
     path: '/forms',

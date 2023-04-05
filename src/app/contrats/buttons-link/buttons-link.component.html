@@ -1,0 +1,46 @@
+<div *ngIf="view == 'list' || view == 'create'" class="text-left">
+    <button mat-raised-button type="button" (click)="router.navigate(['clientes/list']);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Clientes
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" (click)="router.navigate(['sucursal-instalacion/list']);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Sucursal de instalación
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" (click)="router.navigate(['puntos/list']);"
+        class="btn btn-transparent btn-primary-outline">
+        Puntos
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+</div>
+<div *ngIf="view == 'detail' || view == 'edit'" class="text-left">
+    <button mat-raised-button type="button" (click)="router.navigate(['sucursal-instalacion/detail',id]);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Ver sucursal de instalación
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" (click)="router.navigate(['puntos/create']);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Crear punto
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" (click)="router.navigate(['puntos/list']);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Ver puntos
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+</div>

@@ -1,0 +1,165 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <app-buttons-link view="edit" [id]="contract.sucursal_instalacion.id"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Número del contrato {{ contract.codigo_contrato }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <app-breadcrumb view="edit" [id]="idContarct"></app-breadcrumb>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del contrato</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select [compareWith]="compareByValue" formControlName="pais"
+                                            placeholder="País">
+                                            <mat-option *ngFor="let country of countries" [value]="country">
+                                                {{ country.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('pais').hasError('required')">
+                                            El país es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select [compareWith]="compareByValue" formControlName="cliente"
+                                            placeholder="Cliente">
+                                            <mat-option *ngFor="let client of clients" [value]="client">
+                                                {{ client.razon_social }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('cliente').hasError('required')">
+                                            El cliente es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select [compareWith]="compareByValue" formControlName="sucursal"
+                                            placeholder="Sucursal de instalación">
+                                            <mat-option *ngFor="let bf of branchFacilities" [value]="bf">
+                                                {{ bf.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('sucursal').hasError('required')">
+                                            La sucursal es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select [compareWith]="compareByValue" formControlName="sublinea"
+                                            placeholder="Sublínea">
+                                            <mat-option *ngFor="let subline of sublines" [value]="subline">
+                                                {{ subline.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('sublinea').hasError('required')">
+                                            La sublinea es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="numero_contrato"
+                                            placeholder="Número de contrato" type="number">
+                                        <mat-error *ngIf="form.get('numero_contrato').hasError('required')">
+                                            El número de contrato es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select [compareWith]="compareByValue" formControlName="estado_contrato"
+                                            placeholder="Estado del contrato">
+                                            <mat-option *ngFor="let state of contractStatus" [value]="state">
+                                                {{ state.referencia }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('estado_contrato').hasError('required')">
+                                            El estado del contrato es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="fecha_inicio"
+                                            placeholder="Fecha inicio del contrato" type="date">
+                                        <mat-error *ngIf="form.get('fecha_inicio').hasError('required')">
+                                            La fecha inicio del contrato es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="fecha_fin" placeholder="Fecha fin del contrato"
+                                            type="date">
+                                        <mat-error *ngIf="form.get('fecha_fin').hasError('required')">
+                                            La fecha fin del contrato es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Sublínea voice</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="m_administrados"
+                                            placeholder="Mensajes administrados" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="m_creacion"
+                                            placeholder="Mensajes para creación" type="number">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="sendForm()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined">
+                                save
+                            </span>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

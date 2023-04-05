@@ -11,7 +11,7 @@ declare var $: any;
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-
+  styleUrls: ['./create.component.css'],
 })
 export class CreateComponent implements OnInit {
 
@@ -114,39 +114,150 @@ export class CreateComponent implements OnInit {
 
       observaciones: [null],
 
-      lunes_hora_inicial: [null],
-      lunes_hora_final: [null],
+      lunes_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      lunes_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      martes_hora_inicial: [null],
-      martes_hora_final: [null],
+      martes_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      martes_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      miercoles_hora_inicial: [null],
-      miercoles_hora_final: [null],
+      miercoles_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      miercoles_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      jueves_hora_inicial: [null],
-      jueves_hora_final: [null],
+      jueves_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      jueves_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      viernes_hora_inicial: [null],
-      viernes_hora_final: [null],
+      viernes_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      viernes_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      sabado_hora_inicial: [null],
-      sabado_hora_final: [null],
+      sabado_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      sabado_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      domingo_hora_inicial: [null],
-      domingo_hora_final: [null],
+      domingo_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      domingo_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
 
-      festivos_hora_inicial: [null],
-      festivos_hora_final: [null],
+      festivos_hora_inicial: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      festivos_hora_final: ['', [Validators.pattern(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)]],
+
+    });
+
+    this.form.valueChanges.subscribe(() => {
+      const lunes_hora_inicial = this.form.controls['lunes_hora_inicial'].value;
+      const lunes_hora_final = this.form.controls['lunes_hora_final'].value;
+
+      if (lunes_hora_inicial && lunes_hora_final && lunes_hora_inicial >= lunes_hora_final) {
+        this.form.controls['lunes_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['lunes_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['lunes_hora_inicial'].setErrors(null);
+        this.form.controls['lunes_hora_final'].setErrors(null);
+      }
+
+
+      const martes_hora_inicial = this.form.controls['martes_hora_inicial'].value;
+      const martes_hora_final = this.form.controls['martes_hora_final'].value;
+
+      if (martes_hora_inicial && martes_hora_final && martes_hora_inicial >= martes_hora_final) {
+        this.form.controls['martes_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['martes_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['martes_hora_inicial'].setErrors(null);
+        this.form.controls['martes_hora_final'].setErrors(null);
+      }
+
+
+      const miercoles_hora_inicial = this.form.controls['miercoles_hora_inicial'].value;
+      const miercoles_hora_final = this.form.controls['miercoles_hora_final'].value;
+
+      if (miercoles_hora_inicial && miercoles_hora_final && miercoles_hora_inicial >= miercoles_hora_final) {
+        this.form.controls['miercoles_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['miercoles_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['miercoles_hora_inicial'].setErrors(null);
+        this.form.controls['miercoles_hora_final'].setErrors(null);
+      }
+
+
+      const jueves_hora_inicial = this.form.controls['jueves_hora_inicial'].value;
+      const jueves_hora_final = this.form.controls['jueves_hora_final'].value;
+
+      if (jueves_hora_inicial && jueves_hora_final && jueves_hora_inicial >= jueves_hora_final) {
+        this.form.controls['jueves_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['jueves_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['jueves_hora_inicial'].setErrors(null);
+        this.form.controls['jueves_hora_final'].setErrors(null);
+      }
+
+
+      const viernes_hora_inicial = this.form.controls['viernes_hora_inicial'].value;
+      const viernes_hora_final = this.form.controls['viernes_hora_final'].value;
+
+      if (viernes_hora_inicial && viernes_hora_final && viernes_hora_inicial >= viernes_hora_final) {
+        this.form.controls['viernes_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['viernes_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['viernes_hora_inicial'].setErrors(null);
+        this.form.controls['viernes_hora_final'].setErrors(null);
+      }
+
+
+      const sabado_hora_inicial = this.form.controls['sabado_hora_inicial'].value;
+      const sabado_hora_final = this.form.controls['sabado_hora_final'].value;
+
+      if (sabado_hora_inicial && sabado_hora_final && sabado_hora_inicial >= sabado_hora_final) {
+        this.form.controls['sabado_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['sabado_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['sabado_hora_inicial'].setErrors(null);
+        this.form.controls['sabado_hora_final'].setErrors(null);
+      }
+
+
+      const domingo_hora_inicial = this.form.controls['domingo_hora_inicial'].value;
+      const domingo_hora_final = this.form.controls['domingo_hora_final'].value;
+
+      if (domingo_hora_inicial && domingo_hora_final && domingo_hora_inicial >= domingo_hora_final) {
+        this.form.controls['domingo_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['domingo_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['domingo_hora_inicial'].setErrors(null);
+        this.form.controls['domingo_hora_final'].setErrors(null);
+      }
+
+
+
+      const festivos_hora_inicial = this.form.controls['festivos_hora_inicial'].value;
+      const festivos_hora_final = this.form.controls['festivos_hora_final'].value;
+
+      if (festivos_hora_inicial && festivos_hora_final && festivos_hora_inicial >= festivos_hora_final) {
+        this.form.controls['festivos_hora_inicial'].setErrors({ 'incorrect': true });
+        this.form.controls['festivos_hora_final'].setErrors({ 'incorrect': true });
+      } else {
+        this.form.controls['festivos_hora_inicial'].setErrors(null);
+        this.form.controls['festivos_hora_final'].setErrors(null);
+      }
+
+
+
 
     });
 
     this.formModalContact = this._formBuilder.group({
       nombre_contacto: [null, [Validators.required]],
-      telefono_contacto: [null, [Validators.required]],
+      telefono_contacto: [null, [Validators.required, Validators.min(1)]],
       correo_contacto: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       cliente_tipo_contacto: [null, [Validators.required]],
     });
   }
+
+  validarHora(control) {
+    const hora = control.value;
+    if (!hora.match(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)) {
+      return { horaInvalida: true };
+    }
+    return null;
+  }
+
 
   clearForm() {
     this.form.reset();
@@ -207,6 +318,9 @@ export class CreateComponent implements OnInit {
 
       delete this.clientSend.pais_nombre;
 
+      // console.log(this.clientSend);
+
+      // return 0;
       this.clientService.storeClient(this.clientSend).subscribe(resp => {
 
         let alert: any;

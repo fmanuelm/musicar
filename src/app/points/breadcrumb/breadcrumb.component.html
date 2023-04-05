@@ -1,0 +1,24 @@
+<nav *ngIf="view == 'create'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['puntos/list']);">Listar puntos</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Crear puntos</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'list'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['puntos/create']);">Crear punto</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Listar puntos</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'edit'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['puntos/detail',id]);">Ver punto</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Editar puntos</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'detail'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['puntos/list']);">Listar puntos</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Ver punto</b></li>
+    </ol>
+</nav>

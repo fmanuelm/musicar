@@ -1,6 +1,10 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-12 mt-3">
+        <app-buttons-link view="list"></app-buttons-link>
+      </div>
+      <app-breadcrumb view="list"></app-breadcrumb>  
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary card-header-icon">
@@ -10,10 +14,7 @@
               </b>
             </h2>
           </div>
-          <div class="card-body">
-            <div class="toolbar">
-
-            </div>
+          <div class="card-body">          
             <div class="material-datatables">
               <p-table id="tableBranchFacility" #tableBranchFacility [columns]="cols" [value]="branchFacilities"
                 [paginator]="true" [rows]="10">
@@ -53,7 +54,7 @@
                       No hay datos
                     </td>
                   </tr>
-                  <tr *ngIf="branchFacilities.length > 0" style="cursor: pointer;">
+                  <tr *ngIf="branchFacilities.length > 0" style="cursor: pointer;" (click)="viewBranchFacility(col.id)">
                     <td>
                       {{ col.nombre }}
                     </td>
@@ -61,10 +62,10 @@
                       {{ col.alias }}
                     </td>
                     <td>
-                      {{ col.cliente }}
-                    </td>                    
-                    <td>
                       {{ col.pais }}
+                    </td>
+                    <td>
+                      {{ col.cliente }}
                     </td>
                   </tr>
                 </ng-template>

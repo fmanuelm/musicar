@@ -1,6 +1,10 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-md-12 mt-3">
+                <app-buttons-link view="list"></app-buttons-link>
+            </div>
+            <app-breadcrumb view="list"></app-breadcrumb> 
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary card-header-icon">
@@ -11,12 +15,9 @@
                         </h2>
                     </div>
                     <div class="card-body">
-                        <div class="toolbar">
-
-                        </div>
                         <div class="material-datatables">
-                            <p-table id="tableBranchFacility" #tableBranchFacility [columns]="cols"
-                                [value]="equiments" [paginator]="true" [rows]="10">
+                            <p-table id="tableBranchFacility" #tableBranchFacility [columns]="cols" [value]="equiments"
+                                [paginator]="true" [rows]="10">
                                 <ng-template pTemplate="caption">
                                     <div class="flex">
                                         <div class="row">
@@ -49,23 +50,27 @@
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-col>
-                                    <tr *ngIf="branchFacilities.length ==0">
+                                    <tr *ngIf="equiments.length ==0">
                                         <td rowspan="4">
                                             No hay datos
                                         </td>
                                     </tr>
-                                    <tr *ngIf="branchFacilities.length > 0" style="cursor: pointer;">
+                                    <tr *ngIf="equiments.length > 0" style="cursor: pointer;"
+                                        (click)="viewEquipment(col.id)">
                                         <td>
                                             {{ col.nombre }}
                                         </td>
                                         <td>
-                                            {{ col.alias }}
+                                            {{ col.tEquipo }}
                                         </td>
                                         <td>
-                                            {{ col.cliente }}
+                                            {{ col.equipo_placa }}
                                         </td>
                                         <td>
-                                            {{ col.pais }}
+                                            {{ col.MAC }}
+                                        </td>
+                                        <td>
+                                            {{ col.punto }}
                                         </td>
                                     </tr>
                                 </ng-template>

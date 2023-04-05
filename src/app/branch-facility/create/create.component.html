@@ -3,15 +3,27 @@
         <form [formGroup]="form">
             <div class="row">
                 <div class="col-md-12 mt-3">
-                    <div class="text-right">
-                        <button mat-raised-button (click)="clearForm()" type="button" class="btn btn-fill btn-rose">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                            Limpiar formulario
-                        </button>
+                    <app-buttons-link view="create"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Crear sucursal de instalación</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-right">
+                                <button mat-raised-button type="button" (click)="clearForm()"
+                                    class="btn btn-fill btn-rose">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                    Limpiar formulario
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <app-breadcrumb view="create"></app-breadcrumb>
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header card-header-rose card-header-text">
@@ -109,8 +121,10 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <mat-form-field>
-                                        <mat-select formControlName="centro_operacion_atiende" placeholder="C.O Atiende">
-                                            <mat-option *ngFor="let cAttendant of centerAttendants" [value]="cAttendant.id">
+                                        <mat-select formControlName="centro_operacion_atiende"
+                                            placeholder="C.O Atiende">
+                                            <mat-option *ngFor="let cAttendant of centerAttendants"
+                                                [value]="cAttendant.id">
                                                 {{ cAttendant.sede }}
                                             </mat-option>
                                         </mat-select>
