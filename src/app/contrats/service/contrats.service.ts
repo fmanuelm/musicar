@@ -6,6 +6,9 @@ import { map } from 'rxjs/operators'
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable'
 import * as FileSaver from "file-saver";
+import { Country } from 'src/app/clients/interfaces/Country.interface';
+import { Client } from 'src/app/clients/interfaces/Client.interface';
+import { BranchFacility } from 'src/app/branch-facility/interfaces/Branch-facility.interface';
 
 
 @Injectable({
@@ -22,20 +25,66 @@ export class ContratsService {
 
 
   getContrats(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}contratos/all`, { headers: this.headers });
+    return this.http.get<any[]>(`${this.url}contratos/all`, { headers: this.headers }).pipe(map(contracts => {
+      return contracts.map(contract => ({
+        ...contract,
+        estado: contract.contratos_estado.referencia,
+        sucursal: contract.sucursal_instalacion.nombre,
+        cliente: contract.sucursal_instalacion.clientes.razon_social,
+        sublinea: contract.negocio_sublineas.codigo_sublineas
+      }));
+    }));
+  }
+
+  getContratById(idContract): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}contratos/${idContract}`, { headers: this.headers })
+  }
+
+  deleteContratById(idContract): Observable<any> {
+    return this.http.delete<any>(`${this.url}contratos/${idContract}`, { headers: this.headers })
+  }
+
+  storeContrat(request): Observable<any> {
+    return this.http.post<any>(`${this.url}contratos`, request, { headers: this.headers });
+  }
+
+  updateContract(request): Observable<any> {
+    return this.http.patch<any>(`${this.url}contratos`, request, { headers: this.headers });
+  }
+
+  getCountries(): Observable<Country[]> {
+    return this.http.get<Country[]>(`${this.url}seed/paises/all`, { headers: this.headers });
+  }
+
+  getBranchFacilityByClient(idClient): Observable<any> {
+    return this.http.get<any>(`${this.url}ubicacion/sucursal-instalacion/xcliente/${idClient}`, { headers: this.headers });
+  }
+
+  getSublines(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/negocio-sublineas/all`, { headers: this.headers });
+  }
+
+  getContractStatus(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/contratos-estado/all`, { headers: this.headers });
+  }
+
+  getClientsByCountry(idCountry) {
+    return this.http.get<Client[]>(`${this.url}clientes/xpais/${idCountry}`, { headers: this.headers }).pipe(map(clients => {
+      return clients.map((client: Client) => ({
+        ...client,
+      }));
+    }));
   }
 
 
-
-
-  exportPdf(branchFacility: any[], cols: any[]) {
-    const datos = branchFacility.map(cliente => {
+  exportPdf(contrats: any[], cols: any[]) {
+    const datos = contrats.map(contract => {
       return {
-        razon_social: cliente.razon_social,
-        razon_comercial: cliente.razon_comercial,
-        nit: cliente.nit,
-        tipo_cliente: cliente.tipo_cliente,
-        pais: cliente.pais_nombre,
+        codigo_contrato: contract.codigo_contrato,
+        estado: contract.contratos_estado.referencia,
+        sucursal: contract.sucursal_instalacion.nombre,
+        cliente: contract.sucursal_instalacion.clientes.razon_social,
+        sublinea: contract.negocio_sublineas.codigo_sublineas
       }
     });
     const exportColumns = cols.map(col => ({
@@ -48,22 +97,22 @@ export class ContratsService {
       columns: exportColumns,
       body: datos,
       didDrawPage: (dataArg) => {
-        doc.text('sucursalInstalacion', dataArg.settings.margin.left, datos.length);
+        doc.text('contratos', dataArg.settings.margin.left, datos.length);
       }
     })
 
-    doc.save(`sucursalInstalacion.pdf`);
+    doc.save(`contratos.pdf`);
   }
 
 
-  exportExcel(clients: any[]) {
-    const datos = clients.map(cliente => {
+  exportExcel(contrats: any[]) {
+    const datos = contrats.map(contract => {
       return {
-        razon_social: cliente.razon_social,
-        razon_comercial: cliente.razon_comercial,
-        nit: cliente.nit,
-        tipo_cliente: cliente.tipo_cliente,
-        pais: cliente.pais_nombre,
+        codigo_contrato: contract.codigo_contrato,
+        estado: contract.contratos_estado.referencia,
+        cliente: contract.sucursal_instalacion.clientes.razon_social,
+        sucursal: contract.sucursal_instalacion.nombre,
+        sublinea: contract.negocio_sublineas.codigo_sublineas
       }
     });
     import('xlsx').then(xlsx => {
@@ -74,7 +123,7 @@ export class ContratsService {
           bookType: 'xlsx',
           type: 'array'
         });
-      this.saveAsExcelFile(excelBuffer, 'sucursalInstalacion');
+      this.saveAsExcelFile(excelBuffer, 'contratos');
     });
   }
 

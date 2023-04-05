@@ -1,17 +1,29 @@
 <div class="main-content">
     <div class="container-fluid">
-        <form>
+        <form [formGroup]="form">
             <div class="row">
                 <div class="col-md-12 mt-3">
-                    <div class="text-right">
-                        <button mat-raised-button (click)="clearForm()" type="button" class="btn btn-fill btn-rose">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                            Limpiar formulario
-                        </button>
+                    <app-buttons-link view="create"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Crear contrato</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-right">
+                                <button mat-raised-button type="button" (click)="clearForm()"
+                                    class="btn btn-fill btn-rose">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                    Limpiar formulario
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <app-breadcrumb view="create"></app-breadcrumb>
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header card-header-rose card-header-text">
@@ -21,30 +33,8 @@
                         </div>
                         <div class="card-body ">
                             <div class="row d-flex px-4 mx-4">
-                                <div class="col-sm-12">
-                                    <!-- <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="nombre" placeholder="Sucursal de instalación"
-                                            type="text">
-                                        <mat-error *ngIf="form.get('nombre').hasError('required')">
-                                            El nombre es requerido
-                                        </mat-error>
-                                    </mat-form-field> -->
-                                </div>
-                            </div>
-                            <div class="row d-flex px-4 mx-4">
-                                <div class="col-sm-12">
-                                    <!-- <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="alias"
-                                            placeholder="Nombre comercial de la sucursal" type="text">
-                                        <mat-error *ngIf="form.get('alias').hasError('required')">
-                                            El alias es requerido
-                                        </mat-error>
-                                    </mat-form-field> -->
-                                </div>
-                            </div>
-                            <div class="row d-flex px-4 mx-4">
                                 <div class="col-sm-6">
-                                    <!-- <mat-form-field>
+                                    <mat-form-field>
                                         <mat-select formControlName="pais" placeholder="País">
                                             <mat-option *ngFor="let country of countries" [value]="country.id">
                                                 {{ country.nombre }}
@@ -53,10 +43,10 @@
                                         <mat-error *ngIf="form.get('pais').hasError('required')">
                                             El país es requerido
                                         </mat-error>
-                                    </mat-form-field> -->
+                                    </mat-form-field>
                                 </div>
                                 <div class="col-sm-6">
-                                    <!-- <mat-form-field>
+                                    <mat-form-field>
                                         <mat-select formControlName="cliente" placeholder="Cliente">
                                             <mat-option *ngFor="let client of clients" [value]="client.id">
                                                 {{ client.razon_social }}
@@ -65,69 +55,101 @@
                                         <mat-error *ngIf="form.get('cliente').hasError('required')">
                                             El cliente es requerido
                                         </mat-error>
-                                    </mat-form-field> -->
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div class="row d-flex px-4 mx-4">
                                 <div class="col-sm-6">
-                                    <!-- <mat-form-field>
-                                        <mat-select formControlName="regional" placeholder="Regional o departamento">
-                                            <mat-option *ngFor="let regional of regionals" [value]="regional.id">
-                                                {{ regional.nombre }}
+                                    <mat-form-field>
+                                        <mat-select formControlName="sucursal" placeholder="Sucursal de instalación">
+                                            <mat-option *ngFor="let bf of branchFacilities" [value]="bf.id">
+                                                {{ bf.nombre }}
                                             </mat-option>
                                         </mat-select>
-                                        <mat-error *ngIf="form.get('regional').hasError('required')">
-                                            El regional es requerido
+                                        <mat-error *ngIf="form.get('sucursal').hasError('required')">
+                                            La sucursal es requerida
                                         </mat-error>
-                                    </mat-form-field> -->
+                                    </mat-form-field>
                                 </div>
                                 <div class="col-sm-6">
-                                    <!-- <mat-form-field>
-                                        <mat-select formControlName="regionales_ciudades" placeholder="Ciudad">
-                                            <mat-option *ngFor="let city of cities" [value]="city.id">
-                                                {{ city.nombre }}
+                                    <mat-form-field>
+                                        <mat-select formControlName="sublinea" placeholder="Sublínea">
+                                            <mat-option *ngFor="let subline of sublines" [value]="subline.id">
+                                                {{ subline.nombre }}
                                             </mat-option>
                                         </mat-select>
-                                        <mat-error *ngIf="form.get('regionales_ciudades').hasError('required')">
-                                            La ciudad es requerida
+                                        <mat-error *ngIf="form.get('sublinea').hasError('required')">
+                                            La sublinea es requerida
                                         </mat-error>
-                                    </mat-form-field> -->
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div class="row d-flex px-4 mx-4">
                                 <div class="col-sm-6">
-                                    <!-- <mat-form-field>
-                                        <mat-select formControlName="centro_operacion_vende" placeholder="C.O Vende">
-                                            <mat-option *ngFor="let cSells of centerSells" [value]="cSells.id">
-                                                {{ cSells.sede }}
-                                            </mat-option>
-                                        </mat-select>
-                                        <mat-error *ngIf="form.get('centro_operacion_vende').hasError('required')">
-                                            El centro que vende es requerido
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="numero_contrato"
+                                            placeholder="Número de contrato" type="number">
+                                        <mat-error *ngIf="form.get('numero_contrato').hasError('required')">
+                                            El número de contrato es requerido
                                         </mat-error>
-                                    </mat-form-field> -->
+                                    </mat-form-field>
                                 </div>
                                 <div class="col-sm-6">
-                                    <!-- <mat-form-field>
-                                        <mat-select formControlName="centro_operacion_atiende"
-                                            placeholder="C.O Atiende">
-                                            <mat-option *ngFor="let cAttendant of centerAttendants"
-                                                [value]="cAttendant.id">
-                                                {{ cAttendant.sede }}
+                                    <mat-form-field>
+                                        <mat-select formControlName="estado_contrato" placeholder="Estado del contrato">
+                                            <mat-option *ngFor="let state of contractStatus" [value]="state.id">
+                                                {{ state.referencia }}
                                             </mat-option>
                                         </mat-select>
-                                        <mat-error *ngIf="form.get('centro_operacion_atiende').hasError('required')">
-                                            El centro que atiende es requerido
+                                        <mat-error *ngIf="form.get('estado_contrato').hasError('required')">
+                                            El estado del contrato es requerido
                                         </mat-error>
-                                    </mat-form-field> -->
+                                    </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row d-flex px-4 mx-4 ">
-                                <div class="col-sm-12 ">
-                                    <!-- <mat-form-field class="example-full-width">
-                                        <textarea formControlName="observaciones" placeholder="Observaciones" matInput
-                                            cols="30" rows="10"></textarea>
-                                    </mat-form-field> -->
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="fecha_inicio"
+                                            placeholder="Fecha inicio del contrato" type="date">
+                                        <mat-error *ngIf="form.get('fecha_inicio').hasError('required')">
+                                            La fecha inicio del contrato es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="fecha_fin" placeholder="Fecha fin del contrato"
+                                            type="date">
+                                        <mat-error *ngIf="form.get('fecha_fin').hasError('required')">
+                                            La fecha fin del contrato es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Sublínea voice</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="m_administrados"
+                                            placeholder="Mensajes administrados" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="m_creacion"
+                                            placeholder="Mensajes para creación" type="number">
+                                    </mat-form-field>
                                 </div>
                             </div>
                         </div>

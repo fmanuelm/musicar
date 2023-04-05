@@ -15,7 +15,9 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
 import { MaterialModule } from '../app.module';
 import { ClientsService } from './service/clients.service';
-
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { ButtonsLinkComponent } from './buttons-link/buttons-link.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ClientsService } from './service/clients.service';
     CreateComponent,
     EditComponent,
     DataTableComponent,
-    DetailComponent,    
+    DetailComponent,
+    ButtonsLinkComponent,
+    BreadcrumbComponent,    
   ],
   imports: [
     CommonModule,
@@ -34,7 +38,8 @@ import { ClientsService } from './service/clients.service';
     ReactiveFormsModule,
     NouisliderModule,
     TagInputModule,
-    MaterialModule
+    MaterialModule,
+    NgxMaterialTimepickerModule
   ]
 })
 export class ClientsModule { }

@@ -55,10 +55,12 @@ export class CreateComponent implements OnInit {
       this.regionals = [];
       this.centerSells = [];
       this.centerAttendants = [];
-      this.getClientsByCountry(p);
-      this.getRegionalsByCountry(p);
-      this.getCenterSells(p);
-      this.getCenterAttendants(p);
+      if (p) {
+        this.getClientsByCountry(p);
+        this.getRegionalsByCountry(p);
+        this.getCenterSells(p);
+        this.getCenterAttendants(p);
+      }
     });
 
     this.form.get('regional').valueChanges.subscribe(p => {

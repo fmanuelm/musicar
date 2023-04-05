@@ -1,6 +1,10 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-12 mt-3">
+        <app-buttons-link view="list"></app-buttons-link>
+      </div>
+      <app-breadcrumb view="list"></app-breadcrumb>
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary card-header-icon">
@@ -11,9 +15,6 @@
             </h2>
           </div>
           <div class="card-body">
-            <div class="toolbar">
-
-            </div>
             <div class="material-datatables">
               <p-table id="tableContrats" #tableContrats [columns]="cols" [value]="contrats" [paginator]="true"
                 [rows]="10">
@@ -43,22 +44,26 @@
                     <th [pSortableColumn]="col.field" *ngFor="let col of columns">
                       {{col.header}}
                       <p-sortIcon [field]="col.field"></p-sortIcon>
+                      <p-columnFilter type="text" [field]="col.field" display="menu"></p-columnFilter>
                     </th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-col>
-                  <tr style="cursor: pointer;">
+                  <tr style="cursor: pointer;" (click)="viewContract(col.id)">
                     <td>
-                      {{ col.nombre }}
+                      {{ col.codigo_contrato }}
                     </td>
                     <td>
-                      {{ col.alias }}
+                      {{ col.estado }}
+                    </td>
+                    <td>
+                      {{ col.sucursal }}
                     </td>
                     <td>
                       {{ col.cliente }}
                     </td>
                     <td>
-                      {{ col.pais }}
+                      {{ col.sublinea }}
                     </td>
                   </tr>
                 </ng-template>

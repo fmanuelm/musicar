@@ -1,0 +1,165 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <form>
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <app-buttons-link view="detail"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Número del punto {{ idPoint }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <app-breadcrumb view="detail"></app-breadcrumb>
+                <div *ngIf="point" class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del punto</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Pais"
+                                            [value]="[point.contratos[0].cliente.paises ? point.contratos[0].cliente.paises.nombre : '']"
+                                            readonly>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Cliente"
+                                            [value]="[point.contratos[0].cliente.razon_social ? point.contratos[0].cliente.razon_social : '']"
+                                            readonly>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Sucursal de instalación"
+                                            [value]="[ point.contratos[0].contrato.sucursal_instalacion ? point.contratos[0].contrato.sucursal_instalacion.nombre : '']"
+                                            readonly>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Contratos</h4>
+                            </div>
+                        </div>
+                        <div *ngIf="point" class="card-body ">
+                            <div class="row d-flex px-4 mx-4 ">
+                                <div class="col-sm-12">
+                                    <p-table id="tableContrats" #tableContrats [columns]="cols"
+                                        [value]="point.contratos" [paginator]="true" [rows]="10">
+                                        <ng-template pTemplate="caption">
+                                            <div class="flex">
+                                                <div class="row">
+                                                    <div class="col d-flex flex-row-reverse">
+                                                        <span class="p-input-icon-left ml-auto">
+                                                            <input pInputText type="text" class="form-control"
+                                                                (input)="tableContrats.filterGlobal($event.target.value, 'contains')"
+                                                                placeholder="Global seach" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template pTemplate="header" let-columns>
+                                            <tr>
+                                                <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+                                                    {{col.header}}
+                                                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                                                    <p-columnFilter type="text" [field]="col.field" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-col>
+                                            <tr [pSelectableRow]="col">
+                                                <td>
+                                                    {{ contratInfo.codigo_contrato}}
+                                                </td>
+                                                <td>
+                                                    {{ contratInfo.contratos_estado.referencia}}
+                                                </td>
+                                                <td>
+                                                    {{ col.sublinea}}
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        (click)="router.navigate(['contratos/detail',contratInfo.id?contratInfo.id:col.id]);"
+                                                        class="material-symbols-outlined">
+                                                        visibility
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="paginatorcenter">
+                                            <button type="button" pButton icon="pi-cloud-upload"></button>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div *ngIf="point" class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Sublínea voice</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Fecha inicio contador"
+                                            [value]="point.fecha_inicio_contador" readonly type="date">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Fecha inicio contador"
+                                            [value]="point.fecha_fin_contador" readonly type="date">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="editPoint()"
+                            class="btn btn-fill btn-warning mr-3">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                            Editar
+                        </button>
+                        <button mat-raised-button type="button" (click)="deletePoint()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- modal -->

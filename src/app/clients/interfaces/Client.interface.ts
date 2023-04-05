@@ -1,19 +1,20 @@
 export interface Client {
     horarios_cliente?: any;
     paises_extras?: any[];
-    razon_social: string ;
-    razon_comercial: string ;
-    nit: string ;
-    observaciones: string ;
-    paises: Pais ;
-    paises_extra: number [];
+    razon_social: string;
+    razon_comercial: string;
+    nit: string;
+    id?: any;
+    observaciones: string;
+    paises: Pais;
+    paises_extra: number[];
     subgrupo_economico: number | any;
-    tipo_cliente: number | any ;
-    usuario_comercial: number | any ;
-    datos_contacto: DatosContacto [];
-    horarios: Horarios ;
-    pais_nombre?: string ;
-    grupo_cliente?: number ;
+    tipo_cliente: number | any;
+    usuario_comercial: number | any;
+    datos_contacto: DatosContacto[];
+    horarios: Horarios;
+    pais_nombre?: string;
+    grupo_cliente?: number;
 }
 
 export interface DatosContacto {
@@ -24,6 +25,7 @@ export interface DatosContacto {
 }
 
 export interface Horarios {
+    id?: any;
     lunes: Dia;
     martes: Dia;
     miercoles: Dia;

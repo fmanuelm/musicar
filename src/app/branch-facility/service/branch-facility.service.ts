@@ -34,20 +34,32 @@ export class BranchFacilityService {
     }));
   }
 
+  deleteBranchFacility(idBranchFacility): Observable<any> {
+    return this.http.delete<any>(`${this.url}ubicacion/sucursal-instalacion/${idBranchFacility}`, { headers: this.headers })
+  }
+
+  getBranchsFacilityById(idBranchFacility): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}ubicacion/sucursal-instalacion/${idBranchFacility}`, { headers: this.headers })
+  }
+
   storeBranchFacility(branchFacility: BranchFacility): any {
     return this.http.post<any>(`${this.url}ubicacion/sucursal-instalacion`, branchFacility, { headers: this.headers });
+  }
+
+  updateBranchFacility(branchFacility: BranchFacility): any {
+    return this.http.patch<any>(`${this.url}ubicacion/sucursal-instalacion`, branchFacility, { headers: this.headers });
   }
 
   getCountries(): Observable<Country[]> {
     return this.http.get<Country[]>(`${this.url}seed/paises/all`, { headers: this.headers });
   }
 
-  getCenterSells(idCountry): Observable<Center[]> {
-    return this.http.get<Center[]>(`${this.url}seed/centro-operaciones/vende/xpais/${idCountry}`, { headers: this.headers });
+  getCenterSells(idCountry): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/centro-operaciones/vende/xpais/${idCountry}`, { headers: this.headers });
   }
 
-  getCenterAttendants(idCountry): Observable<Center[]> {
-    return this.http.get<Center[]>(`${this.url}seed/centro-operaciones/atiende/xpais/${idCountry}`, { headers: this.headers });
+  getCenterAttendants(idCountry): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/centro-operaciones/atiende/xpais/${idCountry}`, { headers: this.headers });
   }
 
   getRegionalsByCountry(idCountry): Observable<any> {
@@ -106,8 +118,8 @@ export class BranchFacilityService {
       return {
         nombre: bf.nombre,
         alias: bf.alias,
-        cliente: bf.cliente,
         pais: bf.pais,
+        cliente: bf.cliente,
       }
     });
     import('xlsx').then(xlsx => {

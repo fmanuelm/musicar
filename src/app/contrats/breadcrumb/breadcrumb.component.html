@@ -1,0 +1,24 @@
+<nav *ngIf="view == 'create'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['contratos/list']);">Listar contratos</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Crear contratos</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'list'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['contratos/create']);">Crear contrato</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Listar contratos</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'edit'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['contratos/detail',id]);">Ver contrato</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Editar contratos</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'detail'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['contratos/list']);">Listar contratos</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Ver contrato</b></li>
+    </ol>
+</nav>

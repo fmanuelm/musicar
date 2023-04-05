@@ -1,0 +1,258 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <app-buttons-link view="edit"></app-buttons-link>
+                </div>
+                
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Número del punto {{ idPoint }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <app-breadcrumb view="edit" [id]="idPoint"></app-breadcrumb>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del punto</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <mat-select [compareWith]="compareByValue" formControlName="pais"
+                                            placeholder="País">
+                                            <mat-option *ngFor="let country of countries" [value]="country">
+                                                {{ country.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('pais').hasError('required')">
+                                            El país es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <mat-select formControlName="cliente" [compareWith]="compareByValue"
+                                            placeholder="Cliente">
+                                            <mat-option *ngFor="let client of clients" [value]="client">
+                                                {{ client.razon_social }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('cliente').hasError('required')">
+                                            El cliente es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <mat-select formControlName="sucursal" [compareWith]="compareByValue"
+                                            placeholder="Sucursal de instalación">
+                                            <mat-option *ngFor="let bf of branchFacilities" [value]="bf">
+                                                {{ bf.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('sucursal').hasError('required')">
+                                            La sucursal es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Contratos</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row ml-4 pl-4 mt-3">
+                                <div class="col-sm-5">
+                                    <button mat-raised-button type="button" class="btn btn-fill btn-success"
+                                        data-toggle="modal" data-target="#modalPais">Agregar
+                                        país</button>
+                                    <button mat-raised-button type="button" class="btn btn-fill btn-danger"
+                                        (click)="deleteContract()">Retirar
+                                        país</button>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 ">
+                                <div class="col-sm-12">
+                                    <p-table id="tableContrats" #tableContrats [columns]="cols"
+                                        [value]="contractsSelecteds" [paginator]="true" [rows]="10">
+                                        <ng-template pTemplate="caption">
+                                            <div class="flex">
+                                                <div class="row">
+                                                    <div class="col d-flex flex-row-reverse">
+                                                        <span class="p-input-icon-left ml-auto">
+                                                            <input pInputText type="text" class="form-control"
+                                                                (input)="tableContrats.filterGlobal($event.target.value, 'contains')"
+                                                                placeholder="Global seach" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template pTemplate="header" let-columns>
+                                            <tr>
+                                                <th style="width: 4rem">
+                                                </th>
+                                                <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+                                                    {{col.header}}
+                                                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                                                    <p-columnFilter type="text" [field]="col.field" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-col>
+                                            <tr [pSelectableRow]="col">
+                                                <td>
+                                                    <p-tableCheckbox (click)="selectContact(col,2)" [value]="col">
+                                                    </p-tableCheckbox>
+                                                </td>
+                                                <td>
+                                                    {{ contratInfo.codigo_contrato? contratInfo.codigo_contrato:
+                                                    col.codigo_contrato}}
+                                                </td>
+                                                <td>
+                                                    {{ contratInfo.contratos_estado?
+                                                    contratInfo.contratos_estado.referencia:col.estado}}
+                                                </td>
+                                                <td>
+                                                    {{ col.sublinea}}
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="paginatorcenter">
+                                            <button type="button" pButton icon="pi-cloud-upload"></button>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Sublínea voice</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="fecha_inicio_contador"
+                                            placeholder="Fecha inicio contador" type="date">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="fecha_fin_contador"
+                                            placeholder="Fecha fin contador" type="date">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="sendForm()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined">
+                                save
+                            </span>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- modal -->
+<div id="modalPais" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header mb-3">
+                <h4 class="modal-title text-left" id="exampleModalLabel"><b>Agregar paises</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <p-table id="tableContratsAdd" #tableContratsAdd [columns]="cols" [value]="allContracts"
+                        [paginator]="true" [rows]="10">
+                        <ng-template pTemplate="caption">
+                            <div class="flex">
+                                <div class="row">
+                                    <div class="col d-flex flex-row-reverse">
+                                        <span class="p-input-icon-left ml-auto">
+                                            <input pInputText type="text" class="form-control"
+                                                (input)="tableContratsAdd.filterGlobal($event.target.value, 'contains')"
+                                                placeholder="Global seach" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th style="width: 4rem">
+                                </th>
+                                <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+                                    {{col.header}}
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                                    <p-columnFilter type="text" [field]="col.field" display="menu">
+                                    </p-columnFilter>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-col>
+                            <tr [pSelectableRow]="col">
+                                <td>
+                                    <p-tableCheckbox (click)="selectContact(col,1)" [value]="col">
+                                    </p-tableCheckbox>
+                                </td>
+                                <td>
+                                    {{ col.codigo_contrato}}
+                                </td>
+                                <td>
+                                    {{ col.estado}}
+                                </td>
+                                <td>
+                                    {{ col.sublinea}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorcenter">
+                            <button type="button" pButton icon="pi-cloud-upload"></button>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-danger mr-3" data-dismiss="modal"
+                    (click)="cancelModal()">Cancelar</button> -->
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="aceptModal()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

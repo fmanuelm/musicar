@@ -3,15 +3,27 @@
         <form [formGroup]="form">
             <div class="row">
                 <div class="col-md-12 mt-3">
-                    <div class="text-right">
-                        <button mat-raised-button type="button" (click)="clearForm()" class="btn btn-fill btn-rose">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                            Limpiar formulario
-                        </button>
+                    <app-buttons-link view="create"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Crear cliente</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-right">
+                                <button mat-raised-button type="button" (click)="clearForm()"
+                                    class="btn btn-fill btn-rose">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                    Limpiar formulario
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <app-breadcrumb view="create"></app-breadcrumb>
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header card-header-rose card-header-text">
@@ -287,7 +299,7 @@
                             </div>
                         </div>
                         <div class="card-body mt-2">
-                            <div class="row d-flex px-4 mx-4">
+                            <div class="row d-flex px-4 mx-4 mt-2">
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <b>Lunes</b>
@@ -297,8 +309,8 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="lunes_hora_inicial" matInput placeholder="Hora inicial"
                                             type="time">
-                                        <mat-error *ngIf="form.get('lunes_hora_inicial').hasError('max')">
-                                            La hora de apertura debe ser menor a la hora de cierre
+                                        <mat-error *ngIf="form.get('lunes_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
@@ -306,13 +318,13 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="lunes_hora_final" matInput placeholder="Hora final"
                                             type="time">
-                                        <mat-error *ngIf="form.get('lunes_hora_final').hasError('min')">
-                                            La hora de cierre debe ser mayor a la hora de apertura
+                                        <mat-error *ngIf="form.get('lunes_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row d-flex px-4 mx-4">
+                            <div class="row d-flex px-4 mx-4 mt-2">
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <b>Martes</b>
@@ -322,16 +334,22 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="martes_hora_inicial" matInput placeholder="Hora inicial"
                                             type="time">
+                                        <mat-error *ngIf="form.get('martes_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="martes_hora_final" matInput placeholder="Hora final"
                                             type="time">
+                                        <mat-error *ngIf="form.get('martes_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row d-flex px-4 mx-4">
+                            <div class="row d-flex px-4 mx-4 mt-2">
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <b>Miercoles</b>
@@ -341,16 +359,22 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="miercoles_hora_inicial" matInput
                                             placeholder="Hora inicial" type="time">
+                                        <mat-error *ngIf="form.get('miercoles_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="miercoles_hora_final" matInput placeholder="Hora final"
                                             type="time">
+                                        <mat-error *ngIf="form.get('miercoles_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row d-flex px-4 mx-4">
+                            <div class="row d-flex px-4 mx-4 mt-2">
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <b>Jueves</b>
@@ -360,16 +384,22 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="jueves_hora_inicial" matInput placeholder="Hora inicial"
                                             type="time">
+                                        <mat-error *ngIf="form.get('jueves_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="jueves_hora_final" matInput placeholder="Hora final"
                                             type="time">
+                                        <mat-error *ngIf="form.get('jueves_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row d-flex px-4 mx-4">
+                            <div class="row d-flex px-4 mx-4 mt-2">
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <b>Viernes</b>
@@ -379,16 +409,22 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="viernes_hora_inicial" matInput
                                             placeholder="Hora inicial" type="time">
+                                        <mat-error *ngIf="form.get('viernes_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="viernes_hora_final" matInput placeholder="Hora final"
                                             type="time">
+                                        <mat-error *ngIf="form.get('viernes_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row d-flex px-4 mx-4">
+                            <div class="row d-flex px-4 mx-4 mt-2">
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <b>Sabado</b>
@@ -398,16 +434,22 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="sabado_hora_inicial" matInput placeholder="Hora inicial"
                                             type="time">
+                                        <mat-error *ngIf="form.get('sabado_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="sabado_hora_final" matInput placeholder="Hora final"
                                             type="time">
+                                        <mat-error *ngIf="form.get('sabado_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row d-flex px-4 mx-4">
+                            <div class="row d-flex px-4 mx-4 mt-2">
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <b>Domingo</b>
@@ -417,16 +459,22 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="domingo_hora_inicial" matInput
                                             placeholder="Hora inicial" type="time">
+                                        <mat-error *ngIf="form.get('domingo_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="domingo_hora_final" matInput placeholder="Hora final"
                                             type="time">
+                                        <mat-error *ngIf="form.get('domingo_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row d-flex px-4 mx-4">
+                            <div class="row d-flex px-4 mx-4 mt-2">
                                 <div class="col-sm-4">
                                     <div class="text-center">
                                         <b>Festivos</b>
@@ -436,16 +484,21 @@
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="festivos_hora_inicial" matInput
                                             placeholder="Hora inicial" type="time">
+                                        <mat-error *ngIf="form.get('festivos_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field class="example-full-width">
                                         <input formControlName="festivos_hora_final" matInput placeholder="Hora final"
                                             type="time">
+                                        <mat-error *ngIf="form.get('festivos_hora_final').hasError('incorrect')">
+                                            Procure que las horas concuerden entre si.
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -572,6 +625,9 @@
                                     type="number">
                                 <mat-error *ngIf="formModalContact.get('telefono_contacto').hasError('required')">
                                     El telefono es requerido
+                                </mat-error>
+                                <mat-error *ngIf="formModalContact.get('telefono_contacto').hasError('min')">
+                                    Digite un número telefónico válido
                                 </mat-error>
                             </mat-form-field>
                         </div>

@@ -1,0 +1,145 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <form>
+            <div *ngIf="equipment && client && branchFacility" class="row">
+                <div class="col-md-12 mt-3">
+                    <app-buttons-link view="detail" [id]="equipment.puntos.id"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>{{ equipment.nombre }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <app-breadcrumb view="detail" [id]="idEquipment"></app-breadcrumb> 
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del equipo</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nombre" [value]="equipment.nombre" readonly
+                                            type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Equpido estado" [value]="equipment.equipo_estado.nombre" readonly
+                                            type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Tipo de equipo"
+                                            [value]="equipment.equipo_tipo.tipo_equipo" readonly type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Estado inventario"
+                                            [value]="equipment.equipo_estado_inventario.estado_inventario" readonly
+                                            type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Estado sistema"
+                                            [value]="equipment.equipo_estado_sistema.estado_sistema" readonly
+                                            type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Placa equipo" [value]="equipment.equipo_placa"
+                                            readonly type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="MAC" [value]="equipment.MAC" readonly type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Version software"
+                                            [value]="equipment.version_software" readonly type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del punto</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="País" [value]="client.paises.nombre" readonly
+                                            type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Cliente" [value]="client.razon_social" readonly
+                                            type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Sucursal de instalación"
+                                            [value]="equipment.puntos.contratos[0].contrato.sucursal_instalacion.nombre"
+                                            readonly type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Punto de instalación" [value]="equipment.puntos.id"
+                                            readonly type="text">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="editEquipment()"
+                            class="btn btn-fill btn-warning mr-3">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                            Editar
+                        </button>
+                        <button mat-raised-button type="button" (click)="deleteEquipment()"
+                            class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
