@@ -159,6 +159,35 @@ export const ROUTES: RouteInfo[] = [{
         { path: 'create', title: 'Crear equipo', ab: 'CE' },
     ]
 }, {
+    path: '/grupos-puntos/',
+    title: 'Grupos de puntos',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'grupos-puntos',
+    children: [
+        { path: 'list', title: 'Listar grupos de puntos', ab: 'LE' },
+        { path: 'create', title: 'Crear grupos de punto', ab: 'CE' },
+    ]
+}, {
+    path: '/usuarios/',
+    title: 'Usuarios',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'usuarios',
+    children: [
+        { path: 'list', title: 'Listar Usuarios', ab: 'LE' },
+        { path: 'create', title: 'Crear usuarios', ab: 'CE' },
+    ]
+}, {
+    path: '/monitor-equipos/',
+    title: 'Monitor de equipos',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'monitor-equipos',
+    children: [
+        { path: 'list', title: 'Listar monitor de equipos', ab: 'LE' },
+    ]
+}, {
     path: '/forms',
     title: 'Forms',
     type: 'sub',

@@ -81,8 +81,6 @@ export class BranchFacilityService {
 
 
 
-
-
   exportPdf(branchFacility: any[], cols: any[]) {
     console.log(branchFacility);
     console.log(cols);
