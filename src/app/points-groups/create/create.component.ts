@@ -103,7 +103,7 @@ export class CreateComponent implements OnInit {
   getPointsContractByClient(idClient) {
     this.pointsGroupsService.getPointsContractByClient(idClient).subscribe(resp => {
       this.points = resp;
-
+      console.log(resp);
     })
   }
 

@@ -4,7 +4,7 @@ import { Country } from '../../clients/interfaces/Country.interface';
 import { Client } from '../../clients/interfaces/Client.interface';
 import { UsersService } from '../service/users.service';
 import swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
   user: any;
   idUser: string;
 
-  constructor(private userService: UsersService, private _formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private userService: UsersService, private _formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) { }
 
   async ngOnInit() {
 
@@ -120,7 +120,6 @@ export class EditComponent implements OnInit {
       } else {
         this.points = resp;
         if (this.user.usuarios_tipo.id == 18) {
-          console.log('usuario desde 18', this.user);
           this.form.get('asociacion').setValue(this.points.find(c => c.id == this.user.puntos_asociados[0].id));
         }
       }
@@ -134,9 +133,6 @@ export class EditComponent implements OnInit {
       } else {
         this.pointsGroups = resp;
         if (this.user.usuarios_tipo.id == 20) {
-          console.log('usuario desde 20', this.user);
-          console.log('grupo de puntos', this.pointsGroups);
-          console.log('id del grupo punto', this.user.grupos_asociados[0].puntosgrupos);
           this.form.get('asociacion').setValue(this.pointsGroups.find(c => c.id == this.user.grupos_asociados[0].puntosgrupos.id));
         }
       }
@@ -151,7 +147,6 @@ export class EditComponent implements OnInit {
       } else {
         this.regionals = resp;
         if (this.user.usuarios_tipo.id == 19) {
-          console.log('usuario desde 19', this.user);
           this.form.get('asociacion').setValue(this.regionals.find(c => c.id == this.user.regionales_asociadas[0].id));
         }
       }
@@ -246,7 +241,9 @@ export class EditComponent implements OnInit {
             },
             icon: 'success'
           });
-          this.clearForm();
+          this.router.navigate(
+            ['usuarios/list']
+          );
         } else {
           swal.fire({
             title: 'Error.',
