@@ -24,7 +24,6 @@ export class ListComponent implements OnInit {
   getPointsGroups() {
     this.pointsGroupsService.getPointsGroups().subscribe(resp => {
       this.pointsGroups = resp;
-      console.log(resp);
     })
   }
 

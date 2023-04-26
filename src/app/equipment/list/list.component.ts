@@ -31,9 +31,7 @@ export class ListComponent implements OnInit {
 
   getEquipments() {
     this.equipmentService.getEquipments().subscribe(resp => {
-      this.equiments = resp;
-      console.log(resp);
-      
+      this.equiments = resp;          
     })
   }
 

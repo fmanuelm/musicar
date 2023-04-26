@@ -71,7 +71,7 @@ export class EditComponent implements OnInit {
   getContratById(id) {
     this.contratService.getContratById(id).subscribe(resp => {
       this.contract = resp;
-      console.log(this.contract);
+      
       this.form.get('pais').setValue(this.countries.find(c => c.id == this.contract.sucursal_instalacion.regionales_ciudades.regionales.paises.id));
       this.form.get('sucursal').setValue(this.branchFacilities.find(c => c.id == this.contract.sucursal_instalacion.id));
       this.form.get('sublinea').setValue(this.sublines.find(c => c.id == this.contract.negocio_sublineas.id));
@@ -92,8 +92,7 @@ export class EditComponent implements OnInit {
     } else {
 
       let requestSend = this.form.getRawValue();
-      console.log(requestSend);
-
+      
       let resquest = {
         codigo_contrato: requestSend.numero_contrato,
         fecha_inicio_contrato: requestSend.fecha_inicio,

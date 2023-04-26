@@ -13,7 +13,7 @@ export class ListComponent implements OnInit {
     { field: 'nombre', header: 'Nombre' },
     { field: 'apellido', header: 'Apellidos' },
     { field: 'paisValue', header: 'País' },
-    { field: 'clienteValue', header: 'Cliente' },
+    { field: 'cliente', header: 'Cliente' },
     { field: 'tUsuarioValue', header: 'Tipo usuario' },
   ];
   constructor(private usersService: UsersService, private router: Router) { }
@@ -30,9 +30,9 @@ export class ListComponent implements OnInit {
   }
 
   viewUser(id) {
-    // this.router.navigate(
-    //   ['sucursal-instalacion/detail', id]
-    // );
+    this.router.navigate(
+      ['usuarios/detail', id]
+    );
   }
 
   exportExcel() {

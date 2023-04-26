@@ -28,8 +28,17 @@ export class UsersService {
         ...user,
         paisValue: user.centro_operacion_atiende.paises.nombre,
         tUsuarioValue: user.usuarios_tipo.tipo_usuario,
+        // cliente: user.clientes_asociados ? user.clientes_asociados[0].cliente.razon_social : '-----',
       }))
     }))
+  }
+
+  getUserById(idUser): Observable<any> {
+    return this.http.get<any>(`${this.url}usuarios/${idUser}`, { headers: this.headers });
+  }
+
+  deleteUser(idUser): Observable<any> {
+    return this.http.delete<any>(`${this.url}usuarios/${idUser}`, { headers: this.headers });
   }
 
   storeUser(request): Observable<any> {
@@ -48,28 +57,28 @@ export class UsersService {
     }));
   }
 
-  getTypeUser(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}seed/usuarios-tipo/all`, { headers: this.headers });
+  getTypeUser(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/usuarios-tipo/all`, { headers: this.headers });
   }
 
-  getAttedantUser(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}seed/centro-operaciones/atiende/all`, { headers: this.headers });
+  getAttedantUser(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/centro-operaciones/atiende/all`, { headers: this.headers });
   }
 
-  getDisponibility(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}seed/usuarios-disponibilidad/all`, { headers: this.headers });
+  getDisponibility(): Observable<any> {
+    return this.http.get<any>(`${this.url}seed/usuarios-disponibilidad/all`, { headers: this.headers });
   }
 
-  getPointsByClient(idClient): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}puntos/xcliente/${idClient}`, { headers: this.headers });
+  getPointsByClient(idClient): Observable<any> {
+    return this.http.get<any>(`${this.url}puntos/xcliente/${idClient}`, { headers: this.headers });
   }
 
-  getPointsGroupsByClient(idClient): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}puntos/puntos-grupos/xcliente/${idClient}`, { headers: this.headers });
+  getPointsGroupsByClient(idClient): Observable<any> {
+    return this.http.get<any>(`${this.url}puntos/puntos-grupos/xcliente/${idClient}`, { headers: this.headers });
   }
 
-  getRegionalByClient(idClient): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}regionales/relations/regionales-and-clientes/xcliente/${idClient}`, { headers: this.headers });
+  getRegionalByClient(idClient): Observable<any> {
+    return this.http.get<any>(`${this.url}regionales/relations/regionales-and-clientes/xcliente/${idClient}`, { headers: this.headers });
   }
 
   exportPdf(users: any[], cols: any[]) {

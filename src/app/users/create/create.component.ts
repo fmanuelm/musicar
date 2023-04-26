@@ -142,6 +142,20 @@ export class CreateComponent implements OnInit {
     } else {
       const formData = this.form.getRawValue();
 
+      let asociacion = null;
+      let asociaciones = null;
+      if (formData.tUsuario == 18) {
+        asociacion = 1;
+        asociaciones = formData.asociacion;
+      }
+      if (formData.tUsuario == 20) {
+        asociacion = 2;
+        asociaciones = formData.asociacion;
+      }
+      if (formData.tUsuario == 19) {
+        asociacion = 3;
+        asociaciones = formData.asociacion;
+      }
       const dataSend = {
         nombre: formData.nombre,
         apellido: formData.apellido,
@@ -150,11 +164,12 @@ export class CreateComponent implements OnInit {
         password: formData.password,
         telefono: formData.telefono,
         estado: formData.estado_usuario,
-        usuariosTipo: formData.tUsuario,
+        usuarios_tipo: formData.tUsuario,
         cliente: formData.cliente,
         centro_operacion_atiende: formData.cOperacion,
         usuarios_disponibilidad: formData.disponibilidad,
-        asociacion: formData.asociacion,
+        asociacion,
+        asociaciones,
       };
 
 

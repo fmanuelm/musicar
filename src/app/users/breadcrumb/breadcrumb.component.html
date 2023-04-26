@@ -1,1 +1,24 @@
-<p>breadcrumb works!</p>
+<nav *ngIf="view == 'create'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['usuarios/list']);">Listar usuarios</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Crear usuario</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'list'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['usuarios/create']);">Crear usuarios</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Listar usuarios</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'edit'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['usuarios/detail',id]);">Ver usuario</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Editar usuarios</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'detail'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['usuarios/list']);">Listar usuarios</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Ver usuarios</b></li>
+    </ol>
+</nav>

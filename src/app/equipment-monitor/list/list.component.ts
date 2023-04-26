@@ -26,8 +26,7 @@ export class ListComponent implements OnInit {
 
   getEquimentsMonitors() {
     this.equipmentMonitorService.getEquimentMonitor().subscribe(resp => {
-      this.equipmentsMonitors = resp;
-      console.log(resp);
+      this.equipmentsMonitors = resp;      
     })
   }
 

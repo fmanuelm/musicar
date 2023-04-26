@@ -82,9 +82,6 @@ export class BranchFacilityService {
 
 
   exportPdf(branchFacility: any[], cols: any[]) {
-    console.log(branchFacility);
-    console.log(cols);
-
     const datos = branchFacility.map(bf => {
       return {
         nombre: bf.nombre,

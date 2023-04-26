@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <app-breadcrumb view="create"></app-breadcrumb> -->
+                <app-breadcrumb view="create"></app-breadcrumb>
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header card-header-rose card-header-text">
@@ -93,7 +93,7 @@
                                     <mat-form-field>
                                         <mat-select formControlName="cOperacion" placeholder="Centro de operación">
                                             <mat-option *ngFor="let au of attendantUser" [value]="au.id">
-                                                {{ au.codigo_co }}
+                                                {{ au.sede }}
                                             </mat-option>
                                         </mat-select>
                                         <mat-error *ngIf="form.get('cOperacion').hasError('required')">

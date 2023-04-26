@@ -36,11 +36,6 @@ export class DetailComponent implements OnInit {
     this.pointService.getPointById(idPoint).subscribe(resp => {
       this.point = resp;
       this.contratInfo = resp.contratos[0].contrato;
-      console.log(this.contratInfo);
-
-      console.log(this.contratInfo);
-
-
     })
   }
 

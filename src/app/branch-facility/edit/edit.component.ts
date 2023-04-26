@@ -44,7 +44,7 @@ export class EditComponent implements OnInit {
     await this.getCountries();
     await this.getBranchFacilityById(this.idBranchFacility);
 
-     this.form = this._formBuilder.group({
+    this.form = this._formBuilder.group({
       nombre: [null, [Validators.required]],
       alias: [null, [Validators.required]],
       observaciones: [null],
@@ -77,7 +77,7 @@ export class EditComponent implements OnInit {
         this.getCityByRegional(p.id);
       }
     });
-    
+
   }
 
   sendForm() {
@@ -134,9 +134,6 @@ export class EditComponent implements OnInit {
   async getBranchFacilityById(id) {
     this.branchFacilityService.getBranchsFacilityById(id).subscribe(resp => {
       this.branchFacility = resp;
-      // console.log(this.countries);
-      console.log('metodo');
-
       this.form.get('nombre').setValue(this.branchFacility.nombre);
       this.form.get('alias').setValue(this.branchFacility.alias);
       this.form.get('observaciones').setValue(this.branchFacility.observaciones);
@@ -184,8 +181,7 @@ export class EditComponent implements OnInit {
       if (resp.status) {
         this.cities = [];
       } else {
-        this.cities = resp;
-        // console.log(this.cities.find(c => c.id == this.branchFacility.regionales_ciudades.id));
+        this.cities = resp;        
         this.form.get('regionales_ciudades').setValue(this.cities.find(c => c.id == this.branchFacility.regionales_ciudades.id));
       }
     })
