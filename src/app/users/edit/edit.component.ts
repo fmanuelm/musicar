@@ -14,18 +14,18 @@ declare var $: any;
 export class EditComponent implements OnInit {
 
   form: FormGroup;
-  countries: Country[];
-  clients: Client[];
-  typeUser: any[];
-  attendantUser: any[];
-  disponibility: any[];
   states_user: any[] = [
     { estado: 'Activo', value: true }, { estado: 'Inactivo', value: false }
   ];
-
+  
+  clients: Client[];
+  disponibility: any[];
+  attendantUser: any[];
+  typeUser: any[];
   points: any[];
   pointsGroups: any[];
   regionals: any[];
+  countries: Country[];
   user: any;
   idUser: string;
 
