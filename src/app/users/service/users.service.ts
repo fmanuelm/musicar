@@ -36,6 +36,7 @@ export class UsersService {
   getUserById(idUser): Observable<any> {
     return this.http.get<any>(`${this.url}usuarios/${idUser}`, { headers: this.headers });
   }
+  
 
   deleteUser(idUser): Observable<any> {
     return this.http.delete<any>(`${this.url}usuarios/${idUser}`, { headers: this.headers });
@@ -43,6 +44,10 @@ export class UsersService {
 
   storeUser(request): Observable<any> {
     return this.http.post<any>(`${this.url}usuarios`, request, { headers: this.headers });
+  }
+
+  updateUser(request): Observable<any> {
+    return this.http.patch<any>(`${this.url}usuarios`, request, { headers: this.headers });
   }
 
   getCountries(): Observable<Country[]> {

@@ -52,7 +52,7 @@ export class EditComponent implements OnInit {
       telefono: [null, [Validators.required, Validators.min(1)]],
       correo: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       usuario: [null, [Validators.required]],
-      password: [null, [Validators.required]],
+      password: [null],
       asociacion: [null, [Validators.required]],
 
     });
@@ -66,12 +66,14 @@ export class EditComponent implements OnInit {
     });
 
     this.form.get('tUsuario').valueChanges.subscribe(tu => {
-      if (tu == 18 || tu == 19 || tu == 20) {
-        this.form.controls['asociacion'].setValidators([Validators.required])
-        this.form.controls['asociacion'].updateValueAndValidity()
-      } else {
-        this.form.controls['asociacion'].setValidators([])
-        this.form.controls['asociacion'].updateValueAndValidity()
+      if (tu) {
+        if (tu == 18 || tu == 19 || tu == 20) {
+          this.form.controls['asociacion'].setValidators([Validators.required])
+          this.form.controls['asociacion'].updateValueAndValidity()
+        } else {
+          this.form.controls['asociacion'].setValidators([])
+          this.form.controls['asociacion'].updateValueAndValidity()
+        }
       }
 
     });
@@ -118,7 +120,8 @@ export class EditComponent implements OnInit {
       } else {
         this.points = resp;
         if (this.user.usuarios_tipo.id == 18) {
-          this.form.get('asociacion').setValue(this.points.find(c => c.value == this.user.puntos_asociados[0].id));
+          console.log('usuario desde 18', this.user);
+          this.form.get('asociacion').setValue(this.points.find(c => c.id == this.user.puntos_asociados[0].id));
         }
       }
     })
@@ -130,8 +133,11 @@ export class EditComponent implements OnInit {
         this.pointsGroups = [];
       } else {
         this.pointsGroups = resp;
-        if (this.user.usuarios_tipo.id == 19) {
-          this.form.get('asociacion').setValue(this.pointsGroups.find(c => c.value == this.user.grupos_asociados[0].id));
+        if (this.user.usuarios_tipo.id == 20) {
+          console.log('usuario desde 20', this.user);
+          console.log('grupo de puntos', this.pointsGroups);
+          console.log('id del grupo punto', this.user.grupos_asociados[0].puntosgrupos);
+          this.form.get('asociacion').setValue(this.pointsGroups.find(c => c.id == this.user.grupos_asociados[0].puntosgrupos.id));
         }
       }
     })
@@ -145,7 +151,8 @@ export class EditComponent implements OnInit {
       } else {
         this.regionals = resp;
         if (this.user.usuarios_tipo.id == 19) {
-          this.form.get('asociacion').setValue(this.regionals.find(c => c.value == this.user.regionales_asociadas[0].id));
+          console.log('usuario desde 19', this.user);
+          this.form.get('asociacion').setValue(this.regionals.find(c => c.id == this.user.regionales_asociadas[0].id));
         }
       }
     })
@@ -178,8 +185,6 @@ export class EditComponent implements OnInit {
   getClientsByCountry(idCountry) {
     this.userService.getClientsByCountry(idCountry).subscribe(resp => {
       this.clients = resp;
-      console.log('clientes', this.clients);
-      console.log('usuario', this.user);
       this.form.get('cliente').setValue(this.clients.find(c => c.id == this.user.clientes_asociados[0].cliente.id));
 
     })
@@ -195,29 +200,46 @@ export class EditComponent implements OnInit {
       return;
     } else {
       const formData = this.form.getRawValue();
+      let asociacion = null;
+      let asociaciones = null;
+      if (formData.tUsuario.id == 18) {
+        asociacion = 1;
+        asociaciones = formData.asociacion.id;
+      }
+      if (formData.tUsuario.id == 20) {
+        asociacion = 2;
+        asociaciones = formData.asociacion.id;
+      }
+      if (formData.tUsuario.id == 19) {
+        asociacion = 3;
+        asociaciones = formData.asociacion.id;
+      }
 
       const dataSend = {
+        id: this.user.id,
         nombre: formData.nombre,
         apellido: formData.apellido,
         usuario: formData.usuario,
         correo: formData.correo,
-        password: formData.password,
+        password: formData.password ? formData.password : this.user.password,
         telefono: formData.telefono,
-        estado: formData.estado_usuario,
-        usuarios_tipo: formData.tUsuario,
-        cliente: formData.cliente,
-        centro_operacion_atiende: formData.cOperacion,
-        usuarios_disponibilidad: formData.disponibilidad,
-        asociacion: formData.asociacion,
+        estado: formData.estado_usuario.value,
+        usuarios_tipo: formData.tUsuario.id,
+        cliente: formData.cliente.id,
+        centro_operacion_atiende: formData.cOperacion.id,
+        usuarios_disponibilidad: formData.disponibilidad.id,
+        asociacion,
+        asociaciones,
       };
 
 
-      this.userService.storeUser(dataSend).subscribe(resp => {
 
-        if (resp.status == 201) {
+      this.userService.updateUser(dataSend).subscribe(resp => {
+
+        if (resp.status == 202) {
           swal.fire({
             title: 'Confirmación.',
-            text: 'El registro se ha creado de manera correcta!',
+            text: 'El registro se ha editado de manera correcta!',
             buttonsStyling: false,
             customClass: {
               confirmButton: "btn btn-success",
