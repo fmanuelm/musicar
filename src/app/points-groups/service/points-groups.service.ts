@@ -34,12 +34,24 @@ export class PointsGroupsService {
     }))
   }
 
+  storePointsGroups(request): Observable<any> {
+    return this.http.post<any>(`${this.url}puntos/puntos-grupos`, request, { headers: this.headers })
+  }
+
   getCountries(): Observable<Country[]> {
     return this.http.get<Country[]>(`${this.url}seed/paises/all`, { headers: this.headers });
   }
 
   getPointsContractByClient(idClient): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}contratos/relations/contratos-and-puntos/xcliente/${idClient}`, { headers: this.headers });
+    return this.http.get<any[]>(`${this.url}contratos/relations/contratos-and-puntos/xcliente/${idClient}`, { headers: this.headers }).pipe(map(objs => {
+      return objs.map(obj => ({
+        punto: obj.puntos.id,
+        id: obj.id,
+        contrato: obj.contratos.codigo_contrato,
+        sucursal: obj.contratos.sucursal_instalacion.nombre,
+        sublinea: obj.contratos.negocio_sublineas.codigo_sublineas
+      }))
+    }));
   }
 
   getClientsByCountry(idCountry) {
@@ -50,7 +62,7 @@ export class PointsGroupsService {
     }));
   }
 
-  
+
 
 
   exportPdf(pointsGroups: any[], cols: any[]) {
