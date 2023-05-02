@@ -6,7 +6,15 @@
             display_external_input
         </span>
     </button>
-    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline" (click)="router.navigate(['usuarios/list']);">
+    <button mat-raised-button type="button" (click)="router.navigate(['equipos/list']);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Equipos
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline"
+        (click)="router.navigate(['usuarios/list']);">
         Usuarios
         <span class="material-symbols-outlined">
             display_external_input
@@ -15,9 +23,16 @@
 </div>
 
 <div *ngIf="view == 'detail'" class="text-left">
-    <button mat-raised-button type="button" (click)="router.navigate(['puntos/detail',id]);"
+    <button mat-raised-button type="button" (click)="router.navigate(['usuarios/create']);"
         class="btn btn-transparent btn-primary-outline mr-2">
-        Ver puntos
+        Crear usuario
+        <span class="material-symbols-outlined">
+            display_external_input
+        </span>
+    </button>
+    <button mat-raised-button type="button" (click)="router.navigate(['usuarios/detail',id]);"
+        class="btn btn-transparent btn-primary-outline mr-2">
+        Ver usuario
         <span class="material-symbols-outlined">
             display_external_input
         </span>
@@ -25,20 +40,15 @@
 </div>
 
 <div *ngIf="view == 'edit'" class="text-left">
-    <button mat-raised-button type="button" (click)="router.navigate(['puntos/detail',id]);"
+    <button mat-raised-button type="button" (click)="router.navigate(['usuarios/create']);"
         class="btn btn-transparent btn-primary-outline mr-2">
-        Ver puntos
-        <span class="material-symbols-outlined">
-            display_external_input
-        </span>
-    </button>
-    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2" (click)="router.navigate(['usuarios/create']);">
         Crear usuario
         <span class="material-symbols-outlined">
             display_external_input
         </span>
     </button>
-    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2" (click)="router.navigate(['usuarios/listx|']);">
+    <button mat-raised-button type="button" (click)="router.navigate(['usuarios/detail',id]);"
+        class="btn btn-transparent btn-primary-outline mr-2">
         Ver usuario
         <span class="material-symbols-outlined">
             display_external_input

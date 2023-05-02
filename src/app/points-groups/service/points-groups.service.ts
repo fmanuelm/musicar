@@ -29,9 +29,16 @@ export class PointsGroupsService {
         clienteValue: point.clientes.razon_social,
         paisValue: point.clientes.paises.nombre,
         nitValue: point.clientes.nit,
-
       }))
     }))
+  }
+
+  getPointsGroupsById(id): Observable<any> {
+    return this.http.get<any>(`${this.url}puntos/puntos-grupos/${id}`, { headers: this.headers })
+  }
+
+  deletePointsGroupsById(id): Observable<any> {
+    return this.http.delete<any>(`${this.url}puntos/puntos-grupos/${id}`, { headers: this.headers })
   }
 
   storePointsGroups(request): Observable<any> {

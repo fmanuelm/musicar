@@ -12,6 +12,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailComponent } from './detail/detail.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { ButtonsLinkComponent } from './buttons-link/buttons-link.component';
 
 
 
@@ -21,7 +22,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     CreateComponent,
     EditComponent,
     DetailComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ButtonsLinkComponent
   ],
   imports: [
     RouterModule.forChild(PointsGroupsRoutes),

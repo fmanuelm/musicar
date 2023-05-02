@@ -17,8 +17,7 @@ export class CreateComponent implements OnInit {
   points: any[];
   pointsTemp: any[] = [];
   pointsSelects: any[] = [];
-  // pointsSelecteds: any[] = [];
-  // pointsSelectedsTemp: any[] = [];
+
 
   constructor(private pointsGroupsService: PointsGroupsService, private _formBuilder: FormBuilder) { }
 
@@ -67,14 +66,9 @@ export class CreateComponent implements OnInit {
       this.pointsSelects.forEach(p => {
         arrPointsSend.push(p.id);
       });
-
       request.nombre = data.nombre;
       request.clientes = data.cliente;
       request.puntos = arrPointsSend;
-
-
-
-
       this.pointsGroupsService.storePointsGroups(request).subscribe(resp => {
 
         if (resp.status == 201) {
@@ -128,8 +122,7 @@ export class CreateComponent implements OnInit {
     this.pointsTemp = [];
   }
 
-  aceptModal() {
-    // this.pointsSelects = [];
+  aceptModal() {    
     this.pointsTemp.forEach(c => {
       this.pointsSelects.push(c)
     });
@@ -145,7 +138,6 @@ export class CreateComponent implements OnInit {
   }
 
   selectCountry(point) {
-
     const flag = this.pointsTemp.find(cSelect => { return cSelect.id == point.id });
     if (!flag) {
       this.pointsTemp.push(point);
@@ -212,10 +204,4 @@ export class CreateComponent implements OnInit {
     console.log('saliendo', this.pointsTemp);
 
   }
-
-
-
-
-
-
 }

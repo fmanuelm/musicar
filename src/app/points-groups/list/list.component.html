@@ -1,9 +1,9 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <!-- <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-3">
                 <app-buttons-link view="list"></app-buttons-link>
-            </div> -->
+            </div>
             <app-breadcrumb view="list"></app-breadcrumb>
             <div class="col-md-12">
                 <div class="card">
@@ -16,8 +16,8 @@
                     </div>
                     <div class="card-body">
                         <div class="material-datatables">
-                            <p-table id="tablePointsGroups" #tablePointsGroups [columns]="cols"
-                                [value]="pointsGroups" [paginator]="true" [rows]="10">
+                            <p-table id="tablePointsGroups" #tablePointsGroups [columns]="cols" [value]="pointsGroups"
+                                [paginator]="true" [rows]="10">
                                 <ng-template pTemplate="caption">
                                     <div class="flex">
                                         <div class="row">
@@ -49,7 +49,7 @@
                                         </th>
                                     </tr>
                                 </ng-template>
-                                <ng-template pTemplate="body" let-col>                                    
+                                <ng-template pTemplate="body" let-col>
                                     <tr *ngIf="pointsGroups.length > 0" style="cursor: pointer;"
                                         (click)="viewPointGroup(col.id)">
                                         <td>

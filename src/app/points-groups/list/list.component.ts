@@ -28,9 +28,9 @@ export class ListComponent implements OnInit {
   }
 
   viewPointGroup(id) {
-    // this.router.navigate(
-    //   ['sucursal-instalacion/detail', id]
-    // );
+    this.router.navigate(
+      ['grupos-puntos/detail', id]
+    );
   }
 
   exportExcel() {
