@@ -28,7 +28,7 @@ export class UsersService {
         ...user,
         paisValue: user.centro_operacion_atiende.paises.nombre,
         tUsuarioValue: user.usuarios_tipo.tipo_usuario,
-        // cliente: user.clientes_asociados ? user.clientes_asociados[0].cliente.razon_social : '-----',
+        cliente: user.clientes_asociados[0] ? user.clientes_asociados[0].cliente.razon_social : '-----',
       }))
     }))
   }
@@ -36,7 +36,7 @@ export class UsersService {
   getUserById(idUser): Observable<any> {
     return this.http.get<any>(`${this.url}usuarios/${idUser}`, { headers: this.headers });
   }
-  
+
 
   deleteUser(idUser): Observable<any> {
     return this.http.delete<any>(`${this.url}usuarios/${idUser}`, { headers: this.headers });
@@ -120,6 +120,7 @@ export class UsersService {
         apellidos: user.apellido,
         pais: user.centro_operacion_atiende.paises.nombre,
         tipo_usuario: user.usuarios_tipo.tipo_usuario,
+        cliente: user.clientes_asociados[0] ? user.clientes_asociados[0].cliente.razon_social : '-----',
       }
     });
     import('xlsx').then(xlsx => {
