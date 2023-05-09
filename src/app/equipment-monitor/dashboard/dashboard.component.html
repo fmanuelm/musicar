@@ -133,18 +133,19 @@
                         <div class="row d-flex px-4 mx-4">
                             <div class="col-md-6">
                                 <h4>MUSICAL EXPERIENCE:</h4>
-                                <p *ngIf="dataGraphics"> 
+                                <p *ngIf="dataGraphics">
                                     <label for="">Sublínea</label> {{ dataGraphics [5].informacion[0].sublinea}} <br>
-                                    <label for="">Canal actual</label> {{ dataGraphics [5].informacion[0].canal_actual}} <br>
+                                    <label for="">Canal actual</label> {{ dataGraphics [5].informacion[0].canal_actual}}
+                                    <br>
                                     <label for="">Volumen</label> {{ dataGraphics [5].informacion[0].volumen}} <br>
-                                </p>                               
+                                </p>
                             </div>
                             <div class="col-md-6">
                                 <h4>VOICE EXPERIENCE:</h4>
-                                <p *ngIf="dataGraphics"> 
-                                    <label for="">Sublínea</label> {{ dataGraphics [5].informacion[1].sublinea}} <br>                                    
+                                <p *ngIf="dataGraphics">
+                                    <label for="">Sublínea</label> {{ dataGraphics [5].informacion[1].sublinea}} <br>
                                     <label for="">Volumen</label> {{ dataGraphics [5].informacion[1].volumen}} <br>
-                                </p>                               
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -160,8 +161,27 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="material-datatables">
-                            Aca va el grafico
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-md-6">
+                                <p *ngIf="dataGraphics">
+                                    <label for="">Estado</label> {{ dataDashboard.flag_estado_conexion_red?
+                                    'Activa':'Inactiva' }} <br>
+                                    <label for="">Fecha/Hora <br>
+                                        última conexión
+                                    </label> {{ dataDashboard.fecha_hora_ultima_conexion }}
+                                    <br>
+                                    <label for="">Tiempo desde <br> última conexón</label> {{
+                                    dataDashboard.tiempo_ultima_conexion }} Horas <br>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p *ngIf="dataGraphics">
+                                    <label for="">Fecha/Hora <br> Equipo</label> {{ dataDashboard.fecha_hora_equipo}}
+                                    <br>
+                                    <label for="">Fecha/Hora <br> encendido</label> {{
+                                    dataDashboard.fecha_hora_encendido}} <br>
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <!-- end content-->
