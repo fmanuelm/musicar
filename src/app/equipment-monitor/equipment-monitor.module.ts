@@ -9,22 +9,20 @@ import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../app.module';
 import { EquipmentMonitorRoutes } from './equipment-monitor.routing';
-import { CreateComponent } from './create/create.component';
-import { EditComponent } from './edit/edit.component';
-import { DetailComponent } from './detail/detail.component';
+
+
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ButtonsLinkComponent } from './buttons-link/buttons-link.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    CreateComponent,
-    EditComponent,
-    DetailComponent,
     BreadcrumbComponent,
-    ButtonsLinkComponent
+    ButtonsLinkComponent,
+    DashboardComponent
   ],
   imports: [
     RouterModule.forChild(EquipmentMonitorRoutes),

@@ -26,7 +26,7 @@ export class ListComponent implements OnInit {
 
   getEquimentsMonitors() {
     this.equipmentMonitorService.getEquimentMonitor().subscribe(resp => {
-      this.equipmentsMonitors = resp;      
+      this.equipmentsMonitors = resp;
     })
   }
 
@@ -38,6 +38,10 @@ export class ListComponent implements OnInit {
     this.equipmentMonitorService.exportPdf(this.equipmentsMonitors, this.cols);
   }
 
-  viewEquipmentMonitor(){}
+  viewEquipmentMonitor(equipmentMonitor) {
+    this.router.navigate(
+      ['monitor-equipos/detail', equipmentMonitor.equipo_inventario.id]
+    );
+  }
 
 }

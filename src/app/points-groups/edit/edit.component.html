@@ -1,1 +1,260 @@
-<p>edit works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <app-buttons-link view="edit"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>{{ pointsGroups.nombre }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <app-breadcrumb view="edit"></app-breadcrumb>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del punto</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="nombre" placeholder="Nombre grupo" type="text">
+                                        <mat-error *ngIf="form.get('nombre').hasError('required')">
+                                            El nombre es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select [compareWith]="compareByValue" formControlName="pais"
+                                            placeholder="País">
+                                            <mat-option *ngFor="let country of countries" [value]="country">
+                                                {{ country.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('pais').hasError('required')">
+                                            El país es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select [compareWith]="compareByValue" formControlName="cliente"
+                                            placeholder="Cliente">
+                                            <mat-option *ngFor="let client of clients" [value]="client">
+                                                {{ client.razon_social }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('cliente').hasError('required')">
+                                            El cliente es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row ml-4 pl-4 mt-3">
+                                <div class="col-sm-5">
+                                    <label for="">Puntos</label> <br>
+                                    <button mat-raised-button type="button" class="btn btn-fill btn-success"
+                                        data-toggle="modal" data-target="#modalPais">Agregar
+                                        punto</button>
+                                    <button mat-raised-button type="button" class="btn btn-fill btn-danger"
+                                        (click)="deletePoint()">Retirar
+                                        punto</button>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-12">
+                                    <p-table [globalFilterFields]="['punto','sucursal','contrato','sublinea']"
+                                        id="tablePoints" #tablePoints [value]="pointsSelects" [paginator]="true"
+                                        [rows]="10">
+                                        <ng-template pTemplate="caption">
+                                            <div class="flex">
+                                                <div class="row">
+                                                    <div class="col d-flex flex-row-reverse">
+                                                        <span class="p-input-icon-left ml-auto">
+                                                            <input pInputText type="text" class="form-control"
+                                                                (input)="tablePoints.filterGlobal($event.target.value, 'contains')"
+                                                                placeholder="Global seach" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template pTemplate="header" let-col>
+                                            <tr [pSelectableRow]="group_point">
+                                                <th style="width: 4rem">
+                                                    <p-tableHeaderCheckbox (click)="selectAll(2)">
+                                                    </p-tableHeaderCheckbox>
+                                                </th>
+                                                <th pSortableColumn="id">
+                                                    Puntos
+                                                    <p-sortIcon field="id"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="id" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                                <th pSortableColumn="sucursal">
+                                                    Sucursal de instalación
+                                                    <p-sortIcon field="sucursal"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="sucursal" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                                <th pSortableColumn="contrato">
+                                                    Contratos
+                                                    <p-sortIcon field="contrato"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="contrato" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                                <th pSortableColumn="sublinea">
+                                                    Sublienas
+                                                    <p-sortIcon field="sublinea"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="sublinea" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-col>
+                                            <tr [pSelectableRow]="col">
+                                                <td>
+                                                    <p-tableCheckbox (click)="checkedSelectPoint(col)" [value]="col">
+                                                    </p-tableCheckbox>
+                                                </td>
+                                                <td>
+                                                    {{ col.id}}
+                                                </td>
+                                                <td>
+                                                    {{ col.sucursal}}
+                                                </td>
+                                                <td>
+                                                    {{ col.contrato}}
+                                                </td>
+                                                <td>
+                                                    {{ col.sublinea}}
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="paginatorcenter">
+                                            <button type="button" pButton icon="pi-cloud-upload"></button>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="sendForm()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined">
+                                save
+                            </span>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="modalPais" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header mb-3">
+                <h4 class="modal-title text-left" id="exampleModalLabel"><b>Agregar paises</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <p-table [globalFilterFields]="['punto','sucursal','contrato','sublinea']" id="tablePoints"
+                        #tablePoints [value]="points" [paginator]="true" [rows]="10">
+                        <ng-template pTemplate="caption">
+                            <div class="flex">
+                                <div class="row">
+                                    <div class="col d-flex flex-row-reverse">
+                                        <span class="p-input-icon-left ml-auto">
+                                            <input pInputText type="text" class="form-control"
+                                                (input)="tablePoints.filterGlobal($event.target.value, 'contains')"
+                                                placeholder="Global seach" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-col>
+                            <tr [pSelectableRow]="group_point">
+                                <th style="width: 4rem">
+                                    <p-tableHeaderCheckbox (click)="selectAll(1)">
+                                    </p-tableHeaderCheckbox>
+                                </th>
+                                <th pSortableColumn="id">
+                                    Puntos
+                                    <p-sortIcon field="id"></p-sortIcon>
+                                    <p-columnFilter type="text" field="id" display="menu">
+                                    </p-columnFilter>
+                                </th>
+                                <th pSortableColumn="sucursal">
+                                    Sucursal de instalación
+                                    <p-sortIcon field="sucursal"></p-sortIcon>
+                                    <p-columnFilter type="text" field="sucursal" display="menu">
+                                    </p-columnFilter>
+                                </th>
+                                <th pSortableColumn="contrato">
+                                    Contratos
+                                    <p-sortIcon field="contrato"></p-sortIcon>
+                                    <p-columnFilter type="text" field="contrato" display="menu">
+                                    </p-columnFilter>
+                                </th>
+                                <th pSortableColumn="sublinea">
+                                    Sublienas
+                                    <p-sortIcon field="sublinea"></p-sortIcon>
+                                    <p-columnFilter type="text" field="sublinea" display="menu">
+                                    </p-columnFilter>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-col>
+                            <tr [pSelectableRow]="col">
+                                <td>
+                                    <p-tableCheckbox (click)="selectCountry(col)" [value]="col">
+                                    </p-tableCheckbox>
+                                </td>
+                                <td>
+                                    {{ col.id}}
+                                </td>
+                                <td>
+                                    {{ col.sucursal}}
+                                </td>
+                                <td>
+                                    {{ col.contrato}}
+                                </td>
+                                <td>
+                                    {{ col.sublinea}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorcenter">
+                            <button type="button" pButton icon="pi-cloud-upload"></button>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-3" data-dismiss="modal"
+                    (click)="cancelModal()">Cancelar</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="aceptModal()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

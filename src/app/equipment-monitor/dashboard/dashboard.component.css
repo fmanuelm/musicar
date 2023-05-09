@@ -1,0 +1,61 @@
+.ct-series-a {
+    /* give the donut slice a custom colour */
+    stroke: blue;
+    /* customize stroke width of the donut slices in CSS. Note that this property is already set in JavaScript and label positioning also relies on this. In the right situation though it can be very useful to style this property. You need to use !important to override the style attribute */
+    stroke-width: 5px !important;
+    /* create modern looking rounded donut charts */
+    stroke-linecap: round;
+}
+
+.ct-series-b {
+    /* give the donut slice a custom colour */
+    stroke: whitesmoke;
+    /* customize stroke width of the donut slices in CSS. Note that this property is already set in JavaScript and label positioning also relies on this. In the right situation though it can be very useful to style this property. You need to use !important to override the style attribute */
+    stroke-width: 5px !important;
+    /* create modern looking rounded donut charts */
+    stroke-linecap: round;
+}
+
+.punto-uso {
+    height: 25px;
+    width: 25px;
+    background-color: #00BCD4;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.punto {
+    height: 15px;
+    width: 15px;
+    background-color: #00BCD4;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.punto-libre {
+    height: 25px;
+    width: 25px;
+    background-color: #F44336;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.triangle-top {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 11px solid #35f912;
+    border-top: 0;
+}
+
+.triangle-bottom {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-top: 11px solid #f93112;
+    border-bottom: 0;
+  }

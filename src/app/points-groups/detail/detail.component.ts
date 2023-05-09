@@ -23,7 +23,13 @@ export class DetailComponent implements OnInit {
   getPointGroupById(id) {
     this.pointsGroupsService.getPointsGroupsById(id).subscribe(resp => {
       this.pointsGroups = resp;
-      console.log(resp);
+      this.points = resp.puntos_asociados;
+      this.points = this.points.map(p => ({
+        id: p.id,
+        sucursal: p.puntos.contratos[0].contrato.sucursal_instalacion.nombre,
+        sublinea: p.puntos.contratos[0].contrato.negocio_sublineas.codigo_sublineas,
+        contrato: p.puntos.contratos[0].contrato.codigo_contrato,
+      }));
     })
   }
 
@@ -73,6 +79,12 @@ export class DetailComponent implements OnInit {
         });
       }
     })
+  }
+
+  editPointGroup() {
+    this.router.navigate(
+      ['grupos-puntos/edit', this.idPointGroup]
+    );
   }
 
 }

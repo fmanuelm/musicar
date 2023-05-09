@@ -31,6 +31,10 @@ export class EquipmentMonitorService {
     }))
   }
 
+  getEquimentMonitorById(id): Observable<any> {
+    return this.http.get<any>(`${this.url}equipos/monitor-equipo-inventario/${id}`, { headers: this.headers })
+  }
+
 
   exportPdf(equipmentsMonitors: any[], cols: any[]) {
     const datos = equipmentsMonitors.map(em => {

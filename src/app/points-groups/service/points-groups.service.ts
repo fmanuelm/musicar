@@ -45,18 +45,27 @@ export class PointsGroupsService {
     return this.http.post<any>(`${this.url}puntos/puntos-grupos`, request, { headers: this.headers })
   }
 
+  updatePointsGroups(request): Observable<any> {
+    return this.http.patch<any>(`${this.url}puntos/puntos-grupos`, request, { headers: this.headers })
+  }
+
   getCountries(): Observable<Country[]> {
     return this.http.get<Country[]>(`${this.url}seed/paises/all`, { headers: this.headers });
   }
 
   getPointsContractByClient(idClient): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}contratos/relations/contratos-and-puntos/xcliente/${idClient}`, { headers: this.headers }).pipe(map(objs => {
+    return this.http.get<any[]>(`${this.url}puntos/xcliente/${idClient}`, { headers: this.headers }).pipe(map(objs => {
       return objs.map(obj => ({
-        punto: obj.puntos.id,
+        // punto: obj.puntos.id,
+        // id: obj.id,
+        // contrato: obj.contratos.codigo_contrato,
+        // sucursal: obj.contratos.sucursal_instalacion.nombre,
+        // sublinea: obj.contratos.negocio_sublineas.codigo_sublineas
+        // ...obj,
         id: obj.id,
-        contrato: obj.contratos.codigo_contrato,
-        sucursal: obj.contratos.sucursal_instalacion.nombre,
-        sublinea: obj.contratos.negocio_sublineas.codigo_sublineas
+        sucursal: obj.contratos[0].contrato.sucursal_instalacion.nombre,
+        contrato: obj.contratos[0].contrato.codigo_contrato,
+        sublinea: obj.contratos[0].contrato.negocio_sublineas.codigo_sublineas,
       }))
     }));
   }

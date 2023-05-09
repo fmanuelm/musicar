@@ -51,7 +51,7 @@
                                 </ng-template>
                                 <ng-template pTemplate="body" let-col>
                                     <tr *ngIf="equipmentsMonitors.length > 0" style="cursor: pointer;"
-                                        (click)="viewEquipmentMonitor(col.id)">
+                                        (click)="viewEquipmentMonitor(col)">
                                         <td>
                                             {{ col.pais }}
                                         </td>

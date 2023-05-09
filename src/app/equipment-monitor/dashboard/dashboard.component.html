@@ -1,0 +1,175 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- <div class="col-md-12 mt-3">
+                <app-buttons-link view="list"></app-buttons-link>
+            </div>
+            <app-breadcrumb view="list"></app-breadcrumb> -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Monitor del sistema</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="dataGraphics" class="row d-flex px-4 mx-4">
+                            <div class="col-md-12">
+                                <h4>SISTEMA OPERATIVO:</h4>
+                                <p>{{ dataDashboard.sistema_operativo }}</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div *ngIf="dataGraphics" class="col-md-6">
+                                <h4>CPU:</h4>
+                                <p>{{ dataGraphics[0].nombre_cpu }}</p>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="progress" style="height: 20px;border-radius: 30px;">
+                                            <div class="progress-bar" role="progressbar"
+                                                [ngStyle]="{'width':getBarSize(),'background-color': 'black'}"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <p>{{ getBarSize() }}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <h4>MEMORIA(ram):</h4>
+                                <p *ngIf="dataGraphics">{{ dataDashboard.sistema_operativo }}</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div id="xd" class="ct-chart"></div>
+                                    </div>
+                                    <div *ngIf="dataGraphics" class="col-md-6">
+                                        <span class="punto-uso"></span> En uso <b>{{ dataGraphics[1].uso }}%</b> <br>
+                                        <span class="punto-libre"></span> Libre <b>{{dataGraphics[1].libre}}% </b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!--  end card  -->
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Monitor del hardware</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-md-6">
+                                <h4>SALIDA DE AUDIO:</h4>
+                                <p *ngIf="dataGraphics">Headphone Jack: {{ dataGraphics[2].estado? 'Activa':'Inactiva'
+                                    }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>TEMPERATURA:</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div id="temp" class="ct-chart"></div>
+                                    </div>
+                                    <div *ngIf="dataGraphics" class="col-md-6">
+                                        <label class="triangle-bottom mb-0"></label> Mínimo
+                                        <b>{{ min }}° C </b><br>
+                                        <label class="punto mb-0 mt-1"></label> Promedio <b>{{prom}}° C</b><br>
+                                        <label class="triangle-top mb-0"></label> Máximo <b>{{max}}° C</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!--  end card  -->
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Monitor de red</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-md-12">
+                                <h4>INTERFAZ DE RED:</h4>
+                                <p *ngIf="dataGraphics"> eth0</p>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div id="width-band" class="ct-chart"></div>
+                                    </div>
+                                    <div *ngIf="dataGraphics" class="col-md-4">
+                                        Actual
+                                        <b>-------- KBit/s </b><br>
+                                        <label class="triangle-bottom mb-0"></label> Mínimo
+                                        <b>{{ minBand }}KBit/s </b><br>
+                                        <label class="punto mb-0 mt-1"></label> Promedio <b>{{promBand}}KBit/s</b><br>
+                                        <label class="triangle-top mb-0"></label> Máximo <b>{{maxBand}}KBit/s</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!--  end card  -->
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Monitor del servicio</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-md-6">
+                                <h4>MUSICAL EXPERIENCE:</h4>
+                                <p *ngIf="dataGraphics"> 
+                                    <label for="">Sublínea</label> {{ dataGraphics [5].informacion[0].sublinea}} <br>
+                                    <label for="">Canal actual</label> {{ dataGraphics [5].informacion[0].canal_actual}} <br>
+                                    <label for="">Volumen</label> {{ dataGraphics [5].informacion[0].volumen}} <br>
+                                </p>                               
+                            </div>
+                            <div class="col-md-6">
+                                <h4>VOICE EXPERIENCE:</h4>
+                                <p *ngIf="dataGraphics"> 
+                                    <label for="">Sublínea</label> {{ dataGraphics [5].informacion[1].sublinea}} <br>                                    
+                                    <label for="">Volumen</label> {{ dataGraphics [5].informacion[1].volumen}} <br>
+                                </p>                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!--  end card  -->
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Monitor de conexion</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="material-datatables">
+                            Aca va el grafico
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!--  end card  -->
+            </div>
+            <!-- end col-md-12 -->
+        </div>
+        <!-- end row -->
+    </div>
+</div>

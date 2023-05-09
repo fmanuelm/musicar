@@ -73,10 +73,10 @@
                                     <label for="">Puntos</label> <br>
                                     <button mat-raised-button type="button" class="btn btn-fill btn-success"
                                         data-toggle="modal" data-target="#modalPais">Agregar
-                                        país</button>
+                                        punto</button>
                                     <button mat-raised-button type="button" class="btn btn-fill btn-danger"
                                         (click)="deletePoint()">Retirar
-                                        país</button>
+                                        punto</button>
                                 </div>
                             </div>
                             <div class="row d-flex px-4 mx-4">
@@ -102,10 +102,10 @@
                                                     <p-tableHeaderCheckbox (click)="selectAll(2)">
                                                     </p-tableHeaderCheckbox>
                                                 </th>
-                                                <th pSortableColumn="punto">
+                                                <th pSortableColumn="id">
                                                     Puntos
-                                                    <p-sortIcon field="punto"></p-sortIcon>
-                                                    <p-columnFilter type="text" field="punto" display="menu">
+                                                    <p-sortIcon field="id"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="id" display="menu">
                                                     </p-columnFilter>
                                                 </th>
                                                 <th pSortableColumn="sucursal">
@@ -135,7 +135,7 @@
                                                     </p-tableCheckbox>
                                                 </td>
                                                 <td>
-                                                    {{ col.punto}}
+                                                    {{ col.id}}
                                                 </td>
                                                 <td>
                                                     {{ col.sucursal}}
@@ -205,10 +205,10 @@
                                     <p-tableHeaderCheckbox (click)="selectAll(1)">
                                     </p-tableHeaderCheckbox>
                                 </th>
-                                <th pSortableColumn="punto">
+                                <th pSortableColumn="id">
                                     Puntos
-                                    <p-sortIcon field="punto"></p-sortIcon>
-                                    <p-columnFilter type="text" field="punto" display="menu">
+                                    <p-sortIcon field="id"></p-sortIcon>
+                                    <p-columnFilter type="text" field="id" display="menu">
                                     </p-columnFilter>
                                 </th>
                                 <th pSortableColumn="sucursal">
@@ -238,7 +238,7 @@
                                     </p-tableCheckbox>
                                 </td>
                                 <td>
-                                    {{ col.punto}}
+                                    {{ col.id}}
                                 </td>
                                 <td>
                                     {{ col.sucursal}}
