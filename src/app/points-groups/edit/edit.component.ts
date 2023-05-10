@@ -57,7 +57,7 @@ export class EditComponent implements OnInit {
       this.pointsGroups = resp;
       this.points = resp.puntos_asociados;
       this.pointsSelects = this.points.map(p => ({
-        id: p.id,
+        id: p.puntos.id,
         sucursal: p.puntos.contratos[0].contrato.sucursal_instalacion.nombre,
         sublinea: p.puntos.contratos[0].contrato.negocio_sublineas.codigo_sublineas,
         contrato: p.puntos.contratos[0].contrato.codigo_contrato,
