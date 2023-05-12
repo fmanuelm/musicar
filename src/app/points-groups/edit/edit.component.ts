@@ -21,6 +21,8 @@ export class EditComponent implements OnInit {
   pointsSelects: any[] = [];
   idPointGroup: any;
   pointsGroups: any;
+  pointsOlds: any[];
+  pointsAsociatives: any[];
 
 
 
@@ -45,8 +47,13 @@ export class EditComponent implements OnInit {
     });
 
     this.form.get('cliente').valueChanges.subscribe(p => {
-      this.points = [];
+      if (p.id != this.pointsGroups.clientes.id) {
+        this.points = [];
+        this.pointsSelects = [];
+
+      }
       if (p) {
+
         this.getPointsContractByClient(p.id);
       }
     });
@@ -56,12 +63,14 @@ export class EditComponent implements OnInit {
     this.pointsGroupsService.getPointsGroupsById(id).subscribe(resp => {
       this.pointsGroups = resp;
       this.points = resp.puntos_asociados;
+      this.pointsAsociatives = [...resp.puntos_asociados];
       this.pointsSelects = this.points.map(p => ({
         id: p.puntos.id,
         sucursal: p.puntos.contratos[0].contrato.sucursal_instalacion.nombre,
         sublinea: p.puntos.contratos[0].contrato.negocio_sublineas.codigo_sublineas,
         contrato: p.puntos.contratos[0].contrato.codigo_contrato,
       }));
+      this.pointsOlds = [...this.pointsSelects];
       this.form.get('nombre').setValue(this.pointsGroups.nombre);
       this.form.get('pais').setValue(this.countries.find(tc => tc.id == this.pointsGroups.clientes.paises.id));
     })
@@ -91,7 +100,9 @@ export class EditComponent implements OnInit {
       });
       request.nombre = data.nombre;
       request.clientes = data.cliente.id;
-      // request.puntos = arrPointsSend;      
+      // request.puntos = arrPointsSend;
+
+      this.diffBetweenPoints(arrPointsSend);
       this.pointsGroupsService.updatePointsGroups(request).subscribe(resp => {
 
         if (resp.status == 202) {
@@ -126,6 +137,64 @@ export class EditComponent implements OnInit {
 
   compareByValue(f1: any, f2: any) {
     return f1 && f2 && f1.id === f2.id;
+  }
+
+  async saveNewPost(arrNewPoints) {
+    await arrNewPoints.forEach(np => {
+      let request = {
+        puntos: np,
+        puntos_grupos: this.idPointGroup,
+      };
+      this.pointsGroupsService.storeOnePointInGroup(request).subscribe(resp => {
+        console.log('guardo:', resp);
+      });
+    });
+  }
+
+  async deleteOldPoint(arrDeletePoint) {
+    await arrDeletePoint.forEach(pd => {
+      this.pointsGroupsService.deleteOnePointIngroup(pd).subscribe(resp => {
+        console.log('borro:', resp);
+      });
+    });
+  }
+
+  async diffBetweenPoints(pointsEdited) {
+    let arrNewPoints = [];
+    let arrDeletePoints = [];
+
+    await this.pointsOlds.forEach(p => {
+      let flag = pointsEdited.find(pE => pE == p.id);
+      if (!flag) {
+        arrDeletePoints.push(p.id);
+      }
+    });
+
+    await pointsEdited.forEach(p => {
+      let flag = this.pointsOlds.find(pE => pE.id == p);
+      if (!flag) {
+        arrNewPoints.push(p);
+      }
+    });
+
+    let arrIdDelete = [];
+
+    if (arrDeletePoints.length > 0) {
+      console.log('entra');
+
+      arrDeletePoints.forEach(pd => {
+        let pointFind = this.pointsAsociatives.find(p => p.puntos.id == pd);
+        // @ts-ignore
+        arrIdDelete.push(pointFind.id);
+      });
+    }
+
+    this.saveNewPost(arrNewPoints);
+    this.deleteOldPoint(arrIdDelete);
+    console.log('nuevos: ', arrNewPoints);
+    console.log('a borrar: ', arrDeletePoints);
+    console.log('relaciones a borrar: ', arrIdDelete);
+
   }
 
   getCountries() {
@@ -206,7 +275,6 @@ export class EditComponent implements OnInit {
       } else {
         this.pointsTemp = [];
       }
-      console.log('desde el 1', this.pointsTemp);
 
     } else {
       if (this.pointsTemp.length < this.pointsSelects.length) {
@@ -214,7 +282,6 @@ export class EditComponent implements OnInit {
       } else {
         this.pointsTemp = [];
       }
-      console.log('desde el 2', this.pointsTemp);
     }
   }
 
@@ -231,8 +298,6 @@ export class EditComponent implements OnInit {
   }
 
   checkedSelectPoint(point) {
-    console.log('entrando', this.pointsTemp);
-
     const flag = this.pointsTemp.find(cSelect => { return cSelect.id == point.id });
     if (!flag) {
       this.pointsTemp.push(point);
@@ -240,7 +305,5 @@ export class EditComponent implements OnInit {
       const index = this.pointsTemp.indexOf(flag);
       this.pointsTemp.splice(index, 1)
     }
-    console.log('saliendo', this.pointsTemp);
-
   }
 }

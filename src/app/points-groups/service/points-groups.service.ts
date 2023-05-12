@@ -33,6 +33,7 @@ export class PointsGroupsService {
     }))
   }
 
+
   getPointsGroupsById(id): Observable<any> {
     return this.http.get<any>(`${this.url}puntos/puntos-grupos/${id}`, { headers: this.headers })
   }
@@ -43,6 +44,14 @@ export class PointsGroupsService {
 
   storePointsGroups(request): Observable<any> {
     return this.http.post<any>(`${this.url}puntos/puntos-grupos`, request, { headers: this.headers })
+  }
+
+  storeOnePointInGroup(request): Observable<any> {
+    return this.http.post<any>(`${this.url}puntos/relations/puntos-and-puntos-grupos`, request, { headers: this.headers })
+  }
+
+  deleteOnePointIngroup(id): Observable<any> {
+    return this.http.delete<any>(`${this.url}puntos/relations/puntos-and-puntos-grupos/${id}`, { headers: this.headers })
   }
 
   updatePointsGroups(request): Observable<any> {
