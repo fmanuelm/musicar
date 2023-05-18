@@ -65,8 +65,7 @@ export class CreateComponent implements OnInit {
       return;
     } else {
 
-      let requestSend = this.form.getRawValue();
-      console.log(requestSend);
+      let requestSend = this.form.getRawValue();      
 
       let resquest = {
         codigo_contrato: requestSend.numero_contrato,

@@ -99,8 +99,6 @@ export class EditComponent implements OnInit {
       let requestSend = this.form.getRawValue();
       let arrContractSend = [];
 
-      console.log('contratos seleccionados: ', this.contractsSelecteds);
-
       this.contractsSelecteds.forEach(c => {
         let objTemp = {
           id_sublinea_negocio: c.negocio_sublineas.id,
@@ -108,8 +106,6 @@ export class EditComponent implements OnInit {
           id_contrato: c.id,
           id_cliente: c.sucursal_instalacion.clientes.id
         }
-        console.log('objeto temporal', objTemp);
-
         arrContractSend.push(objTemp);
       });
 
@@ -229,7 +225,6 @@ export class EditComponent implements OnInit {
   getPointById(idPoint) {
     this.pointService.getPointById(idPoint).subscribe(resp => {
       this.point = resp;
-      console.log(resp);
       this.contratInfo = resp.contratos[0].contrato;
       this.form.get('fecha_inicio_contador').setValue(this.point.fecha_inicio_contador);
       this.form.get('fecha_fin_contador').setValue(this.point.fecha_fin_contador);

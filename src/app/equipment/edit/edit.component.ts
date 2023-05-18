@@ -67,9 +67,7 @@ export class EditComponent implements OnInit {
 
     this.form.get('cliente').valueChanges.subscribe(c => {
       this.branchFacility = [];
-      console.log('el cliente:', c.id);
-      console.log('el cliente:', c.razon_social);
-
+    
       if (c) {
         this.getBranchFacilityByClient(c.id);
         this.getPointByBranchFacility(c.id);
@@ -218,8 +216,7 @@ export class EditComponent implements OnInit {
   }
 
   getPointByBranchFacility(idClient) {
-    this.equipmentService.getPointByBranchFacility(idClient).subscribe(resp => {
-      console.log('puntossss', resp);
+    this.equipmentService.getPointByBranchFacility(idClient).subscribe(resp => {      
       if (resp.status) {
         this.points = [];
       } else {

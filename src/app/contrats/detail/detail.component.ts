@@ -23,7 +23,6 @@ export class DetailComponent implements OnInit {
   getContratById(id) {
     this.contratService.getContratById(id).subscribe(resp => {
       this.contract = resp;
-      console.log(this.contract);
     })
   }
 

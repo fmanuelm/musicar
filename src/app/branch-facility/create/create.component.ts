@@ -142,8 +142,7 @@ export class CreateComponent implements OnInit {
   }
 
   getCityByRegional(idRegional) {
-    this.branchFacilityService.getCityByRegional(idRegional).subscribe(resp => {
-      console.log(resp);
+    this.branchFacilityService.getCityByRegional(idRegional).subscribe(resp => {      
       if (resp.status) {
         this.cities = [];
       } else {
@@ -155,7 +154,7 @@ export class CreateComponent implements OnInit {
 
   getRegionalsByCountry(idCountry) {
     this.branchFacilityService.getRegionalsByCountry(idCountry).subscribe(resp => {
-      console.log(resp);
+      
       if (resp.status) {
         this.regionals = [];
       } else {

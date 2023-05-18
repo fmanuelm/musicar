@@ -33,8 +33,6 @@ export class DataTableComponent implements OnInit {
 
   getClients() {
     this.clientService.getClients().subscribe(resp => {
-      console.log(resp);
-      
       this.clients = resp;
     })
   }

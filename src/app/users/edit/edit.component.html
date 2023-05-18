@@ -1,0 +1,260 @@
+<div *ngIf="user &&  countries && typeUser && attendantUser && disponibility && clients" class="main-content">
+    <div class="container-fluid">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-12 mt-3">
+                    <app-buttons-link view="detail"></app-buttons-link>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>{{ user.nombre+" "+user.apellido }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <app-breadcrumb view="edit" [id]="idUser"></app-breadcrumb>
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos del usuario</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="nombre" placeholder="Nombre" type="text">
+                                        <mat-error *ngIf="form.get('nombre').hasError('required')">
+                                            El nombre es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="apellido" placeholder="Apellido" type="text">
+                                        <mat-error *ngIf="form.get('apellido').hasError('required')">
+                                            El apellido es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select formControlName="pais" [compareWith]="compareByValue"
+                                            placeholder="País">
+                                            <mat-option *ngFor="let country of countries" [value]="country">
+                                                {{ country.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('pais').hasError('required')">
+                                            El país es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select formControlName="cliente" [compareWith]="compareByValue"
+                                            placeholder="Cliente">
+                                            <mat-option *ngFor="let client of clients" [value]="client">
+                                                {{ client.razon_social }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('cliente').hasError('required')">
+                                            El cliente es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select formControlName="tUsuario" [compareWith]="compareByValue"
+                                            placeholder="Tipo usuario">
+                                            <mat-option *ngFor="let tu of typeUser" [value]="tu">
+                                                {{ tu.tipo_usuario }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('tUsuario').hasError('required')">
+                                            El tipo de usuario es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select formControlName="cOperacion" [compareWith]="compareByValue"
+                                            placeholder="Centro de operación">
+                                            <mat-option *ngFor="let au of attendantUser" [value]="au">
+                                                {{ au.sede }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('cOperacion').hasError('required')">
+                                            El centro de operación es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select formControlName="disponibilidad" [compareWith]="compareByValue"
+                                            placeholder="Disponibilidad">
+                                            <mat-option *ngFor="let d of disponibility" [value]="d">
+                                                {{ d.estado_usuario }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('disponibilidad').hasError('required')">
+                                            El tipo de usuario es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-select formControlName="estado_usuario" [compareWith]="compareByValue"
+                                            placeholder="Estado usuario">
+                                            <mat-option *ngFor="let su of states_user" [value]="su">
+                                                {{ su.estado }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('estado_usuario').hasError('required')">
+                                            El estado usuario es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="telefono" placeholder="Telefono" type="number">
+                                        <mat-error *ngIf="form.get('telefono').hasError('required')">
+                                            El telefono es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="correo" placeholder="Correo" type="text">
+                                        <mat-error *ngIf="form.get('correo').hasError('required')">
+                                            El correo es requerido
+                                        </mat-error>
+                                        <mat-error *ngIf="form.get('correo').hasError('pattern')">
+                                            Por favor, digite un correo valido.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="usuario" placeholder="Usuario" type="text">
+                                        <mat-error *ngIf="form.get('usuario').hasError('required')">
+                                            El usuario es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="password" placeholder="Contraseña"
+                                            type="password">
+                                        <mat-error *ngIf="form.get('password').hasError('required')">
+                                            La contraseña requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="form.get('tUsuario').value.id == 18" class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Usuario administrador</h4>
+                            </div>
+                        </div>
+                        <div class="card-body mt-2">
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <mat-select formControlName="asociacion" placeholder="Punto"
+                                            [compareWith]="compareByValue">
+                                            <mat-option *ngFor="let p of points" [value]="p">
+                                                {{ p.id }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('asociacion').hasError('required')">
+                                            El punto es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="form.get('tUsuario').value.id == 20" class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Usuario grupo</h4>
+                            </div>
+                        </div>
+                        <div class="card-body mt-2">
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <mat-select formControlName="asociacion" [compareWith]="compareByValue"
+                                            placeholder="Grupo de puntos">
+                                            <mat-option *ngFor="let d of pointsGroups" [value]="d">
+                                                {{ d.id }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('asociacion').hasError('required')">
+                                            El grupo es requerido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="form.get('tUsuario').value.id == 19" class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Usuario regional</h4>
+                            </div>
+                        </div>
+                        <div class="card-body mt-2">
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-12">
+                                    <mat-form-field>
+                                        <mat-select formControlName="asociacion" [compareWith]="compareByValue"
+                                            placeholder="Regional">
+                                            <mat-option *ngFor="let r of regionals" [value]="r">
+                                                {{ r.id }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="form.get('asociacion').hasError('required')">
+                                            La regional es requerida
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="sendForm()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined mr-1">
+                                send
+                            </span>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
