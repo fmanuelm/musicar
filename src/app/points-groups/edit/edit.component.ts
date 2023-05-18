@@ -191,9 +191,6 @@ export class EditComponent implements OnInit {
 
     this.saveNewPost(arrNewPoints);
     this.deleteOldPoint(arrIdDelete);
-    console.log('nuevos: ', arrNewPoints);
-    console.log('a borrar: ', arrDeletePoints);
-    console.log('relaciones a borrar: ', arrIdDelete);
 
   }
 

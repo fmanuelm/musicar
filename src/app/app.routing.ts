@@ -61,6 +61,9 @@ export const AppRoutes: Routes = [
                 path: 'usuarios',
                 loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
             }, {
+                path: 'mensajes',
+                loadChildren: () => import('./messages/messages.module').then(m => m.MessagesModule)
+            }, {
                 path: '',
                 loadChildren: () => import('./userpage/user.module').then(m => m.UserModule)
             }, {

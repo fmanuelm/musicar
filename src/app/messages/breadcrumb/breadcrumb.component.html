@@ -1,0 +1,6 @@
+<nav *ngIf="view == 'home'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/home']);">Mensajes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Mensajes</b></li>
+    </ol>
+</nav>
