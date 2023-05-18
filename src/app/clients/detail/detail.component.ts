@@ -51,7 +51,6 @@ export class DetailComponent implements OnInit {
   getOpeningHoursByClient(id) {
     this.clientService.getOpeningHoursByClient(id).subscribe(resp => {
       this.openingHours = resp.horarios;
-      console.log(this.openingHours);
     });
   }
 
@@ -70,7 +69,6 @@ export class DetailComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.clientService.deleteClient(this.idClient).subscribe(resp => {
-          console.log(resp);
           if (resp.status == 200) {
             swal.fire(
               {
@@ -84,7 +82,7 @@ export class DetailComponent implements OnInit {
               }
             )
             this.router.navigate(
-              ['clientes/',]
+              ['clientes/list',]
             );
           } else {
             swal.fire(

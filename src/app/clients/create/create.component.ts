@@ -318,9 +318,6 @@ export class CreateComponent implements OnInit {
 
       delete this.clientSend.pais_nombre;
 
-      // console.log(this.clientSend);
-
-      // return 0;
       this.clientService.storeClient(this.clientSend).subscribe(resp => {
 
         let alert: any;

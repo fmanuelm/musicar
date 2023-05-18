@@ -6,7 +6,7 @@
             display_external_input
         </span>
     </button>
-    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2">
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2"  (click)="router.navigate(['grupos-puntos/list']);">
         Grupo puntos
         <span class="material-symbols-outlined">
             display_external_input
@@ -22,13 +22,13 @@
 </div>
 
 <div *ngIf="view == 'detail' || view=='edit' " class="text-left">
-    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2">
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2" (click)="router.navigate(['grupos-puntos/create']);">
         Crear grupo punto
         <span class="material-symbols-outlined">
             display_external_input
         </span>
     </button>
-    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2">
+    <button mat-raised-button type="button" class="btn btn-transparent btn-primary-outline mr-2"  (click)="router.navigate(['grupos-puntos/list']);">
         Ver grupo punto
         <span class="material-symbols-outlined">
             display_external_input

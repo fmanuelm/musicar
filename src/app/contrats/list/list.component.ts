@@ -24,8 +24,6 @@ export class ListComponent implements OnInit {
 
   getContracts() {
     this.contractsService.getContrats().subscribe(resp => {
-      console.log(resp);
-
       this.contrats = resp;
     })
   }

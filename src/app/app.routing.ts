@@ -51,7 +51,19 @@ export const AppRoutes: Routes = [
             }, {
                 path: 'puntos',
                 loadChildren: () => import('./points/points.module').then(m => m.PointsModule)
-            },{
+            }, {
+                path: 'monitor-equipos',
+                loadChildren: () => import('./equipment-monitor/equipment-monitor.module').then(m => m.EquipmentMonitorModule)
+            }, {
+                path: 'grupos-puntos',
+                loadChildren: () => import('./points-groups/points-groups.module').then(m => m.PointsGroupsModule)
+            }, {
+                path: 'usuarios',
+                loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+            }, {
+                path: 'mensajes',
+                loadChildren: () => import('./messages/messages.module').then(m => m.MessagesModule)
+            }, {
                 path: '',
                 loadChildren: () => import('./userpage/user.module').then(m => m.UserModule)
             }, {

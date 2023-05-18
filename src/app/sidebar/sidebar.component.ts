@@ -20,94 +20,6 @@ export interface ChildrenItems {
     type?: string;
 }
 
-//Menu Items
-// export const ROUTES: RouteInfo[] = [{
-//     path: '/dashboard',
-//     title: 'Dashboard',
-//     type: 'link',
-//     icontype: 'dashboard'
-// }, {
-//     path: '/components',
-//     title: 'Components',
-//     type: 'sub',
-//     icontype: 'apps',
-//     collapse: 'components',
-//     children: [
-//         { path: 'buttons', title: 'Buttons', ab: 'B' },
-//         { path: 'grid', title: 'Grid System', ab: 'GS' },
-//         { path: 'panels', title: 'Panels', ab: 'P' },
-//         { path: 'sweet-alert', title: 'Sweet Alert', ab: 'SA' },
-//         { path: 'notifications', title: 'Notifications', ab: 'N' },
-//         { path: 'icons', title: 'Icons', ab: 'I' },
-//         { path: 'typography', title: 'Typography', ab: 'T' }
-//     ]
-// }, {
-//     path: '/forms',
-//     title: 'Forms',
-//     type: 'sub',
-//     icontype: 'content_paste',
-//     collapse: 'forms',
-//     children: [
-//         { path: 'regular', title: 'Regular Forms', ab: 'RF' },
-//         { path: 'extended', title: 'Extended Forms', ab: 'EF' },
-//         { path: 'validation', title: 'Validation Forms', ab: 'VF' },
-//         { path: 'wizard', title: 'Wizard', ab: 'W' }
-//     ]
-// }, {
-//     path: '/tables',
-//     title: 'Tables',
-//     type: 'sub',
-//     icontype: 'grid_on',
-//     collapse: 'tables',
-//     children: [
-//         { path: 'regular', title: 'Regular Tables', ab: 'RT' },
-//         { path: 'extended', title: 'Extended Tables', ab: 'ET' },
-//         { path: 'datatables.net', title: 'Datatables.net', ab: 'DT' }
-//     ]
-// }, {
-//     path: '/maps',
-//     title: 'Maps',
-//     type: 'sub',
-//     icontype: 'place',
-//     collapse: 'maps',
-//     children: [
-//         { path: 'google', title: 'Google Maps', ab: 'GM' },
-//         { path: 'fullscreen', title: 'Full Screen Map', ab: 'FSM' },
-//         { path: 'vector', title: 'Vector Map', ab: 'VM' }
-//     ]
-// }, {
-//     path: '/widgets',
-//     title: 'Widgets',
-//     type: 'link',
-//     icontype: 'widgets'
-
-// }, {
-//     path: '/charts',
-//     title: 'Charts',
-//     type: 'link',
-//     icontype: 'timeline'
-
-// }, {
-//     path: '/calendar',
-//     title: 'Calendar',
-//     type: 'link',
-//     icontype: 'date_range'
-// }, {
-//     path: '/pages',
-//     title: 'Pages',
-//     type: 'sub',
-//     icontype: 'image',
-//     collapse: 'pages',
-//     children: [
-//         { path: 'pricing', title: 'Pricing', ab: 'P' },
-//         { path: 'timeline', title: 'Timeline Page', ab: 'TP' },
-//         { path: 'login', title: 'Login Page', ab: 'LP' },
-//         { path: 'register', title: 'Register Page', ab: 'RP' },
-//         { path: 'lock', title: 'Lock Screen Page', ab: 'LSP' },
-//         { path: 'user', title: 'User Page', ab: 'UP' }
-//     ]
-// }
-// ];
 export const ROUTES: RouteInfo[] = [{
     path: '/clientes/',
     title: 'Clientes',
@@ -157,6 +69,44 @@ export const ROUTES: RouteInfo[] = [{
     children: [
         { path: 'list', title: 'Listar equipos', ab: 'LE' },
         { path: 'create', title: 'Crear equipo', ab: 'CE' },
+    ]
+}, {
+    path: '/grupos-puntos/',
+    title: 'Grupos de puntos',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'grupos-puntos',
+    children: [
+        { path: 'list', title: 'Listar grupos de puntos', ab: 'LE' },
+        { path: 'create', title: 'Crear grupos de punto', ab: 'CE' },
+    ]
+}, {
+    path: '/usuarios/',
+    title: 'Usuarios',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'usuarios',
+    children: [
+        { path: 'list', title: 'Listar Usuarios', ab: 'LE' },
+        { path: 'create', title: 'Crear usuarios', ab: 'CE' },
+    ]
+}, {
+    path: '/monitor-equipos/',
+    title: 'Monitor de equipos',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'monitor-equipos',
+    children: [
+        { path: 'list', title: 'Listar monitor de equipos', ab: 'LE' },
+    ]
+}, {
+    path: '/mensajes/',
+    title: 'Mensajes',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'mensajes',
+    children: [
+        { path: 'home', title: 'Inicio', ab: 'I' },
     ]
 }, {
     path: '/forms',

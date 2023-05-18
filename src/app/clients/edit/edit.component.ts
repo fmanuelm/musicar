@@ -265,7 +265,7 @@ export class EditComponent implements OnInit {
   getClienteById(id) {
     this.clientService.getClienteById(id).subscribe(resp => {
       this.clientSend = resp;
-      console.log('resp del cliente: ', resp);
+
       this.idHorario = this.clientSend.horarios_cliente.id;
       let arrAllCountriesSelects = [];
       arrAllCountriesSelects.push(this.clientSend.paises);
@@ -421,11 +421,7 @@ export class EditComponent implements OnInit {
       this.clientSend.horarios.festivos.hora_final = clientTemp.festivos_hora_final;
 
       delete this.clientSend.pais_nombre;
-      // this.clientSend.horarios_cliente.horarios_id =
-
-      console.log(this.clientSend);
-
-      // return 0;
+    
 
       this.clientService.updateClient(this.clientSend).subscribe(resp => {
 

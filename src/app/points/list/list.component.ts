@@ -24,7 +24,6 @@ export class ListComponent implements OnInit {
   getBranchFacility() {
     this.pointService.getPoints().subscribe(resp => {
       this.points = resp;
-      console.log('puntos', resp);
     })
   }
 

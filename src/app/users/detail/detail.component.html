@@ -1,0 +1,178 @@
+<div class="main-content">
+    <div *ngIf="user" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+                <app-buttons-link view="detail"></app-buttons-link>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>{{ user.nombre+" "+user.apellido }}</h1>
+                    </div>
+                </div>
+            </div>
+            <app-breadcrumb view="detail"></app-breadcrumb>
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Datos del usuario</h4>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Nombre" readonly [value]="user.nombre" type="text">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Apellido" readonly [value]="user.apellido" type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input matInput placeholder="País" readonly
+                                        [value]="user.centro_operacion_atiende.paises.nombre" type="text">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input matInput placeholder="Cliente" readonly
+                                        [value]="user.clientes_asociados[0].cliente.razon_social" type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input matInput placeholder="Tipo usuario" readonly
+                                        [value]="user.usuarios_tipo.tipo_usuario" type="text">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input matInput placeholder="Centro de operación" readonly
+                                        [value]="user.centro_operacion_atiende.sede" type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input matInput placeholder="Disponibilidad" readonly
+                                        [value]="user.usuarios_disponibilidad.estado_usuario" type="text">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field>
+                                    <input matInput placeholder="Estado usuario" readonly
+                                        [value]="[user.estado ?'Activo':'Inactivo']" type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Telefono" readonly [value]="user.telefono"
+                                        type="number">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Correo" readonly [value]="user.correo" type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row d-flex px-4 mx-4">
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Usuario" readonly [value]="user.usuario" type="text">
+                                </mat-form-field>
+                            </div>
+                            <!-- <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Contraseña" type="text">
+                                </mat-form-field>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="user.usuarios_tipo.id == 18" class="col-md-12">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Usuario administrador</h4>
+                        </div>
+                    </div>
+                    <div class="card-body mt-2">
+                        <div class="row d-flex px-4 mx-4 mt-2">
+                            <div class="col-sm-12">
+                                <mat-form-field>
+                                    <input matInput placeholder="Punto" readonly
+                                        [value]="user.puntos_asociados[0].puntos.id" type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="user.usuarios_tipo.id == 20" class="col-md-12">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Usuario grupo</h4>
+                        </div>
+                    </div>
+                    <div class="card-body mt-2">
+                        <div class="row d-flex px-4 mx-4 mt-2">
+                            <div class="col-sm-12">
+                                <mat-form-field>
+                                    <input matInput placeholder="Grupo de puntos"  readonly  [value]="user.grupos_asociados[0].puntosgrupos.nombre" type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="user.usuarios_tipo.id == 19" class="col-md-12">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-text">
+                        <div class="card-text">
+                            <h4 class="card-title">Usuario regional</h4>
+                        </div>
+                    </div>
+                    <div class="card-body mt-2">
+                        <div class="row d-flex px-4 mx-4 mt-2">
+                            <div class="col-sm-12">
+                                <mat-form-field>
+                                    <input matInput placeholder="Regional" type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="text-center">
+                    <button mat-raised-button type="button" (click)="editUser()" class="btn btn-fill btn-warning mr-3">
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                        Editar
+                    </button>
+                    <button mat-raised-button type="button" (click)="deleteUser()" class="btn btn-fill btn-rose">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

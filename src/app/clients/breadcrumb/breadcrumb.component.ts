@@ -15,7 +15,6 @@ export class BreadcrumbComponent implements OnInit {
   @Input() id: any;
 
   ngOnInit(): void {
-    console.log(this.id);
 
   }
 
