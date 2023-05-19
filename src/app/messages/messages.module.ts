@@ -13,6 +13,9 @@ import { MainButtonsComponent } from './home/main-buttons/main-buttons.component
 import { StatsPanelComponent } from './home/stats-panel/stats-panel.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { CreationComponent } from './creation/creation.component';
+import { StepsModule } from 'primeng/steps';
+import { Step1Component } from './creation/step1/step1.component';
+import { Stepa1Component } from './creation/stepa1/stepa1.component';
 
 
 
@@ -23,7 +26,10 @@ import { CreationComponent } from './creation/creation.component';
     MainButtonsComponent,
     StatsPanelComponent,
     DashboardComponent,
-    CreationComponent
+    CreationComponent,
+    Step1Component,
+    Stepa1Component,
+    
   ],
   imports: [
     RouterModule.forChild(MessagesRoutes),
@@ -34,6 +40,7 @@ import { CreationComponent } from './creation/creation.component';
     NouisliderModule,
     TagInputModule,
     MaterialModule,
+    StepsModule
   ]
 })
 export class MessagesModule { }

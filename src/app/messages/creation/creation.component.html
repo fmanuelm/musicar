@@ -1,1 +1,31 @@
-<p>creation works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <app-breadcrumb view="home"></app-breadcrumb>
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="row mb-4 mt-3">
+                            <div class="col-12">
+                                <h1>Voice Experience</h1>
+                                <p>Voces que encantan, voces que enamoran.</p>
+                            </div>
+                            <div class="col-12">
+                                <h1 class="text-center">Información</h1>
+                                <p-steps [model]="items" [readonly]="true" [activeIndex]="activeIndex"></p-steps>
+                                <div *ngIf="activeIndex === -1">
+                                    <app-stepa1></app-stepa1>
+                                </div>
+                                <div *ngIf="activeIndex === 0">
+                                    <app-step1></app-step1>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
