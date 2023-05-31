@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../service/message.service';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-briefcase',
   templateUrl: './briefcase.component.html',
@@ -8,7 +10,7 @@ import { MessageService } from '../service/message.service';
 })
 export class BriefcaseComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private messageService: MessageService) { }
+  constructor(private route: ActivatedRoute, private messageService: MessageService, private location: Location) { }
   id:number;
   items: any[];
   categoria_nombre: string = "";
@@ -42,6 +44,11 @@ export class BriefcaseComponent implements OnInit {
         routerLink: 'confirmation'
     }
     ];
+  }
+
+  atras() {
+    this.messageService.setStep("formulario");
+    
   }
 
 }

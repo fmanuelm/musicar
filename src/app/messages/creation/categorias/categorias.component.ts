@@ -15,10 +15,14 @@ export class CategoriasComponent implements OnInit {
     this.getMessagesPresaved();
     
   }
-
+  selectCat(id: number)
+  {
+    this.messageService.setStep("briefcase");
+  }
   getMessagesPresaved() {
     this.messageService.getMessagesPresavedCategories().subscribe(resp => {
       this.categories = resp;
+      
     })
   }
 }

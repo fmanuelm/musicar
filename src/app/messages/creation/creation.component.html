@@ -21,7 +21,7 @@
                                 <div *ngIf="step === '1'">
                                     <app-step1></app-step1>
                                 </div>
-                                <div *ngIf="step === '2'">
+                                <div [ngClass]="{'formulario-visible': step === 'formulario', 'formulario-oculto': step !== 'formulario'}">
                                     <app-step2></app-step2>
                                 </div>
                                 <div *ngIf="step === '3'">
@@ -204,6 +204,9 @@
                                 <div *ngIf="step === '5'">
                                     <h2>rush hours</h2>
                                     <app-ruchhours></app-ruchhours>
+                                </div>
+                                <div *ngIf="step === 'briefcase'">
+                                    <app-briefcase></app-briefcase>
                                 </div>
                             </div>
                         </div>

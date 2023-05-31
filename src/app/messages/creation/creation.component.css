@@ -27,3 +27,11 @@
 .btn-siguiente { 
     background-color: #1ac1e8 !important; 
 }
+
+.formulario-visible {
+    display: initial;
+  }
+  
+  .formulario-oculto {
+    display: none;
+  }

@@ -38,15 +38,15 @@ export class CreationComponent implements OnInit {
   
   constructor(private messageService: MessageService) {
     //this.activeIndex = this.messageService.getStep();
-    
+    this.messageService.setStep("1");
   }
   next1()
   {
-    this.messageService.setStep("2");
+    this.messageService.setStep("formulario");
   }
   next2()
   {
-    this.messageService.setStep("2");
+    this.messageService.setStep("formulario");
   }
   ngOnInit(): void {
     //this.step = this.messageService.getStep();
