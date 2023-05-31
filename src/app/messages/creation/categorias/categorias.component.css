@@ -1,0 +1,16 @@
+.categories li {
+    padding: 7px 10px;
+    /*border-bottom: 2px solid #ddd;*/
+    cursor: pointer;
+}
+.categories li:first-child {
+    border-top: 2px solid #ddd;
+}
+.categories a li i {
+    float: right;
+    color: #9b9494;
+}
+.categories {
+    list-style-type: none;
+    padding-left: 0px;
+}
