@@ -34,7 +34,7 @@ export class Step1Component implements OnInit {
     this.messageService.setStep("4");
   }
   locutor_virtual() {
-    this.messageService.setStep("5");
+    this.messageService.setStep("rushhours");
   }
   atras()
   {
