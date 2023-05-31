@@ -1,0 +1,30 @@
+.btn-documento { 
+    background-color: #008cca !important; 
+}
+.btn-imagen {
+    background-color: #50c981 !important;
+}
+.btn-audio {
+    background-color: #b492cb !important;
+}
+.btn-siguiente { 
+    background-color: #1ac1e8 !important; 
+}
+.div-deshabilitado {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.audio-deshabilitado {
+    display: none;
+}
+.delete-file {
+    position:relative; 
+    right: 10px;
+    left: 90px;
+    bottom: 30px;
+    background: #ddd;
+    border-radius: 50%;
+    padding: 5px;
+    color: #000;
+    cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../../service/message.service';
 
 @Component({
   selector: 'app-step1',
@@ -7,9 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Step1Component implements OnInit {
 
-  constructor() { }
-
+  constructor(private messageService: MessageService) { }
+  messagesList:any[];
+  titleTree1:string;
+  titleTree2:string;
+  titleTree3:string;
   ngOnInit(): void {
+    this.getMessagesOutline();
   }
 
+  getMessagesOutline() {
+    this.messageService.getMessagesOutlineType().subscribe(resp => {
+      this.messagesList = resp;
+      this.titleTree1 = resp[0].nombre;
+      this.titleTree2 = resp[1].nombre;
+      this.titleTree3 = resp[2].nombre;
+    })
+  }
+  horas_fijas() {
+    
+    this.messageService.setStep("3");
+    
+  }
+  secuencia() {
+    this.messageService.setStep("4");
+  }
+  locutor_virtual() {
+    this.messageService.setStep("5");
+  }
 }

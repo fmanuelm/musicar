@@ -1,0 +1,18 @@
+.audio-playing {
+    box-shadow: 2px 2px 9px;
+}
+.sound-row {
+    border: 1px solid #eee;
+}
+.audio-opt {
+    color: #555;
+    cursor: pointer;
+}
+
+.btn-siguiente { 
+    background-color: #1ac1e8 !important; 
+}
+
+.btn-back { 
+    background-color: #FEDD56 !important; 
+}

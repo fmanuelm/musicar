@@ -1,0 +1,18 @@
+<div class="card ">
+    <div class="card-header card-header-rose card-header-text">
+        <div class="card-text1">
+            <h4 class="card-title">Portafolio</h4>
+        </div>
+    </div>
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 px-0">
+                <ul class="categories">
+                    <a *ngFor="let category of categories" [routerLink]="['/mensajes/briefcase', category.id]"><li>{{ category.categoria }} <i class="pi pi-arrow-right"></i></li></a>
+                </ul>
+
+            </div>
+            
+        </div>
+    </div>
+</div>

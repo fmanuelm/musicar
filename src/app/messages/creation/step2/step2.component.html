@@ -1,0 +1,207 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card ">
+                      <div class="card-body ">
+                        <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-right">
+                                <button mat-raised-button type="button"
+                                        class="btn btn-fill btn-rose" (click)="clearForm()">
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                        Limpiar formulario
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <input matInput formControlName="referencia" placeholder="Referencia" type="text" required>
+                            </mat-form-field>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                            
+                                <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <textarea formControlName="texto" placeholder="Texto" matInput
+                                    cols="30" rows="10" required></textarea>
+                                </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <textarea formControlName="observaciones" placeholder="Observaciones" matInput
+                                    cols="30" rows="10"></textarea>
+                                </mat-form-field>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+        
+                        
+                      </div>
+                      
+                    </div>
+                </div>
+                <div class="col-md-4" [ngClass]="{ 'div-deshabilitado': disabledCategories }">
+                    <app-categorias></app-categorias>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Adjuntos</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4" *ngIf="adjunto !== {}">
+                                    <div class="text-center" *ngIf="adjunto.ext === 'pdf'">
+                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                            clear
+                                        </span>
+                                        <a [href]="fileUrl" download="documento_pdf">
+                                            <img src="/assets/img/pdf.png" width="70"/>
+                                        </a>
+                                    </div>
+                                    <div class="text-center" *ngIf="adjunto.ext === 'docx'">
+                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                            clear
+                                        </span>
+                                        <a [href]="fileUrl" download>
+                                            <img src="/assets/img/doc.png" width="70"/>
+                                        </a>
+                                    </div>
+                                    <div class="text-center" *ngIf="adjunto.ext === 'xls'">
+                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                            clear
+                                        </span>
+                                        <a [href]="fileUrl" download>
+                                            <img src="/assets/img/xls.png" width="70"/>
+                                        </a>
+                                    </div>
+                                    <div class="text-center" *ngIf="adjunto.ext === 'png'">
+                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                            clear
+                                        </span>
+                                        <a [href]="fileUrl" download>
+                                            <img src="/assets/img/png.png" width="70"/>
+                                        </a>
+                                    </div>
+                                    <div class="text-center" *ngIf="adjunto.ext === 'jpg'">
+                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                            clear
+                                        </span>
+                                        <a [href]="fileUrl" download>
+                                            <img src="/assets/img/jpg.png" width="70"/>
+                                        </a>
+                                    </div>
+                                    <div class="text-center">
+                                        {{adjunto.nombre}}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <button mat-raised-button class="btn btn-documento ml-4" [disabled]="btnDocument" (click)="handleUploadDocumentClick()">
+                                Documento
+                                <span class="material-symbols-outlined ml-3">
+                                    upload_file
+                                </span>
+                            </button>
+                            <input type="file" #documentUpload accept=".pdf,application/pdf,.xls,application/vnd.ms-excel,.doc,application/msword,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display: none;" (change)="onFileSelected($event)"/>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <button mat-raised-button class="btn btn-imagen ml-4" (click)="handleUploadImageClick()" [disabled]="btnImage">
+                                Imagen
+                                <span class="material-symbols-outlined ml-3">
+                                    add_to_photos
+                                </span>
+                            </button>
+                            <input type="file" #imageUpload accept="image/png,image/jpeg,image/jpg" style="display: none;" (change)="onFileSelected($event)"/>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <button mat-raised-button class="btn btn-audio ml-4" (click)="handleUploadAudioClick()" [disabled]="btnAudio1">
+                                Audio
+                                <span class="material-symbols-outlined ml-3">
+                                    file_upload
+                                </span>
+                            </button>
+                            <input type="file" #audioUpload accept=".mp3" style="display: none;" (change)="onFileSelected($event)"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Audio Listo</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <p class="text-right">
+                                        <button mat-raised-button type="button"
+                                        class="btn btn-fill btn-rose" [disabled]="disabledAudio2" (click)="clearAudio2()">
+                                                <span class="material-symbols-outlined">
+                                                    delete
+                                                </span>
+                                                Retirar Audio
+                                        </button>
+                                    </p>
+                                    <p class="text-center">
+                                        <audio controls [ngClass]="{ 'audio-deshabilitado': disabledAudio2 }">
+                                            <source [src]="audioUrl2" type="audio/mpeg">
+                                          Your browser does not support the audio element.
+                                          </audio>
+                                    </p>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center">
+                        <button mat-raised-button class="btn btn-audio ml-4" (click)="handleUploadAudioClick2()" [disabled]="btnAudio2">
+                            Audio
+                            <span class="material-symbols-outlined ml-3">
+                                file_upload
+                            </span>
+                        </button>
+                        <input type="file" #audioUpload2 accept=".mp3" style="display: none;" (change)="onFileSelected2($event)"/>
+                    </p>
+                    <p class="text-center">
+                        <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next()">
+                            Siguiente
+                            <span class="material-symbols-outlined ml-3">
+                                arrow_forward_ios
+                            </span>
+                        </button>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="text-center"></p>
+                    <p class="text-center"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

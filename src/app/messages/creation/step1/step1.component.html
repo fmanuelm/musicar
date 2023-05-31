@@ -7,13 +7,13 @@
                 <p class="text-center mt-4">
                     <img src="./assets/img/7.horas fijas.png" class="icon"/>
                 </p>
-                <h5>Horas Hijas</h5>
+                <h5>{{ titleTree1 }}</h5>
                 <hr/>
                 <ul>
                     <li>Impacto Diarios, Incluyendo Flexibilidad en Día, Fecha y Hora de Emisión.</li>
                 </ul>
                 <p class="text-center">
-                    <button mat-raised-button class="btn button-green ml-4">
+                    <button mat-raised-button class="btn button-green ml-4" (click)="horas_fijas()">
                         Empezar
                     </button>
                 </p>
@@ -26,13 +26,13 @@
                 <p class="text-center mt-4">
                     <img src="./assets/img/8.secuencia.png" class="icon"/>
                 </p>
-                <h5>Secuencia</h5>
+                <h5>{{ titleTree2 }}</h5>
                 <hr/>
                 <ul>
                     <li>Programación por Rango de Horario con Frecuencia de Mensajes.</li>
                 </ul>
                 <p class="text-center">
-                    <button mat-raised-button class="btn button-green ml-4">
+                    <button mat-raised-button class="btn button-green ml-4" (click)="secuencia()">
                         Empezar
                     </button>
                 </p>
@@ -45,13 +45,13 @@
                 <p class="text-center mt-4">
                     <img src="./assets/img/9.locutor virtual.png" class="icon"/>
                 </p>
-                <h5>Locutor Virtual</h5>
+                <h5>{{ titleTree3 }}</h5>
                 <hr/>
                 <ul>
                     <li>Impacto por Hora, Sin Compromiso de Hora Fija.</li>
                 </ul>
                 <p class="text-center">
-                    <button mat-raised-button class="btn button-green ml-4">
+                    <button mat-raised-button class="btn button-green ml-4" (click)="locutor_virtual()">
                         Empezar
                     </button>
                 </p>

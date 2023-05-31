@@ -1,0 +1,29 @@
+.p-checkbox .p-checkbox-label {
+    margin-bottom: 0px;
+}
+@media screen and (max-width: 768px) {
+    .p-steps ul {
+        font-size: 10px !important;
+    }
+}
+
+.times li {
+    padding: 7px 10px;
+    border-bottom: 2px solid #ddd;
+    cursor: pointer;
+}
+.times li:first-child {
+    border-top: none;
+}
+.times li i {
+    float: right;
+    color: #9b9494;
+}
+.times {
+    margin-top: 60px;
+    list-style-type: none;
+    padding-left: 0px;
+}
+.btn-siguiente { 
+    background-color: #1ac1e8 !important; 
+}

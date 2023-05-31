@@ -16,7 +16,18 @@ import { CreationComponent } from './creation/creation.component';
 import { StepsModule } from 'primeng/steps';
 import { Step1Component } from './creation/step1/step1.component';
 import { Stepa1Component } from './creation/stepa1/stepa1.component';
-
+import { Step2Component } from './creation/step2/step2.component';
+import { CategoriasComponent } from './creation/categorias/categorias.component';
+import { Step3Component } from './creation/step3/step3.component';
+import { Stepa3Component } from './creation/stepa3/stepa3.component';
+import { Stepb3Component } from './creation/stepb3/stepb3.component';
+import { Stepc3Component } from './creation/stepc3/stepc3.component';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { BriefcaseComponent } from './briefcase/briefcase.component';
+import { RuchhoursComponent } from './creation/ruchhours/ruchhours.component';
 
 
 @NgModule({
@@ -29,6 +40,15 @@ import { Stepa1Component } from './creation/stepa1/stepa1.component';
     CreationComponent,
     Step1Component,
     Stepa1Component,
+    Step2Component,
+    CategoriasComponent,
+    Step3Component,
+    Stepa3Component,
+    Stepb3Component,
+    Stepc3Component,
+    BriefcaseComponent,
+    RuchhoursComponent,
+    
     
   ],
   imports: [
@@ -40,7 +60,11 @@ import { Stepa1Component } from './creation/stepa1/stepa1.component';
     NouisliderModule,
     TagInputModule,
     MaterialModule,
-    StepsModule
+    StepsModule,
+    CalendarModule,
+    SelectButtonModule,
+    CheckboxModule,
+    RadioButtonModule
   ]
 })
 export class MessagesModule { }
