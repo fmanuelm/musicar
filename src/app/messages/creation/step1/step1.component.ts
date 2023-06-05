@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../service/message.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
@@ -8,7 +8,7 @@ import { MessageService } from '../../service/message.service';
 })
 export class Step1Component implements OnInit {
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private router: Router) { }
   messagesList:any[];
   titleTree1:string;
   titleTree2:string;
@@ -27,13 +27,22 @@ export class Step1Component implements OnInit {
   }
   horas_fijas() {
     
-    this.messageService.setStep("3");
-    
+    //this.messageService.setStep("3");
+    this.messageService.setStep("formulario");
+    this.messageService.setModule("horas_fijas");
   }
   secuencia() {
-    this.messageService.setStep("4");
+    //this.messageService.setStep("4");
+    this.messageService.setStep("formulario");
+    this.messageService.setModule("secuencia");
   }
   locutor_virtual() {
-    this.messageService.setStep("5");
+    //this.messageService.setStep("rushhours");
+    this.messageService.setStep("formulario");
+    this.messageService.setModule("locutor_virtual");
+  }
+  atras()
+  {
+    this.router.navigate(['/mensajes/home']);
   }
 }

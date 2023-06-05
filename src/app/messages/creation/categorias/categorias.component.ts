@@ -12,13 +12,19 @@ export class CategoriasComponent implements OnInit {
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.getMessagesPresaved();
+    this.getMessagesCategoriesPresaved();
     
   }
-
-  getMessagesPresaved() {
+  selectCat(id: number, title:string)
+  {
+    this.messageService.setStep("briefcase");
+    let params = {"id": id, "title":title};
+    this.messageService.setSelectCategory(params);
+  }
+  getMessagesCategoriesPresaved() {
     this.messageService.getMessagesPresavedCategories().subscribe(resp => {
       this.categories = resp;
+      
     })
   }
 }

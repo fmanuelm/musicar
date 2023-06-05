@@ -23,7 +23,7 @@ export class Step2Component implements OnInit {
   disabledAudio2: boolean = true;
   fileUrl: string = "";
   audioUrl2: string = "";
-  constructor(private _formBuilder: FormBuilder, messageService: MessageService) { }
+  constructor(private _formBuilder: FormBuilder, private messageService: MessageService) { }
   
   ngOnInit(): void {
     this.form = this._formBuilder.group({
@@ -39,7 +39,24 @@ export class Step2Component implements OnInit {
     this.cleanFile();
   }
   next() {
-
+    if (this.messageService.getModule() === 'horas_fijas')
+    {
+      if (this.form.valid) {
+        this.messageService.setStep("horas_fijas");
+      }
+    }
+    if (this.messageService.getModule() === 'secuencia')
+    {
+      if (this.form.valid) {
+        this.messageService.setStep("secuencia");
+      }
+    }
+    if (this.messageService.getModule() === 'locutor_virtual')
+    {
+      if (this.form.valid) {
+        this.messageService.setStep("rushhours");
+      }
+    }
   }
   clearAudio2()
   {

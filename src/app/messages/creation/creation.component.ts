@@ -10,8 +10,9 @@ import { MessageService  } from '../service/message.service';
   styleUrls: ['./creation.component.css']
 })
 export class CreationComponent implements OnInit {
+  
   items: MenuItem[];
-  activeIndex: number = 1;
+  activeIndex: number = 0;
   daysOfWeek: any[] = [{label: 'Lu', value: 'lu'}, {label: 'Ma', value: 'ma'}, {label: 'Mi', value: 'mi'}, {label: 'Ju', value: 'ju'}, {label: 'Vi', value: 'vi'}, {label: 'Sa', value: 'sa'}, {label: 'Do', value: 'do'}];
   value: string = 'lu';
   daysOfWeekVal3: string = '';
@@ -38,15 +39,16 @@ export class CreationComponent implements OnInit {
   
   constructor(private messageService: MessageService) {
     //this.activeIndex = this.messageService.getStep();
-    
+    this.messageService.setStep("1");
   }
   next1()
   {
-    this.messageService.setStep("2");
+    this.messageService.setStep("puntos");
+
   }
   next2()
   {
-    this.messageService.setStep("2");
+    this.messageService.setStep("formulario");
   }
   ngOnInit(): void {
     //this.step = this.messageService.getStep();
@@ -54,28 +56,41 @@ export class CreationComponent implements OnInit {
     this.step = this.messageService.getStep();
     this.messageService.step$.subscribe(value => {
       this.step = value;
+      
+      if (value === "-1" || value === "1")
+      {
+        this.activeIndex = 0;
+      }
+      if(value === 'formulario') {
+        this.activeIndex = 1;
+      }
+      if(value === 'puntos') {
+        this.activeIndex = 3;
+      }
+      if(value === 'horas_fijas') {
+        this.activeIndex = 2;
+      }
+      if(value === 'secuencia') {
+        this.activeIndex = 2;
+      }
+      
     });
 
     this.items = [
       {
-          label: 'CREACIÓN',
-          routerLink: 'personal'
+          label: 'CREACIÓN'
       },
       {
-          label: 'CONTENIDO',
-          routerLink: 'seat'
+          label: 'CONTENIDO'
       },
       {
-          label: 'PROGRAMACIÓN',
-          routerLink: 'payment'
+          label: 'PROGRAMACIÓN'
       },
       {
-          label: 'PUNTOS',
-          routerLink: 'confirmation'
+          label: 'PUNTOS'
       },
       {
-        label: 'RESUMEN',
-        routerLink: 'confirmation'
+        label: 'RESUMEN'
     }
     ];
     this.fromDate = new Date();

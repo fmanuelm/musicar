@@ -1,6 +1,61 @@
-<p>ruchhours works!</p>
-<p>ruchhours works!</p>
-<p>ruchhours works!</p>
-<p>ruchhours works!</p>
-<p>ruchhours works!</p>
-<p>ruchhours works!</p>
+<div class="row justify-content-md-center">
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card flex justify-content-center my-4 py-4">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <p-calendar [(ngModel)]="fromDate" dateFormat="dd/mm/yy" placeholder="Desde"></p-calendar>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <p-calendar [(ngModel)]="toDate" dateFormat="dd/mm/yy" placeholder="Hasta"></p-calendar>                            
+                        </div>
+                        <div class="col-md-12 px-4 mt-4 text-center">
+                            <p-selectButton [options]="daysOfWeek" [(ngModel)]="daySelect" [multiple]="true" optionLabel="label" optionValue="value" class="ng-invalid ng-dirty"></p-selectButton>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 p-4">
+                                <p>
+                                    <p-radioButton name="feriados" value="sinfestivos" inputId="sinfestivos" [(ngModel)]="feriados"></p-radioButton>
+                                    <label for="sinfestivos" class="ml-2">Sin Festivos</label>
+                                </p>
+                                <p>
+                                    <p-radioButton name="feriados" value="confestivos" inputId="confestivos" [(ngModel)]="feriados"></p-radioButton>
+                                    <label for="confestivos" class="ml-2">Con Festivos</label>
+                                </p>
+                                <p>
+                                    <p-radioButton name="feriados" value="solofestivos" inputId="solofestivos" [(ngModel)]="feriados"></p-radioButton>
+                                    <label for="solofestivos" class="ml-2">Solo días Festivos</label>
+                                </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card flex justify-content-center my-4 p-4">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            
+                        </div>
+                        <div class="col-md-6 text-center">
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-12">
+        <p class="text-center">
+            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next()">
+                Siguiente
+                <span class="material-symbols-outlined ml-3">
+                    arrow_forward_ios
+                </span>
+            </button>
+        </p>
+    </div>
+</div>

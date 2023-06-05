@@ -28,6 +28,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { BriefcaseComponent } from './briefcase/briefcase.component';
 import { RuchhoursComponent } from './creation/ruchhours/ruchhours.component';
+import { PuntosComponent } from './creation/puntos/puntos.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { RuchhoursComponent } from './creation/ruchhours/ruchhours.component';
     Stepc3Component,
     BriefcaseComponent,
     RuchhoursComponent,
+    PuntosComponent,
     
     
   ],
