@@ -35,3 +35,14 @@
   .formulario-oculto {
     display: none;
   }
+
+  .daysofweeks {
+    border-radius: 0px;
+  }
+  @media (max-width: 768px)
+  {
+    ::ng-deep .p-steps ul li a {
+        font-size: 10px;
+    }
+  }
+  

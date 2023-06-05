@@ -27,14 +27,19 @@ export class Step1Component implements OnInit {
   }
   horas_fijas() {
     
-    this.messageService.setStep("3");
-    
+    //this.messageService.setStep("3");
+    this.messageService.setStep("formulario");
+    this.messageService.setModule("horas_fijas");
   }
   secuencia() {
-    this.messageService.setStep("4");
+    //this.messageService.setStep("4");
+    this.messageService.setStep("formulario");
+    this.messageService.setModule("secuencia");
   }
   locutor_virtual() {
-    this.messageService.setStep("rushhours");
+    //this.messageService.setStep("rushhours");
+    this.messageService.setStep("formulario");
+    this.messageService.setModule("locutor_virtual");
   }
   atras()
   {
