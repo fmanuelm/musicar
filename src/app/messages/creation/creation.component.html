@@ -12,7 +12,7 @@
                                 <p>Voces que encantan, voces que enamoran.</p>
                             </div>
                             <div class="col-12">
-                                <h1 class="text-center">Información</h1>
+                                
                                 <p-steps [model]="items" [readonly]="true" [activeIndex]="activeIndex" class="paso"></p-steps>
                                 
                                 
@@ -45,18 +45,18 @@
                                                             </div>
                                                             
                                                             <div class="col-md-12 p-4">
-                                                                    <p>
-                                                                        <p-radioButton name="feriados3" value="sinfestivos" inputId="sinfestivos3" [(ngModel)]="feriados3"></p-radioButton>
-                                                                        <label for="sinfestivos3" class="ml-2 mb-0">Sin Festivos</label>
-                                                                    </p>
-                                                                    <p>
-                                                                        <p-radioButton name="feriados3" value="confestivos" inputId="confestivos3" [(ngModel)]="feriados3"></p-radioButton>
-                                                                        <label for="confestivos3" class="ml-2 mb-0">Con Festivos</label>
-                                                                    </p>
-                                                                    <p>
-                                                                        <p-radioButton name="feriados3" value="solofestivos" inputId="solofestivos3" [(ngModel)]="feriados3"></p-radioButton>
-                                                                        <label for="solofestivos3" class="ml-2 mb-0">Solo días Festivos</label>
-                                                                    </p>
+                                                                <p>
+                                                                    <p-radioButton name="feriados3" value="sinfestivos" inputId="sinfestivos3" [(ngModel)]="feriados3"></p-radioButton>
+                                                                    <label for="sinfestivos3" class="ml-2 mb-0">Sin Festivos</label>
+                                                                </p>
+                                                                <p>
+                                                                    <p-radioButton name="feriados3" value="confestivos" inputId="confestivos3" [(ngModel)]="feriados3"></p-radioButton>
+                                                                    <label for="confestivos3" class="ml-2 mb-0">Con Festivos</label>
+                                                                </p>
+                                                                <p>
+                                                                    <p-radioButton name="feriados3" value="solofestivos" inputId="solofestivos3" [(ngModel)]="feriados3"></p-radioButton>
+                                                                    <label for="solofestivos3" class="ml-2 mb-0">Solo días Festivos</label>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                         
@@ -212,6 +212,12 @@
                                 </div>
                                 <div *ngIf="step === 'puntos'">
                                     <app-puntos></app-puntos>
+                                </div>
+                                <div>
+                                    <app-grupo></app-grupo>
+                                </div>
+                                <div>
+                                    <app-regional></app-regional>
                                 </div>
                             </div>
                         </div>

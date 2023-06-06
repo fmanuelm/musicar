@@ -26,6 +26,8 @@ export class MessageService {
   private headers: HttpHeaders = new HttpHeaders({ 'Authorization': this.token });
   messageCategories: any[] = [];
   messagesPresaved: any[] = [];
+  points: any[] = [];
+  sucurals: any[] = [];
   getMessagesOutlineType() {
     
     return this.http.get<any[]>(`${this.url}seed/mensajes-esquema-tipo/all`, { headers: this.headers }).pipe(map(MessagesOutline => {
@@ -100,5 +102,25 @@ export class MessageService {
   getMessageSelect():any
   {
     return this.catMessageSubject.getValue();
+  }
+  getPoints() {
+    let id = 1;
+    return this.http.get<any[]>(`${this.url}puntos/xcliente/${id}`, { headers: this.headers }).pipe(map(Points => {
+      
+      this.points = Points;
+      return Points.map((Point) => ({
+        ...Point
+      }));
+    }));
+  }
+  getRegionals() {
+    let id = 1;
+    return this.http.get<any[]>(`${this.url}puntos/puntos-grupos/xcliente/${id}`, { headers: this.headers }).pipe(map(Sucursals => {
+      
+      this.sucurals = Sucursals;
+      return Sucursals.map((Sucursal) => ({
+        ...Sucursal
+      }));
+    }));
   }
 }

@@ -29,6 +29,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { BriefcaseComponent } from './briefcase/briefcase.component';
 import { RuchhoursComponent } from './creation/ruchhours/ruchhours.component';
 import { PuntosComponent } from './creation/puntos/puntos.component';
+import { GrupoComponent } from './creation/grupo/grupo.component';
+import { AccordionModule } from 'primeng/accordion';
+import { RegionalComponent } from './creation/regional/regional.component';
 
 
 @NgModule({
@@ -50,6 +53,8 @@ import { PuntosComponent } from './creation/puntos/puntos.component';
     BriefcaseComponent,
     RuchhoursComponent,
     PuntosComponent,
+    GrupoComponent,
+    RegionalComponent,
     
     
   ],
@@ -66,7 +71,8 @@ import { PuntosComponent } from './creation/puntos/puntos.component';
     CalendarModule,
     SelectButtonModule,
     CheckboxModule,
-    RadioButtonModule
+    RadioButtonModule,
+    AccordionModule
   ]
 })
 export class MessagesModule { }

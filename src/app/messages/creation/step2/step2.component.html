@@ -9,7 +9,7 @@
                         <div class="col-md-12">
                             <div class="text-right">
                                 <button mat-raised-button type="button"
-                                        class="btn btn-fill btn-rose" (click)="clearForm()">
+                                        class="btn btn-fill btn-rose rounded shadow" (click)="clearForm()">
                                         <span class="material-symbols-outlined">
                                             delete
                                         </span>
@@ -56,9 +56,9 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card ">
-                        <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
-                                <h4 class="card-title">Adjuntos</h4>
+                        <div class="card-header card-header-text">
+                            <div class="card-text bg-white">
+                                <h4 class="card-title text-dark font-weight-bold">Adjuntos</h4>
                             </div>
                         </div>
                         <div class="card-body ">
@@ -116,7 +116,7 @@
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col-md-4 text-center">
-                            <button mat-raised-button class="btn btn-documento ml-4" [disabled]="btnDocument" (click)="handleUploadDocumentClick()">
+                            <button mat-raised-button class="btn btn-documento ml-4 rounded shadow" [disabled]="btnDocument" (click)="handleUploadDocumentClick()">
                                 Documento
                                 <span class="material-symbols-outlined ml-3">
                                     upload_file
@@ -125,7 +125,7 @@
                             <input type="file" #documentUpload accept=".pdf,application/pdf,.xls,application/vnd.ms-excel,.doc,application/msword,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display: none;" (change)="onFileSelected($event)"/>
                         </div>
                         <div class="col-md-4 text-center">
-                            <button mat-raised-button class="btn btn-imagen ml-4" (click)="handleUploadImageClick()" [disabled]="btnImage">
+                            <button mat-raised-button class="btn btn-imagen ml-4 rounded shadow" (click)="handleUploadImageClick()" [disabled]="btnImage">
                                 Imagen
                                 <span class="material-symbols-outlined ml-3">
                                     add_to_photos
@@ -134,7 +134,7 @@
                             <input type="file" #imageUpload accept="image/png,image/jpeg,image/jpg" style="display: none;" (change)="onFileSelected($event)"/>
                         </div>
                         <div class="col-md-4 text-center">
-                            <button mat-raised-button class="btn btn-audio ml-4" (click)="handleUploadAudioClick()" [disabled]="btnAudio1">
+                            <button mat-raised-button class="btn btn-audio ml-4 rounded shadow" (click)="handleUploadAudioClick()" [disabled]="btnAudio1">
                                 Audio
                                 <span class="material-symbols-outlined ml-3">
                                     file_upload
@@ -148,9 +148,9 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card ">
-                        <div class="card-header card-header-rose card-header-text">
-                            <div class="card-text">
-                                <h4 class="card-title">Audio Listo</h4>
+                        <div class="card-header card-header-text">
+                            <div class="card-text bg-white">
+                                <h4 class="card-title text-dark font-weight-bold">Audio Listo</h4>
                             </div>
                         </div>
                         <div class="card-body ">
@@ -158,7 +158,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <p class="text-right">
                                         <button mat-raised-button type="button"
-                                        class="btn btn-fill btn-rose" [disabled]="disabledAudio2" (click)="clearAudio2()">
+                                        class="btn btn-fill btn-rose rounded shadow" [disabled]="disabledAudio2" (click)="clearAudio2()">
                                                 <span class="material-symbols-outlined">
                                                     delete
                                                 </span>
@@ -178,7 +178,7 @@
                         </div>
                     </div>
                     <p class="text-center">
-                        <button mat-raised-button class="btn btn-audio ml-4" (click)="handleUploadAudioClick2()" [disabled]="btnAudio2">
+                        <button mat-raised-button class="btn btn-audio ml-4 rounded shadow" (click)="handleUploadAudioClick2()" [disabled]="btnAudio2">
                             Audio
                             <span class="material-symbols-outlined ml-3">
                                 file_upload
@@ -187,7 +187,7 @@
                         <input type="file" #audioUpload2 accept=".mp3" style="display: none;" (change)="onFileSelected2($event)"/>
                     </p>
                     <p class="text-center">
-                        <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next()">
+                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow" (click)="next()">
                             Siguiente
                             <span class="material-symbols-outlined ml-3">
                                 arrow_forward_ios

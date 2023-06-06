@@ -7,3 +7,20 @@
 .button-yellow{
     background-color: #FEDD56 !important;
 }
+.rounded2 {
+    border-radius: 20px !important;
+}
+
+@media (min-width: 600px) 
+{
+    .min-358 {
+        min-height: 490px;
+    }
+}
+
+@media (min-width: 800px) 
+{
+    .min-358 {
+        min-height: 358px;
+    }
+}
