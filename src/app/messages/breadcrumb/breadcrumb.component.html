@@ -4,3 +4,27 @@
         <li class="breadcrumb-item active" aria-current="page"><b> Mensajes</b></li>
     </ol>
 </nav>
+<nav *ngIf="view == 'creation'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/home']);">Mensajes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Creación</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'formulario'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/home']);">Mensajes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Contenido</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'horas_fijas' || view == 'secuencia' || view == 'rushhours'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/home']);">Mensajes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Programación</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'puntos' || view == 'grupo' || view == 'regional'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/home']);">Mensajes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Puntos</b></li>
+    </ol>
+</nav>

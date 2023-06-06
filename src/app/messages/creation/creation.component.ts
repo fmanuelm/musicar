@@ -46,6 +46,21 @@ export class CreationComponent implements OnInit {
     this.messageService.setStep("puntos");
 
   }
+  next_b()
+  {
+    this.messageService.setStep("grupo");
+
+  }
+  next_c()
+  {
+    this.messageService.setStep("regional");
+
+  }
+  next_d()
+  {
+    this.messageService.setStep("puntos_grupo_regional");
+
+  }
   next2()
   {
     this.messageService.setStep("formulario");
@@ -73,7 +88,10 @@ export class CreationComponent implements OnInit {
       if(value === 'secuencia') {
         this.activeIndex = 2;
       }
-      
+      if (value === 'puntos' || value === 'grupo' || value === 'regional' || value === 'puntos_grupo_regional')
+      {
+        this.activeIndex = 3;
+      }
     });
 
     this.items = [
