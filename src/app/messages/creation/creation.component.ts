@@ -92,6 +92,9 @@ export class CreationComponent implements OnInit {
       {
         this.activeIndex = 3;
       }
+      if(value === 'resumen1' || value === 'resumen2') {
+        this.activeIndex = 4;
+      }
     });
 
     this.items = [

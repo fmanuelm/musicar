@@ -28,3 +28,9 @@
         <li class="breadcrumb-item active" aria-current="page"><b> Puntos</b></li>
     </ol>
 </nav>
+<nav *ngIf="view == 'resumen'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/home']);">Mensajes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Resumen</b></li>
+    </ol>
+</nav>

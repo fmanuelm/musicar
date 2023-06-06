@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { SortEvent } from 'primeng/api';
 import { MessageService } from '../../service/message.service';
+import { SortEvent } from 'primeng/api';
 
 @Component({
-  selector: 'app-grupo',
-  templateUrl: './grupo.component.html',
-  styleUrls: ['./grupo.component.css']
+  selector: 'app-puntos-grupo-regional',
+  templateUrl: './puntos-grupo-regional.component.html',
+  styleUrls: ['./puntos-grupo-regional.component.css']
 })
-export class GrupoComponent implements OnInit {
+export class PuntosGrupoRegionalComponent implements OnInit {
+
+  constructor(private messageService: MessageService) { }
   groups: any[] = [];
   selectedGroups: {};
-  constructor(private messageService: MessageService) { }
-
   ngOnInit(): void {
-    
-   this.getPoints();
+    this.getPoints();
   }
   getPoints()
   {
@@ -23,7 +22,6 @@ export class GrupoComponent implements OnInit {
       this.groups = resp;
     });
   }
-
   customSort(event: SortEvent) {
     event.data.sort((data1, data2) => {
         let value1 = data1[event.field];
@@ -38,6 +36,13 @@ export class GrupoComponent implements OnInit {
 
         return event.order * result;
     });
-}
-
+  }
+  next1()
+  {
+    this.messageService.setStep("resumen1");
+  }
+  next2()
+  {
+    this.messageService.setStep("resumen2");
+  }
 }

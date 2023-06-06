@@ -6,7 +6,8 @@
             <app-breadcrumb *ngIf="step === 'horas_fijas'" view="horas_fijas"></app-breadcrumb>
             <app-breadcrumb *ngIf="step === 'secuencia'" view="secuencia"></app-breadcrumb>
             <app-breadcrumb *ngIf="step === 'rushhours'" view="rushhours"></app-breadcrumb>
-            <app-breadcrumb *ngIf="step === 'puntos'" view="puntos"></app-breadcrumb>
+            <app-breadcrumb *ngIf="step === 'puntos' || step === 'grupo'|| step === 'regional' || step === 'puntos_grupo_regional'" view="puntos"></app-breadcrumb>
+            <app-breadcrumb *ngIf="step === 'resumen1' || step === 'resumen2'" view="resumen"></app-breadcrumb>
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-body">
@@ -245,6 +246,16 @@
                                 </div>
                                 <div *ngIf="step === 'regional'">
                                     <app-regional></app-regional>
+                                </div>
+                                <div *ngIf="step === 'puntos_grupo_regional'">
+                                    sfjksdl
+                                    <app-puntos-grupo-regional></app-puntos-grupo-regional>
+                                </div>
+                                <div *ngIf="step === 'resumen1'">
+                                    <app-resumen1></app-resumen1>
+                                </div>
+                                <div *ngIf="step === 'resumen2'">
+                                    <app-resumen2></app-resumen2>
                                 </div>
                             </div>
                         </div>

@@ -19,8 +19,6 @@ import { Stepa1Component } from './creation/stepa1/stepa1.component';
 import { Step2Component } from './creation/step2/step2.component';
 import { CategoriasComponent } from './creation/categorias/categorias.component';
 import { Step3Component } from './creation/step3/step3.component';
-import { Stepa3Component } from './creation/stepa3/stepa3.component';
-import { Stepb3Component } from './creation/stepb3/stepb3.component';
 import { Stepc3Component } from './creation/stepc3/stepc3.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule } from 'primeng/calendar';
@@ -32,6 +30,9 @@ import { PuntosComponent } from './creation/puntos/puntos.component';
 import { GrupoComponent } from './creation/grupo/grupo.component';
 import { AccordionModule } from 'primeng/accordion';
 import { RegionalComponent } from './creation/regional/regional.component';
+import { PuntosGrupoRegionalComponent } from './creation/puntos-grupo-regional/puntos-grupo-regional.component';
+import { Resumen1Component } from './creation/resumen1/resumen1.component';
+import { Resumen2Component } from './creation/resumen2/resumen2.component';
 
 
 @NgModule({
@@ -47,14 +48,15 @@ import { RegionalComponent } from './creation/regional/regional.component';
     Step2Component,
     CategoriasComponent,
     Step3Component,
-    Stepa3Component,
-    Stepb3Component,
     Stepc3Component,
     BriefcaseComponent,
     RuchhoursComponent,
     PuntosComponent,
     GrupoComponent,
     RegionalComponent,
+    PuntosGrupoRegionalComponent,
+    Resumen1Component,
+    Resumen2Component,
     
     
   ],
