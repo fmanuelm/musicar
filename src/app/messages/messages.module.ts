@@ -33,7 +33,9 @@ import { RegionalComponent } from './creation/regional/regional.component';
 import { PuntosGrupoRegionalComponent } from './creation/puntos-grupo-regional/puntos-grupo-regional.component';
 import { Resumen1Component } from './creation/resumen1/resumen1.component';
 import { Resumen2Component } from './creation/resumen2/resumen2.component';
-
+import { ValidacionComponent } from './validacion/validacion.component';
+import { AprobacionComponent } from './aprobacion/aprobacion.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { Resumen2Component } from './creation/resumen2/resumen2.component';
     PuntosGrupoRegionalComponent,
     Resumen1Component,
     Resumen2Component,
+    ValidacionComponent,
+    AprobacionComponent,
     
     
   ],
@@ -74,7 +78,8 @@ import { Resumen2Component } from './creation/resumen2/resumen2.component';
     SelectButtonModule,
     CheckboxModule,
     RadioButtonModule,
-    AccordionModule
+    AccordionModule,
+    DropdownModule
   ]
 })
 export class MessagesModule { }

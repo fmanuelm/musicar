@@ -30,7 +30,19 @@
 </nav>
 <nav *ngIf="view == 'resumen'" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/home']);">Mensajes</a></li>
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/resumen']);">Mensajes</a></li>
         <li class="breadcrumb-item active" aria-current="page"><b> Resumen</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'validacion'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/validacion']);">Mensajes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Validación</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'aprobacion'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['mensajes/aprobacion']);">Mensajes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Aprobación</b></li>
     </ol>
 </nav>

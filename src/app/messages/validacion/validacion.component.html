@@ -1,0 +1,88 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <app-breadcrumb view="validacion"></app-breadcrumb>
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="row mb-4 mt-3">
+                            <div class="col-12">
+                                <img src="/assets/img/logo-musicar.png" width="200"/>
+                                <h1>Voice Experience</h1>
+                                <p>Voces que encantan, voces que enamoran.</p>
+                            </div>
+                            <div class="col-12">
+                                <h2>Validación de la programación</h2>
+                            </div>
+                            <div class="col-md-12 mt-4">
+                                <div class="row justify-content-md-center">
+                                    <div class="col-md-6">
+                                        <label class="d-block font-weight-bold">Sucursal</label>
+                                        <p-dropdown [options]="sucursales" [(ngModel)]="selectedSucursal" optionLabel="name" class="d-block w-100"></p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-4">
+                                <div class="row justify-content-md-center">
+                                    <div class="col-md-3 col-xl-2 col-6">
+                                        <label class="d-block">Desde</label>
+                                        <p-calendar class="w-100" [(ngModel)]="fromDate" [maxDate]="toDate" dateFormat="dd/mm/yy" placeholder="Desde"></p-calendar>
+                                    </div>
+                                    <div class="col-md-3 col-xl-2 col-6">
+                                        <label class="d-block">Hasta</label>
+                                        <p-calendar class="w-100" [(ngModel)]="toDate" [minDate]="fromDate" dateFormat="dd/mm/yy" placeholder="Hasta"></p-calendar>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-4">
+                                <div class="card">
+                                    <p-table #dt2 [value]="mensajes" (sortFunction)="customSort($event)" [customSort]="true" dataKey="code" [paginator]="true" [rows]="5" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}" [globalFilterFields]="['id', 'referencia', 'tipo_esquema', 'fecha', 'hora']">
+                                        <ng-template pTemplate="caption">
+                                            <div class="flex text-right">
+                                                <span class="p-input-icon-left ml-auto">
+                                                    <i class="pi pi-search"></i>
+                                                    <input pInputText type="text" class="pl-5" (input)="dt2.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
+                                                </span>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                
+                                                <th style="min-width:200px" pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                                                <th style="min-width:200px" pSortableColumn="referencia">Referencia Mensaje <p-sortIcon field="referencia"></p-sortIcon></th>
+                                                <th style="min-width:200px" pSortableColumn="tipo_esquema">Tipo Esquema <p-sortIcon field="tipo_esquema"></p-sortIcon></th>
+                                                <th style="min-width:200px" pSortableColumn="fecha">Fecha <p-sortIcon field="fecha"></p-sortIcon></th>
+                                                <th style="min-width:200px" pSortableColumn="hora">Hora <p-sortIcon field="hora"></p-sortIcon></th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-mensaje>
+                                            <tr>
+                                                <td>{{mensaje.id}}</td>
+                                                <td>{{mensaje.referencia}}</td>
+                                                <td>{{mensaje.tipo_esquema}}</td>
+                                                <td>{{mensaje.fecha}}</td>
+                                                <td>{{mensaje.hora}}</td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <button mat-raised-button class="btn button-yellow ml-4" (click)="router.navigate(['mensajes/home']);">
+                                        <span class="material-symbols-outlined ml-3">
+                                            arrow_back_ios
+                                        </span>
+                                        Atras
+                                    </button>
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

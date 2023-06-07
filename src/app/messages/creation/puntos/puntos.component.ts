@@ -12,4 +12,5 @@ export class PuntosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }

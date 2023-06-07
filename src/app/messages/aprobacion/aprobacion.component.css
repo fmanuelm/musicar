@@ -1,0 +1,14 @@
+.play {
+    font-size: 100px;
+    cursor: pointer;
+}
+.aprobar {
+    background: #50c981 !important;
+}
+.btn-siguiente { 
+    background-color: #1ac1e8 !important; 
+}
+
+.btn-back { 
+    background-color: #FEDD56 !important; 
+}

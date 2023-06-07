@@ -1,0 +1,7 @@
+::ng-deep .p-dropdown {
+    width: 100%;
+}
+
+.button-yellow{
+    background-color: #FEDD56 !important;
+}
