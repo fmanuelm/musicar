@@ -36,6 +36,8 @@ import { Resumen2Component } from './creation/resumen2/resumen2.component';
 import { ValidacionComponent } from './validacion/validacion.component';
 import { AprobacionComponent } from './aprobacion/aprobacion.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { FixedhoursComponent } from './creation/fixedhours/fixedhours.component';
+import { SequenceComponent } from './creation/sequence/sequence.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { DropdownModule } from 'primeng/dropdown';
     Resumen2Component,
     ValidacionComponent,
     AprobacionComponent,
+    FixedhoursComponent,
+    SequenceComponent,
     
     
   ],

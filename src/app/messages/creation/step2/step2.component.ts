@@ -39,20 +39,24 @@ export class Step2Component implements OnInit {
     this.cleanFile();
   }
   next() {
+    console.log("module: " + this.messageService.getModule());
     if (this.messageService.getModule() === 'horas_fijas')
     {
+      console.log("horas fijas");
       if (this.form.valid) {
         this.messageService.setStep("horas_fijas");
       }
     }
     if (this.messageService.getModule() === 'secuencia')
     {
+      console.log("secuencia");
       if (this.form.valid) {
         this.messageService.setStep("secuencia");
       }
     }
     if (this.messageService.getModule() === 'locutor_virtual')
     {
+      console.log("locutor");
       if (this.form.valid) {
         this.messageService.setStep("rushhours");
       }
