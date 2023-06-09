@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SortEvent } from 'primeng/api';
+import { MessageService } from '../../service/message.service';
 @Component({
   selector: 'app-regional',
   templateUrl: './regional.component.html',
@@ -8,7 +9,7 @@ import { SortEvent } from 'primeng/api';
 export class RegionalComponent implements OnInit {
   groups: any[] = [];
   selectedGroups: {};
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.groups = [
@@ -41,6 +42,14 @@ export class RegionalComponent implements OnInit {
 
         return event.order * result;
     });
-}
+  }
 
+  next1()
+  {
+    this.messageService.setStep("resumen1");
+  }
+  next2()
+  {
+    this.messageService.setStep("resumen2");
+  }
 }

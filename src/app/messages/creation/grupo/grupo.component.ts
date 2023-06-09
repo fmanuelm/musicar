@@ -40,4 +40,12 @@ export class GrupoComponent implements OnInit {
     });
 }
 
+  next1()
+  {
+    this.messageService.setStep("resumen1");
+  }
+  next2()
+  {
+    this.messageService.setStep("resumen2");
+  }
 }

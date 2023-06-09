@@ -38,8 +38,13 @@ export class Step2Component implements OnInit {
     this.form.reset();
     this.cleanFile();
   }
+  
   next() {
     console.log("module: " + this.messageService.getModule());
+    if (this.form.valid) {
+      this.messageService.setStep("horas_fijas");
+    }
+    /*
     if (this.messageService.getModule() === 'horas_fijas')
     {
       console.log("horas fijas");
@@ -60,6 +65,17 @@ export class Step2Component implements OnInit {
       if (this.form.valid) {
         this.messageService.setStep("rushhours");
       }
+    }
+    */
+  }
+  next2() {
+    if (this.form.valid) {
+      this.messageService.setStep("secuencia");
+    }
+  }
+  next3() {
+    if (this.form.valid) {
+      this.messageService.setStep("rushhours");
     }
   }
   clearAudio2()
