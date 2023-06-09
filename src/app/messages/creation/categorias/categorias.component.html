@@ -8,6 +8,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 px-0">
                 <ul class="categories">
+                    <a (click)="selectCat(0, 'test')"><li>Test <i class="pi pi-arrow-right"></i></li></a>
                     <a *ngFor="let category of categories; let i = index" (click)="selectCat(i, category.categoria)"><li>{{ category.categoria }} <i class="pi pi-arrow-right"></i></li></a>
                 </ul>
 
