@@ -1,3 +1,4 @@
+
 .p-checkbox .p-checkbox-label {
     margin-bottom: 0px;
 }
@@ -45,4 +46,15 @@
         font-size: 10px;
     }
   }
-  
+  ::ng-deep .p-steps .p-steps-item.p-highlight .p-steps-number {
+    background: #918e8e;
+    color: #fff;
+    border: unset;
+  }
+
+  ::ng-deep .p-steps .p-steps-item::before {
+    border-top: 2px dashed #dee2e6;
+  }
+  ::ng-deep .p-steps .p-steps-current::before {
+    border-top: 2px dashed #918e8e;
+  }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../service/message.service';
 import { Location } from '@angular/common';
@@ -13,10 +13,18 @@ export class BriefcaseComponent implements OnInit {
   constructor(private route: ActivatedRoute, private messageService: MessageService, private location: Location) { }
   id:number;
   items: any[];
-  audios: any[]=[];
+  audios: any[]=[
+    { nombre: 'Archivo 1', src: 'assets/audio/archivo1.mp3', tiempo:'02:20' },
+    { nombre: 'Archivo 2', src : 'assets/audio/archivo2.mp3', tiempo:'03:20' }
+  ];
+  audioSrc: string = "";
+  reproductor: HTMLAudioElement | null = null;
+  reproduciendo : boolean = false;
+  audio_select_id: number = null;
   categoria_nombre: string = "";
   categoria_id:number = 0;
   messages: any[] = [];
+  reproduciendo_id:number;
   ngOnInit(): void {
     
     this.route.params.subscribe(params => {
@@ -30,6 +38,7 @@ export class BriefcaseComponent implements OnInit {
     this.loadMessagesAudios(this.categoria_id);
   }
 
+  
   atras() {
     this.messageService.setStep("formulario");
   }
@@ -47,5 +56,36 @@ export class BriefcaseComponent implements OnInit {
       this.audios = resp;
         
     })
+  }
+
+  onAudioEnded() {
+    alert("termino");
+  }
+  play(idx: number)
+  {
+    if (this.reproductor !== null)
+    {
+      this.reproductor.currentTime = 0;
+      this.reproductor.pause();
+      this.reproductor = new Audio();
+    }
+    this.reproduciendo_id = idx;
+    this.audioSrc = this.audios[idx].src;
+    
+    
+    this.reproductor = new Audio(this.audioSrc);
+    this.reproductor.play();
+    
+  }
+  
+  pause()
+  {
+    this.reproductor.pause();
+    this.reproduciendo_id = null;
+  }
+
+  selectAudio(idx:number)
+  {
+    this.audio_select_id = idx;
   }
 }

@@ -7,6 +7,7 @@
                         <div class="col-md-12">
                             <h2>Portafolio: {{categoria_nombre}}</h2>
                         </div>
+                                              
                         <div class="col-md-12 text-center">
                             <table class="w-100">
                                 <tr>
@@ -17,26 +18,18 @@
                                     <td>Tiempo</td>
                                     <td></td>
                                 </tr>
-                                <tr class="audio-playing sound-row">
-                                    <td>01</td>
-                                    <td><i class="pi pi-play audio-opt"></i> <i class="pi pi-pause audio-opt"></i></td>
-                                    <td>nombre_archivo_1</td>
+                                <tr *ngFor="let audio of audios; let idx = index" [ngClass]="{'audio-selected': idx === audio_select_id, 'sound-row':true}">
+                                    <td>{{idx}}</td>
+                                    <td><i class="pi pi-play audio-opt" (click)="play(idx)"></i> <i class="pi pi-pause audio-opt" (click)="pause()"></i></td>
+                                    <td>{{audio.nombre}}</td>
                                     <td class="text-center">
-                                        <img src="/assets/img/audio-effect.png" width="100"/>
+                                        <img *ngIf="reproduciendo_id !== idx" src="/assets/img/audio-effect.png" width="100"/>
+                                        <img *ngIf="reproduciendo_id === idx" src="/assets/img/playing.gif" width="100"/>
                                     </td>
-                                    <td>00:50</td>
-                                    <td>radio</td>
+                                    <td>{{audio.tiempo}}</td>
+                                    <td><input type="radio" name="audio" value={{idx}} (change)="selectAudio(idx)" class="radio-opt"/></td>
                                 </tr>
-                                <tr class="sound-row">
-                                    <td>02</td>
-                                    <td><i class="pi pi-play audio-opt"></i> <i class="pi pi-pause audio-opt"></i></td>
-                                    <td>nombre_archivo_2</td>
-                                    <td class="text-center">
-                                        <img src="/assets/img/audio-effect.png" width="100"/>
-                                    </td>
-                                    <td>00:50</td>
-                                    <td>radio</td>
-                                </tr>
+                                
                             </table>
                         </div>
                         
@@ -53,7 +46,7 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-6 text-center">
-                        <button mat-raised-button class="btn btn-back ml-4" (click)="atras()">
+                        <button mat-raised-button class="btn btn-back ml-4 rounded" (click)="atras()" [disabled]="audio_select_id !== null">
                             <span class="material-symbols-outlined ml-3">
                                 arrow_back_ios
                             </span>
@@ -61,7 +54,7 @@
                         </button>
                     </div>
                     <div class="col-6 text-center">
-                        <button mat-raised-button class="btn btn-siguiente ml-4">
+                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded" [disabled]="audio_select_id === null">
                             Siguiente
                             <span class="material-symbols-outlined ml-3">
                                 arrow_forward_ios

@@ -1,12 +1,16 @@
-.audio-playing {
+.audio-selected {
     box-shadow: 2px 2px 9px;
+    background: #fff !important;
+    border-bottom: 1px solid !important;
 }
 .sound-row {
     border: 1px solid #eee;
+    background: #ddd;
 }
 .audio-opt {
     color: #555;
     cursor: pointer;
+    /*background: #fff !important;*/
 }
 
 .btn-siguiente { 
@@ -15,4 +19,10 @@
 
 .btn-back { 
     background-color: #FEDD56 !important; 
+}
+.radio-opt {
+    cursor: pointer;
+}
+.rounded {
+    border-radius: 10px !important;
 }

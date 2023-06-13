@@ -23,6 +23,7 @@ export class Step2Component implements OnInit {
   disabledAudio2: boolean = true;
   fileUrl: string = "";
   audioUrl2: string = "";
+  fileName2: string = "";
   constructor(private _formBuilder: FormBuilder, private messageService: MessageService) { }
   
   ngOnInit(): void {
@@ -113,6 +114,7 @@ export class Step2Component implements OnInit {
   onFileSelected(event: any) {
     const file = event.target.files[0]; 
     const fileName = file.name;
+    this.fileName2 = file.name;
     this.fileUrl = URL.createObjectURL(file);
     const fileExtension = fileName.split('.').pop().toLowerCase();
     
@@ -124,6 +126,10 @@ export class Step2Component implements OnInit {
     this.disabledCategories = true;
   
     if (fileExtension === 'pdf')
+    {
+      this.btnDocument = false;
+    }
+    if (fileExtension === 'xls')
     {
       this.btnDocument = false;
     }

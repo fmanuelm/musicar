@@ -10,6 +10,9 @@
 .rounded2 {
     border-radius: 20px !important;
 }
+.rounded {
+    border-radius: 10px !important;
+}
 
 @media (min-width: 600px) 
 {
