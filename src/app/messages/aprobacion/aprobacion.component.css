@@ -12,3 +12,7 @@
 .btn-back { 
     background-color: #FEDD56 !important; 
 }
+
+::ng-deep .perfect-scrollbar-on .main-panel {
+    background: #fff;
+}

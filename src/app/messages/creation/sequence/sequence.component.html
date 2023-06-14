@@ -45,7 +45,7 @@
                         <div class="col-md-6 text-center">
                             <label class="text-left d-block">Hora inicio</label>
                             <div class="horasblock">
-                                <p-calendar [(ngModel)]="timeStart" [timeOnly]="true" name="time_start" [showIcon]="true" class="w-100"></p-calendar>
+                                <p-calendar [(ngModel)]="timeStart" [timeOnly]="true" [maxDate]="timeEnd" name="time_start" hourFormat="12" [showIcon]="true" class="w-100"></p-calendar>
                             </div>
                             <div style="float: left; width: 50px">
                                 <p-button icon="pi pi-plus" (click)="setTimeStart()"></p-button>
@@ -57,7 +57,7 @@
                         <div class="col-md-6 text-center">
                             <label class="text-left d-block">Hora fin</label>
                             <div class="horasblock">
-                                <p-calendar [(ngModel)]="timeEnd" [timeOnly]="true" name="time_end" [showIcon]="true" class="w-100"></p-calendar>
+                                <p-calendar [(ngModel)]="timeEnd" [timeOnly]="true" [minDate]="timeStart" name="time_end" hourFormat="12" [showIcon]="true" class="w-100"></p-calendar>
                             </div>
                             <div style="float: left; width: 50px">
                                 <p-button icon="pi pi-plus" (click)="setTimeEnd()"></p-button>
@@ -68,6 +68,10 @@
                         </div>
                         
                     </div>
+                </div>
+                <div class="card flex justify-content-center p-4">
+                    <p>Secuencia <span style="font-size:3rem; font-weight: bold;">170</span> minutos</p>
+                    <p-slider [(ngModel)]="secuencia"></p-slider>
                 </div>
             </div>
         </div>

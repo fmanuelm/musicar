@@ -13,8 +13,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     new Chartist.Bar('.xd', {
-      labels: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-      series: [20, 60, 120, 200, 180, 20, 10]
+      labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+      series: [20, 60, 120, 200, 180, 20, 10, 0, 0, 0, 0, 0]
     }, {
       distributeSeries: true
     });

@@ -38,8 +38,7 @@ import { AprobacionComponent } from './aprobacion/aprobacion.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FixedhoursComponent } from './creation/fixedhours/fixedhours.component';
 import { SequenceComponent } from './creation/sequence/sequence.component';
-import { ReproductorComponent } from './creation/reproductor/reproductor.component';
-
+import { SliderModule } from 'primeng/slider';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -66,7 +65,6 @@ import { ReproductorComponent } from './creation/reproductor/reproductor.compone
     AprobacionComponent,
     FixedhoursComponent,
     SequenceComponent,
-    ReproductorComponent,
     
     
   ],
@@ -85,7 +83,9 @@ import { ReproductorComponent } from './creation/reproductor/reproductor.compone
     CheckboxModule,
     RadioButtonModule,
     AccordionModule,
-    DropdownModule
+    DropdownModule,
+    SliderModule
   ]
 })
 export class MessagesModule { }
+  

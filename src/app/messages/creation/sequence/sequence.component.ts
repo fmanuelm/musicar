@@ -34,7 +34,7 @@ export class SequenceComponent implements OnInit {
   footer_opt4_1:boolean;
   footer_opt4_2:boolean;
   step:string = "0";
-
+  secuencia:number;
   next1()
   {
     this.messageService.setStep("puntos");

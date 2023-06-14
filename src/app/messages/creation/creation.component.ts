@@ -88,6 +88,10 @@ export class CreationComponent implements OnInit {
       if(value === 'secuencia') {
         this.activeIndex = 2;
       }
+      if(value === 'rushhours') {
+        this.activeIndex = 2;
+      }
+      
       if (value === 'puntos' || value === 'grupo' || value === 'regional' || value === 'puntos_grupo_regional')
       {
         this.activeIndex = 3;
