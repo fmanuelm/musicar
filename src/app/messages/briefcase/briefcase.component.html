@@ -18,15 +18,18 @@
                                     <td>Tiempo</td>
                                     <td></td>
                                 </tr>
+                                <audio #audioPlayer controls class="" (ended)="onAudioEnded()" class="d-none">
+                                    <source [src]="audioUrl" type="audio/mpeg">
+                                  Your browser does not support the audio element.
+                                  </audio>
                                 <tr *ngFor="let audio of audios; let idx = index" [ngClass]="{'audio-selected': idx === audio_select_id, 'sound-row':true}">
-                                    <td>{{idx}}</td>
-                                    <td><i class="pi pi-play audio-opt" (click)="play(idx)"></i> <i class="pi pi-pause audio-opt" (click)="pause()"></i></td>
-                                    <td>{{audio.nombre}}</td>
+                                    <td><span [ngClass]="{'select-green': idx === reproduciendo_id }">{{idx}}</span></td>
+                                    <td><i class="pi pi-play audio-opt" (click)="play(idx)"></i> <i class="pi pi-pause audio-opt" (click)="pause(idx)"></i></td>
+                                    <td><span [ngClass]="{'select-green': idx === reproduciendo_id }">{{audio.nombre}}</span></td>
                                     <td class="text-center">
-                                        <img *ngIf="reproduciendo_id !== idx" src="/assets/img/audio-effect.png" width="100"/>
-                                        <img *ngIf="reproduciendo_id === idx" src="/assets/img/playing.gif" width="100"/>
+                                        <img src="/assets/img/audio-effect.png" width="100"/>
                                     </td>
-                                    <td>{{audio.tiempo}}</td>
+                                    <td><span [ngClass]="{'select-green': idx === reproduciendo_id }">{{audio.tiempo}}</span></td>
                                     <td><input type="radio" name="audio" value={{idx}} (change)="selectAudio(idx)" class="radio-opt"/></td>
                                 </tr>
                                 

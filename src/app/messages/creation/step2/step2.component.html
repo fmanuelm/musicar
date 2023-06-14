@@ -63,49 +63,68 @@
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-md-4 col-sm-4" *ngIf="adjunto !== {}">
-                                    <div class="text-center" *ngIf="adjunto.ext === 'pdf'">
-                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
-                                            clear
-                                        </span>
-                                        <a [href]="fileUrl" [download]="adjunto.nombre">
-                                            <img src="/assets/img/pdf.png" width="70"/>
-                                        </a>
-                                    </div>
-                                    <div class="text-center" *ngIf="adjunto.ext === 'docx'">
-                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
-                                            clear
-                                        </span>
-                                        <a [href]="fileUrl" [download]="adjunto.nombre">
-                                            <img src="/assets/img/doc.png" width="70"/>
-                                        </a>
-                                    </div>
-                                    <div class="text-center" *ngIf="adjunto.ext === 'xlsx'">
-                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
-                                            clear
-                                        </span>
-                                        <a [href]="fileUrl" [download]="adjunto.nombre">
-                                            <img src="/assets/img/xls.png" width="70"/>
-                                        </a>
-                                    </div>
-                                    <div class="text-center" *ngIf="adjunto.ext === 'png'">
-                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
-                                            clear
-                                        </span>
-                                        <a [href]="fileUrl" [download]="adjunto.nombre">
-                                            <img src="/assets/img/png.png" width="70"/>
-                                        </a>
-                                    </div>
-                                    <div class="text-center" *ngIf="adjunto.ext === 'jpg'">
-                                        <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
-                                            clear
-                                        </span>
-                                        <a [href]="fileUrl" [download]="adjunto.nombre">
-                                            <img src="/assets/img/jpg.png" width="70"/>
-                                        </a>
+                                <div class="col-md-12 col-sm-12" *ngIf="adjunto !== {}">
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'pdf'">
+                                            <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                                clear
+                                            </span>
+                                            <a [href]="fileUrl" [download]="adjunto.nombre">
+                                                <img src="/assets/img/pdf.png" width="70" style="background: #ddd;"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'docx'">
+                                            <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                                clear
+                                            </span>
+                                            <a [href]="fileUrl" [download]="adjunto.nombre">
+                                                <img src="/assets/img/doc.png" width="70" style="background: #ddd;"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'xlsx'">
+                                            <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                                clear
+                                            </span>
+                                            <a [href]="fileUrl" [download]="adjunto.nombre">
+                                                <img src="/assets/img/xls.png" width="70" style="background: #ddd;"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'png'">
+                                            <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                                clear
+                                            </span>
+                                            <a [href]="fileUrl" [download]="adjunto.nombre">
+                                                <img src="/assets/img/png.png" width="70" style="background: #ddd;"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'jpg'">
+                                            <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                                clear
+                                            </span>
+                                            <a [href]="fileUrl" [download]="adjunto.nombre">
+                                                <img src="/assets/img/jpg.png" width="70"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-12 text-center" *ngIf="adjunto.ext === 'mp3'">
+                                            <p class="text-right">
+                                                <button mat-raised-button type="button"
+                                                class="btn btn-fill btn-rose rounded shadow" [ngClass]="{'d-none': disabledAudio}" (click)="clearAudio()">
+                                                        <span class="material-symbols-outlined">
+                                                            delete
+                                                        </span>
+                                                        Retirar Audio
+                                                </button>
+                                            </p>
+                                            
+                                            <audio #audioPlayer1 controls [ngClass]="{ 'audio-deshabilitado': disabledAudio1 }">
+                                                <source [src]="fileUrl" type="audio/mpeg">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                            
+                                        </div>
                                     </div>
                                     <div class="text-center">
-                                        {{adjunto.nombre}}
+                                        <p class="font-weight-bold">{{adjunto.nombre}}</p>
                                     </div>
                                 </div>
                                 
@@ -140,8 +159,9 @@
                                     file_upload
                                 </span>
                             </button>
-                            <input type="file" #audioUpload accept=".mp3" style="display: none;" (change)="onFileSelected($event)"/>
+                            <input type="file" #audioUpload accept=".mp3" style="display: none;" (change)="onFileSelectedAudio($event)"/>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -155,10 +175,10 @@
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-md-12 col-sm-12">
+                                <div class="col-md-12 col-sm-12" [ngClass]="{'d-none': disabledAudio2}">
                                     <p class="text-right">
                                         <button mat-raised-button type="button"
-                                        class="btn btn-fill btn-rose rounded shadow" [ngClass]="{'d-none': disabledAudio2}" (click)="clearAudio2()">
+                                        class="btn btn-fill btn-rose rounded shadow" (click)="clearAudio2()">
                                                 <span class="material-symbols-outlined">
                                                     delete
                                                 </span>
@@ -166,10 +186,13 @@
                                         </button>
                                     </p>
                                     <p class="text-center">
-                                        <audio controls [ngClass]="{ 'audio-deshabilitado': disabledAudio2 }">
+                                        <audio #audioPlayer2 controls [ngClass]="{ 'audio-deshabilitado': disabledAudio2 }">
                                             <source [src]="audioUrl2" type="audio/mpeg">
                                           Your browser does not support the audio element.
                                           </audio>
+                                    </p>
+                                    <p class="text-center font-weight-bold">
+                                        {{ fileName }}
                                     </p>
                                     
                                 </div>

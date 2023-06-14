@@ -38,6 +38,7 @@ import { AprobacionComponent } from './aprobacion/aprobacion.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FixedhoursComponent } from './creation/fixedhours/fixedhours.component';
 import { SequenceComponent } from './creation/sequence/sequence.component';
+import { ReproductorComponent } from './creation/reproductor/reproductor.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SequenceComponent } from './creation/sequence/sequence.component';
     AprobacionComponent,
     FixedhoursComponent,
     SequenceComponent,
+    ReproductorComponent,
     
     
   ],

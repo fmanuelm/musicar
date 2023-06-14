@@ -58,3 +58,8 @@
   ::ng-deep .p-steps .p-steps-current::before {
     border-top: 2px dashed #918e8e;
   }
+  
+  ::ng-deep .perfect-scrollbar-on .main-panel {
+    background: #fff;
+  }
+  

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../service/message.service';
 import { Location } from '@angular/common';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-briefcase',
@@ -10,21 +12,24 @@ import { Location } from '@angular/common';
 })
 export class BriefcaseComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private messageService: MessageService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private messageService: MessageService, private location: Location, private http: HttpClient, private sanitizer: DomSanitizer) { }
+  audioUrl: SafeUrl;
   id:number;
   items: any[];
   audios: any[]=[
-    { nombre: 'Archivo 1', src: 'assets/audio/archivo1.mp3', tiempo:'02:20' },
-    { nombre: 'Archivo 2', src : 'assets/audio/archivo2.mp3', tiempo:'03:20' }
+    { nombre: 'Archivo 1', src: 'assets/audio/archivo1.mp3', name: 'archivo1.mp3', tiempo:'02:20' },
+    { nombre: 'Archivo 2', src : 'assets/audio/archivo2.mp3', name: 'archivo2.mp3', tiempo:'03:20' }
   ];
   audioSrc: string = "";
-  reproductor: HTMLAudioElement | null = null;
+  
   reproduciendo : boolean = false;
   audio_select_id: number = null;
   categoria_nombre: string = "";
   categoria_id:number = 0;
   messages: any[] = [];
   reproduciendo_id:number;
+  audioEnded:any;
+  @ViewChild('audioPlayer') audioPlayer: any;
   ngOnInit(): void {
     
     this.route.params.subscribe(params => {
@@ -36,9 +41,18 @@ export class BriefcaseComponent implements OnInit {
     this.categoria_nombre = this.messageService.getCategorySelect().title;
     this.categoria_id = this.messageService.getCategorySelect().id;
     this.loadMessagesAudios(this.categoria_id);
+    
+    /*
+    this.reproductor.addEventListener('ended', () => {
+      alert("fin");
+      this.audio_select_id = null;
+    });
+    */
+        
   }
 
   
+
   atras() {
     this.messageService.setStep("formulario");
   }
@@ -59,29 +73,46 @@ export class BriefcaseComponent implements OnInit {
   }
 
   onAudioEnded() {
-    alert("termino");
+    this.reproduciendo_id = null;
   }
   play(idx: number)
   {
-    if (this.reproductor !== null)
-    {
-      this.reproductor.currentTime = 0;
-      this.reproductor.pause();
-      this.reproductor = new Audio();
-    }
+    //if (this.reproductor !== null)
+    //{
+      //this.reproductor.currentTime = 0;
+      //this.reproductor.pause();
+      //this.reproductor = new Audio();
+    //}
     this.reproduciendo_id = idx;
     this.audioSrc = this.audios[idx].src;
+    const name = this.audios[idx].name;
     
+    this.http.get(this.audioSrc, { responseType: 'blob' }).subscribe((response: Blob) => {
+      let file = new File([response], name);
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        const contenido = event.target.result;
+        this.audioPlayer.nativeElement.src = contenido;
+        this.audioPlayer.nativeElement.play();
+        //this.audioUrl = contenido;
+      };
+      
+      
+      reader.readAsDataURL(file);
+    });
     
-    this.reproductor = new Audio(this.audioSrc);
-    this.reproductor.play();
     
   }
   
-  pause()
+  pause(idx: number)
   {
-    this.reproductor.pause();
-    this.reproduciendo_id = null;
+    if (idx === this.reproduciendo_id)
+    {
+      this.audioPlayer.nativeElement.currentTime = 0;
+      this.audioPlayer.nativeElement.pause();
+      this.reproduciendo_id = null;
+    }
+    
   }
 
   selectAudio(idx:number)

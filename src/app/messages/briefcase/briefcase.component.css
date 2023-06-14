@@ -26,3 +26,7 @@
 .rounded {
     border-radius: 10px !important;
 }
+.select-green {
+    color: #50c981;
+    font-weight: bold;
+}

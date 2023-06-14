@@ -21,9 +21,12 @@ export class Step2Component implements OnInit {
   btnAudio2: boolean = false;
   disabledCategories: boolean = false;
   disabledAudio2: boolean = true;
+  disabledAudio1: boolean = true;
   fileUrl: string = "";
   audioUrl2: string = "";
-  fileName2: string = "";
+  fileName: string = "";
+  @ViewChild('audioPlayer2') audioPlayer2: any;
+  @ViewChild('audioPlayer1') audioPlayer1: any;
   constructor(private _formBuilder: FormBuilder, private messageService: MessageService) { }
   
   ngOnInit(): void {
@@ -38,6 +41,7 @@ export class Step2Component implements OnInit {
   clearForm() {
     this.form.reset();
     this.cleanFile();
+    this.clearAudio2();
   }
   
   next() {
@@ -79,10 +83,17 @@ export class Step2Component implements OnInit {
       this.messageService.setStep("rushhours");
     }
   }
+  clearAudio()
+  {
+    this.cleanFile();
+    this.disabledAudio1 = true;
+    this.audioPlayer1.nativeElement.src = "";
+  }
   clearAudio2()
   {
     this.cleanFile();
     this.disabledAudio2 = true;
+    this.audioPlayer2.nativeElement.src = "";
   }
   handleUploadAudioClick() {
     const audioElement = this.audioInputRef.nativeElement;
@@ -111,14 +122,43 @@ export class Step2Component implements OnInit {
     this.audioUrl2 = "";
     this.fileUrl = "";
   }
+  onFileSelectedAudio(event: any) {
+    const file = event.target.files[0];
+    const fileName = file.name;
+    this.fileName = file.name;
+    
+    const fileExtension = fileName.split('.').pop().toLowerCase();
+    this.adjunto = {nombre: fileName, ext: fileExtension};
+    
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      const contenido = event.target.result;
+      this.audioPlayer1.nativeElement.src = contenido;
+    };
+    reader.readAsDataURL(file);
+    this.btnImage = true;
+    this.btnAudio1 = true;
+    this.btnAudio2 = true;
+    this.btnDocument = true;
+    this.disabledCategories = true;
+    this.disabledAudio2 = true;
+    this.disabledAudio1 = false;
+  }
   onFileSelected(event: any) {
     const file = event.target.files[0]; 
     const fileName = file.name;
-    this.fileName2 = file.name;
-    this.fileUrl = URL.createObjectURL(file);
+    this.fileName = file.name;  
+    
     const fileExtension = fileName.split('.').pop().toLowerCase();
     
     this.adjunto = {nombre: fileName, ext: fileExtension};
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      const contenido = event.target.result;
+      this.fileUrl = contenido;
+    };
+    reader.readAsDataURL(file);
+
     this.btnImage = true;
     this.btnAudio1 = true;
     this.btnAudio2 = true;
@@ -137,16 +177,24 @@ export class Step2Component implements OnInit {
     {
       this.btnImage = false;
     }
-    if (fileExtension === 'mp3')
-    {
-      this.btnAudio1 = false;
-    }
+    
     
   }
   onFileSelected2(event: any)
   {
     const file = event.target.files[0];
-    this.audioUrl2 = URL.createObjectURL(file);
+    const fileName = file.name;
+    this.fileName = file.name;
+    
+    const fileExtension = fileName.split('.').pop().toLowerCase();
+    //this.adjunto = {nombre: fileName, ext: fileExtension};
+    this.adjunto = {};
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      const contenido = event.target.result;
+      this.audioPlayer2.nativeElement.src = contenido;
+    };
+    reader.readAsDataURL(file);
     this.btnImage = true;
     this.btnAudio1 = true;
     this.btnAudio2 = false;
