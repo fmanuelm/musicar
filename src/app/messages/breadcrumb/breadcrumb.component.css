@@ -8,3 +8,6 @@ nav{
 .breadcrumb {
     background-color: #fff;
 }
+.pointer {
+    cursor: pointer;
+}

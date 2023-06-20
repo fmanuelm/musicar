@@ -42,16 +42,8 @@ export class BriefcaseComponent implements OnInit {
     this.categoria_id = this.messageService.getCategorySelect().id;
     this.loadMessagesAudios(this.categoria_id);
     
-    /*
-    this.reproductor.addEventListener('ended', () => {
-      alert("fin");
-      this.audio_select_id = null;
-    });
-    */
         
   }
-
-  
 
   atras() {
     this.messageService.setStep("formulario");
@@ -77,12 +69,7 @@ export class BriefcaseComponent implements OnInit {
   }
   play(idx: number)
   {
-    //if (this.reproductor !== null)
-    //{
-      //this.reproductor.currentTime = 0;
-      //this.reproductor.pause();
-      //this.reproductor = new Audio();
-    //}
+    
     this.reproduciendo_id = idx;
     this.audioSrc = this.audios[idx].src;
     const name = this.audios[idx].name;

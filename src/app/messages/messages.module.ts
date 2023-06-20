@@ -39,6 +39,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FixedhoursComponent } from './creation/fixedhours/fixedhours.component';
 import { SequenceComponent } from './creation/sequence/sequence.component';
 import { SliderModule } from 'primeng/slider';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -84,7 +87,10 @@ import { SliderModule } from 'primeng/slider';
     RadioButtonModule,
     AccordionModule,
     DropdownModule,
-    SliderModule
+    SliderModule,
+    InputTextModule,
+    InputTextareaModule,
+    ToastModule
   ]
 })
 export class MessagesModule { }

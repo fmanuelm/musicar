@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <app-breadcrumb view="aprobacion"></app-breadcrumb>
-            <div class="col-md-12">
+            <div class="col-md-12" [ngClass]="{'d-none': step === 'step2'}">
                 <div class="card ">
                     <div class="card-body">
                         <div class="row mb-4 mt-3">
@@ -25,7 +25,7 @@
                                 <p><strong>Referencia:</strong> refencia_mensaje_1</p>
                                 <p><strong>Id:</strong> 123</p>
                                 <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
+                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="approve(1)">
                                         Aprobar
                                         <span class="material-symbols-outlined">
                                             done
@@ -42,7 +42,7 @@
                                 <p><strong>Referencia:</strong> refencia_mensaje_1</p>
                                 <p><strong>Id:</strong> 123</p>
                                 <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
+                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="approve(1)">
                                         Aprobar
                                         <span class="material-symbols-outlined">
                                             done
@@ -59,7 +59,7 @@
                                 <p><strong>Referencia:</strong> refencia_mensaje_1</p>
                                 <p><strong>Id:</strong> 123</p>
                                 <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
+                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="approve(1)">
                                         Aprobar
                                         <span class="material-symbols-outlined">
                                             done
@@ -76,7 +76,7 @@
                                 <p><strong>Referencia:</strong> refencia_mensaje_1</p>
                                 <p><strong>Id:</strong> 123</p>
                                 <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
+                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="approve(1)">
                                         Aprobar
                                         <span class="material-symbols-outlined">
                                             done
@@ -225,7 +225,7 @@
                             <div class="col-md-12 mt-5">
                                 <div class="row">
                                     <div class="col-6 text-center">
-                                        <button mat-raised-button class="btn btn-back ml-4 shadow" (click)="router.navigate(['mensajes/home']);">
+                                        <button mat-raised-button class="btn btn-back ml-4 rounded shadow" (click)="router.navigate(['mensajes/home']);">
                                             <span class="material-symbols-outlined ml-3">
                                                 arrow_back_ios
                                             </span>
@@ -233,7 +233,7 @@
                                         </button>
                                     </div>
                                     <div class="col-6 text-center">
-                                        <button mat-raised-button class="btn btn-siguiente ml-4 shadow">
+                                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow">
                                             Siguiente
                                             <span class="material-symbols-outlined ml-3">
                                                 arrow_forward_ios
@@ -241,6 +241,73 @@
                                         </button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" [ngClass]="{'d-none': step === 'step1'}">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label class="d-block">Id</label>
+                                        <input type="text" class="w-100" pInputText [(ngModel)]="id" disabled="disabled"/>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <label class="d-block">Referencia</label>
+                                        <input type="text" class="w-100" pInputText [(ngModel)]="referencia" disabled="disabled"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <label class="d-block">Texto</label>
+                                <textarea rows="5" class="w-100" cols="30" pInputTextarea [autoResize]="true" disabled="disabled">{{texto}}</textarea>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <div class="card ">
+                                    <div class="card-header card-header-text">
+                                        <div class="card-text bg-white">
+                                            <h4 class="card-title text-dark font-weight-bold">Audio</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <audio controls>
+                                            <source src="/assets/audio/archivo1.mp3" type="audio/mpeg">
+                                            Your browser does not support the audio tag.
+                                        </audio>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-5">
+                                <div class="row">
+                                    <div class="col-6 text-center">
+                                        <button mat-raised-button class="btn ml-4 rounded aprobar" pButton pRipple (click)="approve2()">
+                                            <span class="material-symbols-outlined">
+                                                check_circle
+                                            </span>
+                                            Aprobar
+                                        </button>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded devolver" pButton pRipple (click)="restore()">
+                                            <span class="material-symbols-outlined ml-3">
+                                                close
+                                            </span>
+                                            Devolver
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-4 text-center">
+                                <button mat-raised-button class="btn btn-back ml-4 rounded" (click)="back()">
+                                    <span class="material-symbols-outlined ml-3">
+                                        arrow_back_ios
+                                    </span>
+                                    Atras
+                                </button>
                             </div>
                         </div>
                     </div>
