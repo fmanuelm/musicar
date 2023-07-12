@@ -4,125 +4,123 @@
             <p-accordion [activeIndex]="0">
                 <p-accordionTab header="Puntos">
                     <div class="card">
-                        <p-table #dt1 [value]="groups" (sortFunction)="customSort($event)" [customSort]="true" dataKey="code" [paginator]="true" [rows]="5" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}" [globalFilterFields]="['punto', 'sucursal']">
+                        <p-table #dt1 [value]="pointsFilter" [(selection)]="puntoSelect"  
+                        [customSort]="true" dataKey="id" [paginator]="true" 
+                        [rows]="5" [selectionPageOnly]="true" 
+                        [tableStyle]="{'min-width': '50rem'}" 
+                        [globalFilterFields]="['punto', 'sucursal']">
                             <ng-template pTemplate="caption">
                                 <div class="flex text-right">
                                     <span class="p-input-icon-left ml-auto">
                                         <i class="pi pi-search"></i>
-                                        <input pInputText type="text" class="pl-5" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
+                                        <input pInputText type="text" class="pl-5" [(ngModel)]="filterText" (input)="filterData()" placeholder="Global Search" />
                                     </span>
                                 </div>
                             </ng-template>
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th style="width: 4rem">
-                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                                    </th>
-                                    
-                                    <th style="min-width:200px" pSortableColumn="punto">Punto <p-sortIcon field="punto"></p-sortIcon></th>
-                                    <th style="min-width:200px" pSortableColumn="sucursal">Sucursal <p-sortIcon field="sucursal"></p-sortIcon></th>
-                                    
+                                  <th style="width: 4rem">
+                                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                  </th>
+                                  <th style="min-width:200px" pSortableColumn="punto">Punto <p-sortIcon field="punto"></p-sortIcon></th>
+                                  <th style="min-width:200px" pSortableColumn="sucursal">Sucursal <p-sortIcon field="sucursal"></p-sortIcon></th>
                                 </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-grupo>
+                              </ng-template>
+                            <ng-template pTemplate="body" let-point>
                                 <tr>
                                     <td>
-                                        <p-tableCheckbox [value]="grupo"></p-tableCheckbox>
+                                        <p-tableCheckbox [value]="point"></p-tableCheckbox>
                                     </td>
-                                    <td>{{grupo.punto}}</td>
-                                    <td>{{grupo.sucursal}}</td>
-                                    
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                    </div>
-                </p-accordionTab>
-                <p-accordionTab header="Grupo 1">
-                    <div class="card">
-                        <p-table #dt2 [value]="groups" (sortFunction)="customSort($event)" [customSort]="true" dataKey="code" [paginator]="true" [rows]="5" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}" [globalFilterFields]="['punto', 'sucursal']">
-                            <ng-template pTemplate="caption">
-                                <div class="flex text-right">
-                                    <span class="p-input-icon-left ml-auto">
-                                        <i class="pi pi-search"></i>
-                                        <input pInputText type="text" class="pl-5" (input)="dt2.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
-                                    </span>
-                                </div>
-                            </ng-template>
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th style="width: 4rem">
-                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                                    </th>
-                                    
-                                    <th style="min-width:200px" pSortableColumn="punto">Punto <p-sortIcon field="punto"></p-sortIcon></th>
-                                    <th style="min-width:200px" pSortableColumn="sucursal">Sucursal <p-sortIcon field="sucursal"></p-sortIcon></th>
-                                    
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-grupo>
-                                <tr>
                                     <td>
-                                        <p-tableCheckbox [value]="grupo"></p-tableCheckbox>
+                                        {{ point.contratos[0].contrato.sucursal_instalacion.nombre }}
                                     </td>
-                                    <td>{{grupo.punto}}</td>
-                                    <td>{{grupo.sucursal}}</td>
-                                    
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                    </div>
-                </p-accordionTab>
-                <p-accordionTab header="Regional 1">
-                    <div class="card">
-                        <p-table #dt3 [value]="groups" (sortFunction)="customSort($event)" [customSort]="true" dataKey="code" [paginator]="true" [rows]="5" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}" [globalFilterFields]="['punto', 'sucursal']">
-                            <ng-template pTemplate="caption">
-                                <div class="flex text-right">
-                                    <span class="p-input-icon-left ml-auto">
-                                        <i class="pi pi-search"></i>
-                                        <input pInputText type="text" class="pl-5" (input)="dt3.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
-                                    </span>
-                                </div>
-                            </ng-template>
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th style="width: 4rem">
-                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                                    </th>
-                                    
-                                    <th style="min-width:200px" pSortableColumn="punto">Punto <p-sortIcon field="punto"></p-sortIcon></th>
-                                    <th style="min-width:200px" pSortableColumn="sucursal">Sucursal <p-sortIcon field="sucursal"></p-sortIcon></th>
-                                    
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-grupo>
-                                <tr>
                                     <td>
-                                        <p-tableCheckbox [value]="grupo"></p-tableCheckbox>
+                                        {{ point.contratos[0].contrato.sucursal_instalacion.regionales_ciudades.regionales.nombre }}
                                     </td>
-                                    <td>{{grupo.punto}}</td>
-                                    <td>{{grupo.sucursal}}</td>
-                                    
                                 </tr>
                             </ng-template>
                         </p-table>
                     </div>
                 </p-accordionTab>
             </p-accordion>
-            
+            <p-accordion>
+                <ng-container *ngFor="let tabData of accordionTabsData2; let i = index">
+                  <p-accordionTab [header]="tabData.header">
+                    <div class="card">
+                      <p-table #tb [value]="tabData.tableDataFilter" [(selection)]="selectedGroups" (sortFunction)="customSort($event)" [customSort]="true" dataKey="id" [paginator]="true" [rows]="3" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}" [globalFilterFields]="['punto', 'sucursal']">
+                        <ng-template pTemplate="caption">
+                          <div class="flex text-right">
+                            <span class="p-input-icon-left ml-auto">
+                              <i class="pi pi-search"></i>
+                              <input pInputText type="text" class="pl-5" (input)="filterDataGroup($event.target.value, i)" placeholder="Global Search" #inputSearch />
+                            </span>
+                          </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                          <tr>
+                            <th style="width: 4rem">
+                              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <th style="min-width:200px" pSortableColumn="punto">Punto <p-sortIcon field="punto"></p-sortIcon></th>
+                            <th style="min-width:200px" pSortableColumn="sucursal">Sucursal <p-sortIcon field="sucursal"></p-sortIcon></th>
+                          </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                          <tr [pSelectableRow]="item">
+                            <td>
+                              <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                            </td> <!-- puntos_grupos.nombre -->
+                            <td>{{ item.puntos.id }}</td>
+                            <td>{{ item.puntos.contratos[0].contrato.sucursal_instalacion.nombre }}</td>
+                          </tr>
+                        </ng-template>
+                      </p-table>
+                    </div>
+                  </p-accordionTab>
+                </ng-container>
+            </p-accordion>
+            <p-accordion>
+                <ng-container *ngFor="let tabData of accordionTabsData3; let i = index">
+                  <p-accordionTab [header]="tabData.header">
+                    <div class="card">
+                      <p-table #dt2 [value]="tabData.tableDataFilter" [(selection)]="selectedRegions" (sortFunction)="customSort($event)" [customSort]="true" dataKey="id" [paginator]="true" [rows]="3" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}" [globalFilterFields]="['punto', 'sucursal']">
+                        <ng-template pTemplate="caption">
+                          <div class="flex text-right">
+                            <span class="p-input-icon-left ml-auto">
+                              <i class="pi pi-search"></i>
+                              <input pInputText type="text" class="pl-5" (input)="filterDataRegiones($event.target.value, i)" placeholder="Global Search" #inputSearch />
+                            </span>
+                          </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                          <tr>
+                            <th style="width: 4rem">
+                              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <th style="min-width:200px" pSortableColumn="punto">Punto <p-sortIcon field="punto"></p-sortIcon></th>
+                            <th style="min-width:200px" pSortableColumn="sucursal">Sucursal <p-sortIcon field="sucursal"></p-sortIcon></th>
+                          </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                          <tr [pSelectableRow]="item">
+                            <td>
+                              <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                            </td> <!-- puntos_grupos.nombre -->
+                            <td>{{ item.puntos.id }}</td>
+                            <td>{{ item.puntos.contratos[0].contrato.sucursal_instalacion.nombre }}</td>
+                          </tr>
+                        </ng-template>
+                      </p-table>
+                    </div>
+                  </p-accordionTab>
+                </ng-container>
+            </p-accordion>
         </div>
     </div>
     <div class="col-md-12 mt-4">
         <p class="text-center my-4">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next1()">
-                Siguiente 1
-                <span class="material-symbols-outlined ml-3">
-                    arrow_forward_ios
-                </span>
-            </button>
-        </p>
-        <p class="text-center my-4">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next2()">
-                Siguiente 2
+            <button mat-raised-button class="btn btn-siguiente ml-4 shadow rounded" (click)="next1()" [disabled]="puntoSelect === null || puntoSelect.length === 0 || selectedGroups === null || selectedGroups.length === 0 || selectedRegions === null || selectedRegions.length === 0">
+                Siguiente
                 <span class="material-symbols-outlined ml-3">
                     arrow_forward_ios
                 </span>

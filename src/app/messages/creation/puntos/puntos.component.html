@@ -3,35 +3,64 @@
         <h3>Asignación de Puntos</h3>
     </div>
     <div class="col-md-10 mt-4">
-        <table class="w-100">
-            <tr>
-                <td class="border border-dark text-center" style="width: 15%"></td>
-                <td class="border border-dark text-center" style="width: 20%"><h3>Punto</h3></td>
-                <td class="border border-dark text-center" style="width: 35%"><h3>Sucursal</h3></td>
-                <td class="border border-dark text-center" style="width: 30%"><h3>Regional</h3></td>
-            </tr>
-            <tr>
-                <td class="text-center border border-dark py-3">
-                    <input type="checkbox"/>
-                </td>
-                <td class="text-center border border-dark">fds</td>
-                <td class="text-center border border-dark">fds</td>
-                <td class="text-center border border-dark">fds</td>
-            </tr>
-        </table>
+        <div class="card-body">
+            <div class="material-datatables">
+              <p-table #tableBranchFacility [columns]="cols" [value]="points"
+                [paginator]="true" [rows]="10">
+                <ng-template pTemplate="caption">
+                  <div class="flex">
+                    <div class="row">
+                      <div class="col">
+                        
+                      </div>
+                      <div class="col d-flex flex-row-reverse">
+                        <span class="p-input-icon-left ml-auto">
+                          <input pInputText type="text" class="form-control"
+                            (input)="tableBranchFacility.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Buscar" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+                      {{col.header}}
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                      <p-columnFilter type="text" [field]="col.field" display="menu"></p-columnFilter>
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-point>
+                  <ng-container>
+                    <tr style="cursor: pointer;">
+                        <td class="text-center">
+                          <p-radioButton name="puntoRadio" [value]="point.id" [(ngModel)]="puntoSelect"></p-radioButton>
+                        </td>
+                        <td>
+                          {{ point.id }}
+                        </td>
+                        <td>
+                            {{ point.contratos[0].contrato.sucursal_instalacion.nombre }}
+                        </td>
+                        <td>
+                            {{ point.contratos[0].contrato.sucursal_instalacion.regionales_ciudades.regionales.nombre }}
+                        </td>
+                    </tr>
+                  </ng-container>
+                </ng-template>
+                <ng-template pTemplate="paginatorcenter">
+                  <button type="button" pButton icon="pi-cloud-upload"></button>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
     </div>
     <div class="col-md-10 mt-4">
         <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next1()">
-                Siguiente 1
-                <span class="material-symbols-outlined ml-3">
-                    arrow_forward_ios
-                </span>
-            </button>
-        </p>
-        <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next2()">
-                Siguiente 2
+            <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow" (click)="next1()" [disabled]="puntoSelect === null">
+                Siguiente
                 <span class="material-symbols-outlined ml-3">
                     arrow_forward_ios
                 </span>

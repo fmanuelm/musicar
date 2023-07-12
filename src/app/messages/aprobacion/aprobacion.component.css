@@ -22,3 +22,15 @@
 .shadow {
     box-shadow: 2px 0.2rem 8px rgba(13, 12, 12, 0.6) !important;
 }
+.borderAudio {
+    border-radius: 15px;
+}
+@media screen and (max-width: 768px) {
+    
+    .btn-siguiente {
+        padding: 6px 15px !important;
+    }
+    .btn-back {
+        padding: 6px 15px !important;
+    }
+}

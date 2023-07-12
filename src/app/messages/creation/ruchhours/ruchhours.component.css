@@ -1,3 +1,40 @@
 .btn-siguiente { 
     background-color: #1ac1e8 !important; 
 }
+.shadow {
+    box-shadow: 2px 0.2rem 8px rgba(13, 12, 12, 0.6) !important;
+}
+.rounded {
+    border-radius: 10px !important;
+}
+.p-element {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.p-element .p-checkbox-label {
+    margin-bottom: 0px;
+}
+
+.p-dropdown .p-dropdown-trigger {
+    width: 1rem;
+}
+
+@media (min-width: 400px)
+{
+    .order-sm-0 {
+        order: 0;
+    }
+    .order-sm-1 {
+        order: 1;
+    }
+}
+@media (min-width: 768px)
+{
+    .order-md-1 {
+        order: 1;
+    }
+
+    .order-md-0 {
+      order: 0;
+    }
+}

@@ -5,6 +5,46 @@
 .stats {
     background-color: #EFEFEF;
 }
+
+.card-dark-blue {
+    background-color: #008CCA;
+}
+.card-yellow {
+    background-color: #FEDD56;
+}
+.card-purple {
+    background-color: #B492CB;
+
+}
+.card-light-blue {
+    background-color: #1AC1E8;
+
+}
+.card-green {
+    background-color: #50C981;
+}
+.btn-status {
+    border-radius: 25px;
+}
+
+#status-mb {
+    display: none;
+}
+#status-pc {
+    display: none;
+}
+@media (max-width: 850px) {
+    #status-mb {
+        display: block;
+    }
+}
+@media (min-width: 851px) {
+    #status-pc {
+        display: block;
+    }
+}
+
+
 /*
 ::ng-deep .perfect-scrollbar-on .main-panel {
     background: #fff;

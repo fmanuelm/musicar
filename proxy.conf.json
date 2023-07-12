@@ -1,0 +1,7 @@
+{
+    "/*": {
+        "target": "https://www.learningcontainer.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

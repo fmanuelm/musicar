@@ -5,3 +5,12 @@
 .shadow {
     box-shadow: 2px 0.2rem 8px rgba(13, 12, 12, 0.6) !important;
 }
+
+.btn {
+    border-radius: 20px !important;
+    font-size: 1rem !important;
+}
+
+.width-btn {
+    width: 326px;
+}

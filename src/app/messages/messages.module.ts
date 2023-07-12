@@ -42,6 +42,8 @@ import { SliderModule } from 'primeng/slider';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
+import { CarouselModule } from 'primeng/carousel';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -90,7 +92,8 @@ import { ToastModule } from 'primeng/toast';
     SliderModule,
     InputTextModule,
     InputTextareaModule,
-    ToastModule
+    ToastModule,
+    CarouselModule
   ]
 })
 export class MessagesModule { }

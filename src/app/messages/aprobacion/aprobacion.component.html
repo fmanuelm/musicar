@@ -8,7 +8,7 @@
                         <div class="row mb-4 mt-3">
                             <div class="col-12">
                                 <a href="/#/mensajes/home"><img src="/assets/img/logo-musicar.png" width="200"/></a>
-                                <h1><strong>Voice Experience</strong></h1>
+                                <h1 class="h1-responsive"><strong>Voice Experience</strong></h1>
                                 <p>Voces que encantan, voces que enamoran.</p>
                             </div>
                             <div class="col-12">
@@ -16,203 +16,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2 col-6">
+                            <audio #audioPlayer controls class="borderAudio" (ended)="onAudioEnded()" class="d-none">
+                                <source [src]="audioUrl" type="audio/mpeg">
+                              Your browser does not support the audio element.
+                              </audio>
+                            <div class="col-md-2 col-6" *ngFor="let xAprobar of xaprobarAduios; let idx = index">
                                 <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
+                                    <span class="material-symbols-outlined play" (click)="play(idx)">
                                         play_circle
                                     </span>
                                 </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
+                                <p style="cursor: pointer" (click)="open(xAprobar.id, xAprobar.nombre, xAprobar.texto, xAprobar.url_audio)"><strong>Referencia:</strong> {{xAprobar.nombre}}</p>
+                                <p><strong>Id:</strong> {{xAprobar.id}}</p>
                                 <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="approve(1)">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="approve(1)">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="approve(1)">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="approve(1)">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
-                                        Aprobar
-                                        <span class="material-symbols-outlined">
-                                            done
-                                        </span>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-6">
-                                <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play">
-                                        play_circle
-                                    </span>
-                                </p>
-                                <p><strong>Referencia:</strong> refencia_mensaje_1</p>
-                                <p><strong>Id:</strong> 123</p>
-                                <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1">
+                                    <button mat-raised-button class="btn button-green aprobar py-1" data-toggle="modal" data-target="#modalMensajeAprobado" (click)="aprobarApi(xAprobar.id)">
                                         Aprobar
                                         <span class="material-symbols-outlined">
                                             done
@@ -223,18 +40,18 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 mt-5">
-                                <div class="row">
-                                    <div class="col-6 text-center">
-                                        <button mat-raised-button class="btn btn-back ml-4 rounded shadow" (click)="router.navigate(['mensajes/home']);">
+                                <div class="row mx-0">
+                                    <div class="col-6 text-center px-0">
+                                        <button mat-raised-button class="btn btn-back rounded shadow" (click)="router.navigate(['mensajes/home']);">
                                             <span class="material-symbols-outlined ml-3">
                                                 arrow_back_ios
                                             </span>
-                                            Atras
+                                            <span class="navBtn">Atras</span>
                                         </button>
                                     </div>
-                                    <div class="col-6 text-center">
-                                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow">
-                                            Siguiente
+                                    <div class="col-6 text-center px-0">
+                                        <button mat-raised-button class="btn btn-siguiente rounded shadow">
+                                            <span class="navBtn">Siguiente</span>
                                             <span class="material-symbols-outlined ml-3">
                                                 arrow_forward_ios
                                             </span>
@@ -246,6 +63,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-12" [ngClass]="{'d-none': step === 'step1'}">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
@@ -274,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body text-center">
-                                        <audio controls>
+                                        <audio controls class="borderAudio shadow">
                                             <source src="/assets/audio/archivo1.mp3" type="audio/mpeg">
                                             Your browser does not support the audio tag.
                                         </audio>
@@ -284,7 +102,7 @@
                             <div class="col-md-12 mt-5">
                                 <div class="row">
                                     <div class="col-6 text-center">
-                                        <button mat-raised-button class="btn ml-4 rounded aprobar" pButton pRipple (click)="approve2()">
+                                        <button mat-raised-button class="btn ml-4 rounded aprobar shadow" pButton pRipple data-toggle="modal" data-target="#modalMensajeAprobado">
                                             <span class="material-symbols-outlined">
                                                 check_circle
                                             </span>
@@ -292,7 +110,7 @@
                                         </button>
                                     </div>
                                     <div class="col-6 text-center">
-                                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded devolver" pButton pRipple (click)="restore()">
+                                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded devolver shadow" pButton pRipple data-toggle="modal" data-target="#modalDevolver">
                                             <span class="material-symbols-outlined ml-3">
                                                 close
                                             </span>
@@ -302,7 +120,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 mt-4 text-center">
-                                <button mat-raised-button class="btn btn-back ml-4 rounded" (click)="back()">
+                                <button mat-raised-button class="btn btn-back ml-4 rounded shadow" (click)="back()">
                                     <span class="material-symbols-outlined ml-3">
                                         arrow_back_ios
                                     </span>
@@ -312,6 +130,65 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal mensaje aprobado -->
+<div id="modalMensajeAprobado" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header mb-3">
+                <h4 class="modal-title text-left" id="exampleModalLabel"><b>Aprobado</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>El mensaje se ha aprobado</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal devolver -->
+<div id="modalDevolver" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header mb-3">
+                <h4 class="modal-title text-left" id="exampleModalLabel"><b>Devolución Mensaje</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formModalDevolver">
+                    <div class="col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <mat-select placeholder="Motivo de devolución" name="typeMotivo"
+                                formControlName="motivo_devolucion">
+                                <mat-option *ngFor="let tMotivo of typeMotivo" [value]="tMotivo">
+                                    {{ tMotivo.tipo_contacto }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formModalDevolver.get('motivo_devolucion').hasError('required')">
+                                El motivo de devolución es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <textarea formControlName="observaciones" placeholder="Observaciones" matInput
+                                cols="30" rows="10"></textarea>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-3" data-dismiss="modal"
+                    (click)="cancelModal()">Cancelar</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="aceptModal()">Aceptar</button>
             </div>
         </div>
     </div>

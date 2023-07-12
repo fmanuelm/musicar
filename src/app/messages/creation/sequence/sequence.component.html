@@ -13,22 +13,22 @@
                             
                         </div>
                         <div class="col-md-12 px-4 mt-4 text-center">
-                            <p-selectButton [options]="daysOfWeek" [(ngModel)]="value" [multiple]="true" optionLabel="label" optionValue="value" class=""></p-selectButton>
+                            <p-selectButton [options]="daysOfWeek" [(ngModel)]="daysOfWeekVal" [multiple]="true" optionLabel="label" optionValue="value" class=""></p-selectButton>
                         </div>
                         
                         <div class="col-md-12 p-4">
                             <div class="row justify-content-md-center">
                                 <div class="col-md-6 col-12">
                                     <p>
-                                        <p-radioButton name="feriados" value="sinfestivos" inputId="sinfestivos" [(ngModel)]="feriados"></p-radioButton>
+                                        <p-radioButton name="feriados" value="1" inputId="sinfestivos" [(ngModel)]="tipo_de_dias"></p-radioButton>
                                         <label for="sinfestivos" class="ml-2 mb-0">Sin Festivos</label>
                                     </p>
                                     <p>
-                                        <p-radioButton name="feriados" value="confestivos" inputId="confestivos" [(ngModel)]="feriados"></p-radioButton>
+                                        <p-radioButton name="feriados" value="2" inputId="confestivos" [(ngModel)]="tipo_de_dias"></p-radioButton>
                                         <label for="confestivos" class="ml-2 mb-0">Con Festivos</label>
                                     </p>
                                     <p>
-                                        <p-radioButton name="feriados" value="solofestivos" inputId="solofestivos" [(ngModel)]="feriados"></p-radioButton>
+                                        <p-radioButton name="feriados" value="3" inputId="solofestivos" [(ngModel)]="tipo_de_dias"></p-radioButton>
                                         <label for="solofestivos" class="ml-2 mb-0">Solo días Festivos</label>
                                     </p>
                                 </div>
@@ -39,39 +39,40 @@
                     
                 </div>
             </div>
+            
             <div class="col-md-6">
                 <div class="card flex justify-content-center my-4 p-4">
                     <div class="row">
                         <div class="col-md-6 text-center">
                             <label class="text-left d-block">Hora inicio</label>
                             <div class="horasblock">
-                                <p-calendar [(ngModel)]="timeStart" [timeOnly]="true" [maxDate]="timeEnd" name="time_start" hourFormat="12" [showIcon]="true" class="w-100"></p-calendar>
+                                <p-calendar [(ngModel)]="timeStart" [timeOnly]="true" name="time_start" hourFormat="12" [showIcon]="true" class="w-100"></p-calendar>
                             </div>
                             <div style="float: left; width: 50px">
                                 <p-button icon="pi pi-plus" (click)="setTimeStart()"></p-button>
                             </div>
                             <ul class="times">
-                                <li *ngFor="let timestart of timeStartList; let i = index">{{ timestart }}<i class="pi pi-times" (click)="removeTimeStart(i)"></i></li>
+                                <li *ngFor="let timestart of timeStartList; let i = index">{{ timestart }}<i class="pi pi-trash" (click)="removeTimeStart(i)"></i></li>
                             </ul>
                         </div>
                         <div class="col-md-6 text-center">
                             <label class="text-left d-block">Hora fin</label>
                             <div class="horasblock">
-                                <p-calendar [(ngModel)]="timeEnd" [timeOnly]="true" [minDate]="timeStart" name="time_end" hourFormat="12" [showIcon]="true" class="w-100"></p-calendar>
+                                <p-calendar [(ngModel)]="timeEnd" [timeOnly]="true" name="time_end" hourFormat="12" [showIcon]="true" class="w-100"></p-calendar>
                             </div>
                             <div style="float: left; width: 50px">
                                 <p-button icon="pi pi-plus" (click)="setTimeEnd()"></p-button>
                             </div>
                             <ul class="times">
-                                <li *ngFor="let timeend of timeEndList; let i = index">{{ timeend }}<i class="pi pi-times" (click)="removeTimeEnd(i)"></i></li>
+                                <li *ngFor="let timeend of timeEndList; let i = index">{{ timeend }}<i class="pi pi-trash" (click)="removeTimeEnd(i)"></i></li>
                             </ul>
                         </div>
                         
                     </div>
                 </div>
                 <div class="card flex justify-content-center p-4">
-                    <p>Secuencia <span style="font-size:3rem; font-weight: bold;">170</span> minutos</p>
-                    <p-slider [(ngModel)]="secuencia"></p-slider>
+                    <p>Secuencia <span style="font-size:3rem; font-weight: bold;">{{ secuencia }}</span> minutos</p>
+                    <p-slider [(ngModel)]="secuencia" class="w-full" [min]="0" [max]="170"></p-slider>
                 </div>
             </div>
         </div>
@@ -81,48 +82,26 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <p>
-                    <p-checkbox [(ngModel)]="footer_opt4_1" [binary]="true" inputId="footer_opt4_1"></p-checkbox>
-                    <label for="footer_opt4_1" class="mb-0 ml-2">Require aprobación del mensaje por parte del cliente</label>
+                    <p-checkbox [(ngModel)]="aprobar_mensaje" [binary]="true" inputId="aprobar_mensaje"></p-checkbox>
+                    <label for="aprobar_mensaje" class="mb-0 ml-2">Require aprobación del mensaje por parte del cliente</label>
                 </p>
                 <p>
-                    <p-checkbox [(ngModel)]="footer_opt4_2" [binary]="true" inputId="footer_opt4_2"></p-checkbox>
-                    <label for="footer_opt4_2" class="mb-0 ml-2">Reproducir mensaje al final de la cansión</label>
+                    <p-checkbox [(ngModel)]="termina_cancion" [binary]="true" inputId="termina_cancion"></p-checkbox>
+                    <label for="termina_cancion" class="mb-0 ml-2">Reproducir mensaje al final de la cansión</label>
                 </p>
             </div>
         </div>
     </div>
     <div class="col-md-12">
         <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next1()">
+            <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow" (click)="next1()" [disabled]="daysOfWeekVal.length === 0 || timeStartList.length === 0 || timeEndList.length === 0">
                 Siguiente
                 <span class="material-symbols-outlined ml-3">
                     arrow_forward_ios
                 </span>
             </button>
         </p>
-        <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next_b()">
-                Siguiente b
-                <span class="material-symbols-outlined ml-3">
-                    arrow_forward_ios
-                </span>
-            </button>
-        </p>
-        <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next_c()">
-                Siguiente c
-                <span class="material-symbols-outlined ml-3">
-                    arrow_forward_ios
-                </span>
-            </button>
-        </p>
-        <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next_d()">
-                Siguiente d
-                <span class="material-symbols-outlined ml-3">
-                    arrow_forward_ios
-                </span>
-            </button>
-        </p>
+        
+        
     </div>
 </div>

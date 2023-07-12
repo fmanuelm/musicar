@@ -22,15 +22,16 @@
                                     <source [src]="audioUrl" type="audio/mpeg">
                                   Your browser does not support the audio element.
                                   </audio>
-                                <tr *ngFor="let audio of audios; let idx = index" [ngClass]="{'audio-selected': idx === audio_select_id, 'sound-row':true}">
+                                  tiempo: {{tiempo_duracion}}
+                                <tr *ngFor="let audio of audios; let idx = index;" [ngClass]="{'audio-selected': idx === optionSelected, 'sound-row':true}">
                                     <td><span [ngClass]="{'select-green': idx === reproduciendo_id }">{{idx}}</span></td>
                                     <td><i class="pi pi-play audio-opt" (click)="play(idx)"></i> <i class="pi pi-pause audio-opt" (click)="pause(idx)"></i></td>
-                                    <td><span [ngClass]="{'select-green': idx === reproduciendo_id }">{{audio.nombre}}</span></td>
+                                    <td><span [ngClass]="{'select-green': idx === reproduciendo_id }">{{audio.mensajes.nombre}}</span></td>
                                     <td class="text-center">
                                         <img src="/assets/img/audio-effect.png" width="100"/>
                                     </td>
-                                    <td><span [ngClass]="{'select-green': idx === reproduciendo_id }">{{audio.tiempo}}</span></td>
-                                    <td><input type="radio" name="audio" value={{idx}} (change)="selectAudio(idx)" class="radio-opt"/></td>
+                                    <td><span [ngClass]="{'select-green': idx === reproduciendo_id }">{{ audio.tiempo }}</span></td>
+                                    <td><input type="radio" name="audio" [value]="idx" [(ngModel)]="optionSelected" class="radio-opt" (click)="deselectRadio(idx)"/></td>
                                 </tr>
                                 
                             </table>
@@ -49,7 +50,7 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-6 text-center">
-                        <button mat-raised-button class="btn btn-back ml-4 rounded shadow" (click)="atras()" [disabled]="audio_select_id !== null">
+                        <button mat-raised-button class="btn btn-back rounded shadow" (click)="atras()" [disabled]="optionSelected !== null">
                             <span class="material-symbols-outlined ml-3">
                                 arrow_back_ios
                             </span>
@@ -57,7 +58,7 @@
                         </button>
                     </div>
                     <div class="col-6 text-center">
-                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow" [disabled]="audio_select_id === null">
+                        <button mat-raised-button class="btn btn-siguiente rounded shadow" [disabled]="optionSelected === null" (click)="next()">
                             Siguiente
                             <span class="material-symbols-outlined ml-3">
                                 arrow_forward_ios

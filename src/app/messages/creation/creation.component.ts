@@ -67,7 +67,12 @@ export class CreationComponent implements OnInit {
   }
   ngOnInit(): void {
     //this.step = this.messageService.getStep();
-    
+    //let tipo_usuario = "Cliente Administrador Punto";
+    //let tipo_usuario = "Cliente Grupo Puntos";
+
+    let tipo_usuario = "Cliente Regional Puntos";
+    //let tipo_usuario = "Cliente Administrador";
+    localStorage.setItem("tipo_usuario", tipo_usuario);
     this.step = this.messageService.getStep();
     this.messageService.step$.subscribe(value => {
       this.step = value;

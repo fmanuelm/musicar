@@ -1,3 +1,12 @@
-.icono-footer {
-    height: 50px;
+
+
+@media (max-width: 850px) {
+    .icono-footer {
+        height: 25px;
+    }
+}
+@media (min-width: 851px) {
+    .icono-footer {
+        height: 50px;
+    }
 }

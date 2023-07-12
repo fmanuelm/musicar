@@ -13,20 +13,19 @@
                             <p-calendar class="w-100" [(ngModel)]="toDate" [minDate]="fromDate" dateFormat="dd/mm/yy" placeholder="Hasta"></p-calendar>
                         </div>
                         <div class="col-md-12 px-4 mt-4 text-center">
-                            <p-selectButton [options]="daysOfWeek" [(ngModel)]="daysOfWeekVal" [multiple]="true" optionLabel="label" optionValue="value" class="daysofweeks"></p-selectButton>
+                            <p-selectButton [options]="daysOfWeek" [(ngModel)]="daysOfWeekVal" [multiple]="true" optionLabel="label" optionValue="value" class=""></p-selectButton>
                         </div>
-                        
                         <div class="col-md-12 p-4">
                             <p>
-                                <p-radioButton name="feriados3" value="sinfestivos" inputId="sinfestivos3" [(ngModel)]="feriados3"></p-radioButton>
+                                <p-radioButton name="feriados3" value="1" [(ngModel)]="tipo_de_dias" inputId="sinfestivos3"></p-radioButton>
                                 <label for="sinfestivos3" class="ml-2 mb-0">Sin Festivos</label>
                             </p>
                             <p>
-                                <p-radioButton name="feriados3" value="confestivos" inputId="confestivos3" [(ngModel)]="feriados3"></p-radioButton>
+                                <p-radioButton name="feriados3" value="2" [(ngModel)]="tipo_de_dias" inputId="confestivos3"></p-radioButton>
                                 <label for="confestivos3" class="ml-2 mb-0">Con Festivos</label>
                             </p>
                             <p>
-                                <p-radioButton name="feriados3" value="solofestivos" inputId="solofestivos3" [(ngModel)]="feriados3"></p-radioButton>
+                                <p-radioButton name="feriados3" value="3" [(ngModel)]="tipo_de_dias" inputId="solofestivos3"></p-radioButton>
                                 <label for="solofestivos3" class="ml-2 mb-0">Solo días Festivos</label>
                             </p>
                         </div>
@@ -40,13 +39,13 @@
                         <div class="col-md-12 text-center">
                             <label class="text-left d-block">Hora</label>
                             <div class="horasblock">
-                                <p-calendar [(ngModel)]="time3" [timeOnly]="true" name="time3" [showIcon]="true"></p-calendar>
+                                <p-calendar [(ngModel)]="time3" [timeOnly]="true" [hourFormat]="12" [showSeconds]="false" name="time3" [showIcon]="true"></p-calendar>
                             </div>
                             <div style="float: left; width: 50px">
                                 <p-button icon="pi pi-plus" (click)="setTime3()"></p-button>
                             </div>
                             <ul class="times">
-                                <li *ngFor="let times3 of timeList3; let i = index">{{ times3 }}<i class="pi pi-times" (click)="removeTime33(i)"></i></li>
+                                <li *ngFor="let times3 of timeList3; let i = index">{{ times3 }}<i class="pi pi-trash" (click)="removeTime33(i)"></i></li>
                             </ul>
                         </div>
                         
@@ -60,48 +59,25 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <p>
-                    <p-checkbox [(ngModel)]="footer_opt3_1" [binary]="true" inputId="footer_opt3_1"></p-checkbox>
-                    <label for="footer_opt3_1" class="mb-0 ml-2">Require aprobación del mensaje por parte del cliente</label>
+                    <p-checkbox [(ngModel)]="aprobar_mensaje" [binary]="true" inputId="aprobar_mensaje"></p-checkbox>
+                    <label for="aprobar_mensaje" class="mb-0 ml-2">Require aprobación del mensaje por parte del cliente</label>
                 </p>    
                 <p>
-                    <p-checkbox [(ngModel)]="footer_opt3_2" [binary]="true" inputId="footer_opt3_2"></p-checkbox>
-                    <label for="footer_opt3_2" class="mb-0 ml-2">Reproducir mensaje al final de la canción</label>
+                    <p-checkbox [(ngModel)]="termina_cancion" [binary]="true" inputId="termina_cancion"></p-checkbox>
+                    <label for="termina_cancion" class="mb-0 ml-2">Reproducir mensaje al final de la canción</label>
                 </p>
             </div>
         </div>
     </div>
     <div class="col-md-12">
         <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next1()">
-                Siguiente a
+            <button mat-raised-button class="btn btn-siguiente ml-4 shadow rounded" (click)="next1()" [disabled]="timeList3.length === 0 || daysOfWeekVal.length === 0">
+                Siguiente
                 <span class="material-symbols-outlined ml-3">
                     arrow_forward_ios
                 </span>
             </button>
         </p>
-        <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next_b()">
-                Siguiente b
-                <span class="material-symbols-outlined ml-3">
-                    arrow_forward_ios
-                </span>
-            </button>
-        </p>
-        <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next_c()">
-                Siguiente c
-                <span class="material-symbols-outlined ml-3">
-                    arrow_forward_ios
-                </span>
-            </button>
-        </p>
-        <p class="text-center">
-            <button mat-raised-button class="btn btn-siguiente ml-4" (click)="next_d()">
-                Siguiente d
-                <span class="material-symbols-outlined ml-3">
-                    arrow_forward_ios
-                </span>
-            </button>
-        </p>
+        
     </div>
 </div>

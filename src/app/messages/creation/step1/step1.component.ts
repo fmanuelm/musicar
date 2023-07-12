@@ -28,21 +28,32 @@ export class Step1Component implements OnInit {
   horas_fijas() {
     
     //this.messageService.setStep("3");
+    this.storeData(1);
     this.messageService.setStep("formulario");
     this.messageService.setModule("horas_fijas");
   }
   secuencia() {
     //this.messageService.setStep("4");
+    this.storeData(2);
     this.messageService.setStep("formulario");
     this.messageService.setModule("secuencia");
   }
   locutor_virtual() {
     //this.messageService.setStep("rushhours");
+    this.storeData(3);
     this.messageService.setStep("formulario");
     this.messageService.setModule("locutor_virtual");
   }
   atras()
   {
     this.router.navigate(['/mensajes/home']);
+  }
+  storeData(esquema:number)
+  { 
+    const datosForm = {
+      mensaje_tipo_esquema: esquema
+    };
+    
+    this.messageService.setMsgExterno(datosForm);
   }
 }

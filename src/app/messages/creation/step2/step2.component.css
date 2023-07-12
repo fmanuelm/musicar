@@ -38,3 +38,6 @@
 .minHeight {
     min-height: 200px;
 }
+.borderAudio {
+    border-radius: 15px;
+}

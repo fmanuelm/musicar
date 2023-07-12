@@ -97,12 +97,20 @@
                                                 <img src="/assets/img/png.png" width="70" style="background: #ddd;"/>
                                             </a>
                                         </div>
+                                        <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'jpeg'">
+                                            <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
+                                                clear
+                                            </span>
+                                            <a [href]="fileUrl" [download]="adjunto.nombre">
+                                                <img src="/assets/img/jpg.png" width="70" style="background: #ddd;"/>
+                                            </a>
+                                        </div>
                                         <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'jpg'">
                                             <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
                                                 clear
                                             </span>
                                             <a [href]="fileUrl" [download]="adjunto.nombre">
-                                                <img src="/assets/img/jpg.png" width="70"/>
+                                                <img src="/assets/img/jpg.png" width="70" style="background: #ddd;"/>
                                             </a>
                                         </div>
                                         <div class="col-md-12 text-center" *ngIf="adjunto.ext === 'mp3'">
@@ -116,7 +124,7 @@
                                                 </button>
                                             </p>
                                             
-                                            <audio #audioPlayer1 controls [ngClass]="{ 'audio-deshabilitado': disabledAudio1 }">
+                                            <audio #audioPlayer1 controls style="border-radius: 15px; box-shadow: 2px 0.2rem 8px rgba(13, 12, 12, 0.6) !important;" [ngClass]="{ 'audio-deshabilitado': disabledAudio1 }">
                                                 <source [src]="fileUrl" type="audio/mpeg">
                                                 Your browser does not support the audio element.
                                             </audio>
@@ -186,7 +194,7 @@
                                         </button>
                                     </p>
                                     <p class="text-center">
-                                        <audio #audioPlayer2 controls [ngClass]="{ 'audio-deshabilitado': disabledAudio2 }">
+                                        <audio #audioPlayer2 controls style="border-radius: 15px; box-shadow: 2px 0.2rem 8px rgba(13, 12, 12, 0.6) !important;" [ngClass]="{ 'audio-deshabilitado': disabledAudio2 }">
                                             <source [src]="audioUrl2" type="audio/mpeg">
                                           Your browser does not support the audio element.
                                           </audio>
@@ -212,22 +220,6 @@
                     <p class="text-center">
                         <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow" (click)="next()">
                             Siguiente
-                            <span class="material-symbols-outlined ml-3">
-                                arrow_forward_ios
-                            </span>
-                        </button>
-                    </p>
-                    <p class="text-center">
-                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow" (click)="next2()">
-                            Siguiente 2
-                            <span class="material-symbols-outlined ml-3">
-                                arrow_forward_ios
-                            </span>
-                        </button>
-                    </p>
-                    <p class="text-center">
-                        <button mat-raised-button class="btn btn-siguiente ml-4 rounded shadow" (click)="next3()">
-                            Siguiente 3
                             <span class="material-symbols-outlined ml-3">
                                 arrow_forward_ios
                             </span>

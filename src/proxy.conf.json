@@ -1,0 +1,7 @@
+{
+    "/*": {
+        "target": ["http://208.76.84.103:3000", "https://www.learningcontainer.com"],
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

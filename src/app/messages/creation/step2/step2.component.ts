@@ -25,6 +25,8 @@ export class Step2Component implements OnInit {
   fileUrl: string = "";
   audioUrl2: string = "";
   fileName: string = "";
+  fileToUpload: any;
+  tipo_pregrabado:string = "";
   @ViewChild('audioPlayer2') audioPlayer2: any;
   @ViewChild('audioPlayer1') audioPlayer1: any;
   constructor(private _formBuilder: FormBuilder, private messageService: MessageService) { }
@@ -46,14 +48,27 @@ export class Step2Component implements OnInit {
   
   next() {
     console.log("module: " + this.messageService.getModule());
-    if (this.form.valid) {
-      this.messageService.setStep("horas_fijas");
+    
+    // verificar si hay un audio. Si hay un audio
+    if (this.tipo_pregrabado === 'personalizado')
+    {
+      const addAudio = {
+        tipo_pregrabado: 'personalizado'
+      };
+      this.messageService.setMsgExterno(addAudio);
     }
-    /*
+    
     if (this.messageService.getModule() === 'horas_fijas')
     {
       console.log("horas fijas");
       if (this.form.valid) {
+        const datosForm = {
+          referencia_mensaje: this.form.get('referencia').value,
+          contenido_mensaje: this.form.get('texto').value,
+          file: this.fileToUpload,
+          observaciones: this.form.get('observaciones').value
+        };
+        this.messageService.setMsgExterno(datosForm);
         this.messageService.setStep("horas_fijas");
       }
     }
@@ -61,6 +76,13 @@ export class Step2Component implements OnInit {
     {
       console.log("secuencia");
       if (this.form.valid) {
+        const datosForm = {
+          referencia_mensaje: this.form.get('referencia').value,
+          contenido_mensaje: this.form.get('texto').value,
+          file: this.fileToUpload,
+          observaciones: this.form.get('observaciones').value
+        };
+        this.messageService.setMsgExterno(datosForm);
         this.messageService.setStep("secuencia");
       }
     }
@@ -68,10 +90,17 @@ export class Step2Component implements OnInit {
     {
       console.log("locutor");
       if (this.form.valid) {
+        const datosForm = {
+          referencia_mensaje: this.form.get('referencia').value,
+          contenido_mensaje: this.form.get('texto').value,
+          file: this.fileToUpload,
+          observaciones: this.form.get('observaciones').value
+        };
+        this.messageService.setMsgExterno(datosForm);
         this.messageService.setStep("rushhours");
       }
     }
-    */
+    
   }
   next2() {
     if (this.form.valid) {
@@ -88,6 +117,7 @@ export class Step2Component implements OnInit {
     this.cleanFile();
     this.disabledAudio1 = true;
     this.audioPlayer1.nativeElement.src = "";
+    
   }
   clearAudio2()
   {
@@ -113,6 +143,7 @@ export class Step2Component implements OnInit {
   }
   cleanFile()
   {
+    this.tipo_pregrabado = "";
     this.adjunto = {};
     this.btnImage = false;
     this.btnAudio1 = false;
@@ -123,7 +154,9 @@ export class Step2Component implements OnInit {
     this.fileUrl = "";
   }
   onFileSelectedAudio(event: any) {
+    this.tipo_pregrabado = "personalizado";
     const file = event.target.files[0];
+    this.fileToUpload = file;
     const fileName = file.name;
     this.fileName = file.name;
     
@@ -145,7 +178,9 @@ export class Step2Component implements OnInit {
     this.disabledAudio1 = false;
   }
   onFileSelected(event: any) {
+    this.tipo_pregrabado = "";
     const file = event.target.files[0]; 
+    this.fileToUpload = file;
     const fileName = file.name;
     this.fileName = file.name;  
     
@@ -182,7 +217,9 @@ export class Step2Component implements OnInit {
   }
   onFileSelected2(event: any)
   {
+    this.tipo_pregrabado = "personalizado";
     const file = event.target.files[0];
+    this.fileToUpload = file;
     const fileName = file.name;
     this.fileName = file.name;
     

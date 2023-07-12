@@ -16,7 +16,7 @@
                         </div>
                         <div class="row">
                             <div class="col-10">
-                                <h2>Panel de control</h2>
+                                <h2 class="mt-4">Panel de control</h2>
                             </div>
                         </div>
                         <div class="row">
@@ -24,8 +24,28 @@
                                 <div class="card">
                                     <div class="card-body stats">
                                         <h5>Estado mensajes</h5>
-                                        <app-stats-panel class="row">
-                                        </app-stats-panel>
+                                        <div id="status-pc">
+                                            <app-stats-panel class="row">
+                                            </app-stats-panel>
+                                        </div>
+                                        <div id="status-mb">
+                                            <p-carousel [value]="msg_status" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+                                                <ng-template let-status pTemplate="item">
+                                                    <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                                                        <div class="mb-3 py-5 btn-status"  [ngClass]="status.class">
+                                                            <p class="mb-1 text-light font-weight-bold">{{ status.title }}</p>
+                                                            <h1 class="mx-auto text-light">{{ status.no }}</h1>
+                                                            <div class="d-flex flex-row mx-auto justify-content-center text-light">
+                                                                <p>Ver datos</p>
+                                                                <span class="material-symbols-outlined">
+                                                                    arrow_forward_ios
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-carousel>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

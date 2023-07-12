@@ -10,6 +10,18 @@ export class Resumen2Component implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.scrollTop();
   }
 
+  scrollTop()
+  {
+    const element = document.getElementById('topDiv');
+    if (element) {
+      element.scrollIntoView();
+    }
+  }
+  refresh()
+  {
+    location.reload();
+  }
 }

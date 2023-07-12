@@ -15,3 +15,6 @@
 .card-green{
     background-color: #50C981;
 }
+.card {
+    border-radius: 25px;
+}

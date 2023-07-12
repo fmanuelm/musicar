@@ -20,7 +20,7 @@
     color: #9b9494;
 }
 .times {
-    margin-top: 60px;
+    margin-top: 70px;
     list-style-type: none;
     padding-left: 0px;
 }
@@ -37,4 +37,10 @@
         width: auto;
     }
     
+}
+.shadow {
+    box-shadow: 2px 0.2rem 8px rgba(13, 12, 12, 0.6) !important;
+}
+.rounded {
+    border-radius: 10px !important;
 }

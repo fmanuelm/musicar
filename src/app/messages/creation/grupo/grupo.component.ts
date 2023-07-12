@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { SortEvent } from 'primeng/api';
 import { MessageService } from '../../service/message.service';
 
@@ -9,16 +11,38 @@ import { MessageService } from '../../service/message.service';
 })
 export class GrupoComponent implements OnInit {
   groups: any[] = [];
-  selectedGroups: {};
+  selectedGroups: any = [];
+  accordionTabsData: any[] = [];
+  
+  puntos:any[] = [];
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    
-   this.getPoints();
+   
+   //this.getGroups();
+   this.getGroupsPoints();
+   this.scrollTop();
   }
-  getPoints()
+  scrollTop()
   {
-    this.messageService.getPoints().subscribe(resp => {
+    const element = document.getElementById('topDiv');
+    if (element) {
+      element.scrollIntoView();
+    }
+  }
+  getGroupsPoints()
+  {
+    this.messageService.getGroupsPoints().subscribe(resp => {
+      console.log(resp);
+      this.accordionTabsData = resp;
+      this.accordionTabsData.forEach(obj => {
+        obj.tableDataFilter = obj.tableData;
+      });
+    });
+  }
+  getGroups()
+  {
+    this.messageService.getGroupsClient().subscribe(resp => {
       console.dir(resp);
       this.groups = resp;
     });
@@ -39,10 +63,51 @@ export class GrupoComponent implements OnInit {
         return event.order * result;
     });
 }
-
+  filterDataGroup(filterText:string, id:any) {
+    this.accordionTabsData[id].tableDataFilter = this.accordionTabsData[id].tableData.filter(item =>
+      item.puntos.contratos[0].contrato.sucursal_instalacion.nombre.toLowerCase().includes(filterText.toLowerCase()) ||
+      item.puntos.id.toString().includes(filterText.toLowerCase()));
+  }
+  storeData()
+  {
+    //puntos.push(this.puntoSelect);
+    this.selectedGroups.map(curValue=>{
+      this.puntos.push(curValue.puntos.id);
+    });
+    console.log(this.puntos);
+    const datosForm = {
+      puntos_asociados: this.puntos,
+      //categoria_mensaje: 2,
+    };
+    this.messageService.setMsgExterno(datosForm);
+  }
+  selectOne(index: number)
+  {
+    alert(index);
+  }
   next1()
   {
-    this.messageService.setStep("resumen1");
+    this.storeData();
+    
+    this.messageService.storeMensaje().pipe(
+      map(resp => {
+        //alert("Perfecto " + resp.status);
+        // Resto de la lógica
+        if (resp.status == 200 || resp.status == 201) {
+          this.messageService.setStep("resumen1");
+        } else {
+          console.log(resp);
+          this.messageService.setStep("resumen2");
+        }
+      }),
+      catchError(error => {
+        console.error('Error:', error);
+        this.messageService.setStep("resumen2");
+        return of(null);
+        
+      })
+    ).subscribe();
+    
   }
   next2()
   {
