@@ -13,8 +13,9 @@ export class GrupoComponent implements OnInit {
   groups: any[] = [];
   selectedGroups: any = [];
   accordionTabsData: any[] = [];
-  
+  puntos_order: any = 'ASC';  
   puntos:any[] = [];
+  datosEjemp:any[] = [];
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -22,6 +23,12 @@ export class GrupoComponent implements OnInit {
    //this.getGroups();
    this.getGroupsPoints();
    this.scrollTop();
+   this.datosEjemp = [
+    {id: 1, punto: "punto 1", punto1: 1, sucursal: "sucursal 1", sucursal1: "sucursal 1", nivel1: {nivel2: { nivel3: 1 }}},
+    {id: 2, punto: "punto 2", punto1: 2, sucursal: "sucursal 2", sucursal1: "sucursal 2", nivel1: {nivel2: { nivel3: 2 }}},
+    {id: 3, punto: "punto 3", punto1: 3, sucursal: "sucursal 3", sucursal1: "sucursal 3", nivel1: {nivel2: { nivel3: 3 }}},
+    {id: 4, punto: "punto 4", punto1: 4, sucursal: "sucursal 4", sucursal1: "sucursal 4", nivel1: {nivel2: { nivel3: 4 }}}
+   ];
   }
   scrollTop()
   {
@@ -48,6 +55,37 @@ export class GrupoComponent implements OnInit {
     });
   }
 
+  orderGroupAscDesc(field:string, id_table:number)
+  {
+    if (field === 'puntos')
+    {
+      this.accordionTabsData[id_table].tableDataFilter.sort((a, b)=> b.puntos.id - a.puntos.id);
+      this.accordionTabsData[id_table].tableData.sort((a, b)=> b.puntos.id - a.puntos.id);
+      console.log(this.accordionTabsData[id_table].tableDataFilter);
+      if (this.puntos_order === 'ASC')
+      {
+        /*
+        this.accordionTabsData[id_table].tableDataFilter.sort((a, b)=> b.puntos.id - a.puntos.id);
+        this.puntos_order = 'DESC';
+        console.log(this.puntos_order);
+        console.log(this.accordionTabsData[id_table].tableDataFilter);*/
+      }
+      else 
+      {
+        /*
+        this.accordionTabsData[id_table].tableDataFilter.sort((a, b)=> a.puntos.id - b.puntos.id);
+        this.puntos_order = 'ASC';
+        console.log(this.puntos_order);
+        console.log(this.accordionTabsData[id_table].tableDataFilter);
+        */
+      }
+      
+    }
+    if (field === 'sucursal')
+    {
+
+    }
+  }
   customSort(event: SortEvent) {
     event.data.sort((data1, data2) => {
         let value1 = data1[event.field];
@@ -67,6 +105,10 @@ export class GrupoComponent implements OnInit {
     this.accordionTabsData[id].tableDataFilter = this.accordionTabsData[id].tableData.filter(item =>
       item.puntos.contratos[0].contrato.sucursal_instalacion.nombre.toLowerCase().includes(filterText.toLowerCase()) ||
       item.puntos.id.toString().includes(filterText.toLowerCase()));
+    }
+  ordena()
+  {
+    alert();
   }
   storeData()
   {

@@ -25,6 +25,7 @@ export class AprobacionComponent implements OnInit {
   xaprobarAduios:any[]=[];
   typeMotivo:any[]=[];
   formModalDevolver: FormGroup;
+  playing:boolean = false;
   @ViewChild('audioPlayer') audioPlayer: any;
   ngOnInit(): void {
     this.getAprobarAudios();
@@ -32,8 +33,21 @@ export class AprobacionComponent implements OnInit {
 
     ];
     this.formModalDevolver = this._formBuilder.group({
-      motivo_devolucion: [null, [Validators.required]]
+      motivo_devolucion: [null, [Validators.required]],
+      observaciones: [null]
     });
+  }
+
+  pause(idx: number)
+  {
+    this.xaprobarAduios[idx].playing = false;
+    if (idx === this.reproduciendo_id)
+    {
+      this.audioPlayer.nativeElement.currentTime = 0;
+      this.audioPlayer.nativeElement.pause();
+      this.reproduciendo_id = null;
+    }
+    
   }
 
   play(idx: number)
@@ -42,8 +56,10 @@ export class AprobacionComponent implements OnInit {
     this.reproduciendo_id = idx;
     this.audioSrc = this.xaprobarAduios[idx].url_audio;
     const name = this.xaprobarAduios[idx].nombre;
+    this.xaprobarAduios[idx].playing = true;
     
-    this.http.get(this.audioSrc, { responseType: 'blob' }).subscribe((response: Blob) => {
+    //this.http.get(this.audioSrc, { responseType: 'blob' }).subscribe((response: Blob) => {
+    this.http.get("http://localhost:4200/assets/audio/himno-nacional.mp3", { responseType: 'blob' }).subscribe((response: Blob) => {
       let file = new File([response], name);
       const reader = new FileReader();
       reader.onload = (event: any) => {

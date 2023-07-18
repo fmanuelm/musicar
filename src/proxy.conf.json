@@ -1,7 +1,17 @@
 {
-    "/*": {
-        "target": ["http://208.76.84.103:3000", "https://www.learningcontainer.com"],
-        "secure": false,
-        "logLevel": "debug"
+  "/himno-nacional.mp3": {
+    "target": "https://mediosefectivos.co",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/himno-nacional.mp3": "/himno-nacional.mp3"
+    },
+    "headers": {
+      "Referer": "https://mediosefectivos.co",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
     }
+  }
 }

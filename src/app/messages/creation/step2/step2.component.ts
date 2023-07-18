@@ -204,7 +204,7 @@ export class Step2Component implements OnInit {
     {
       this.btnDocument = false;
     }
-    if (fileExtension === 'xls')
+    if (fileExtension === 'xls' || fileExtension === 'xlsx')
     {
       this.btnDocument = false;
     }

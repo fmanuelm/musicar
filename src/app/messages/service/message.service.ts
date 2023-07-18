@@ -367,7 +367,9 @@ export class MessageService {
       //this.points = Points;
       //console.log("tam: " + Points.length);
       return Points.map((Point) => ({
-        ...Point
+        ...Point,
+        sucursal: Point.contratos[0].contrato.sucursal_instalacion.nombre,
+        regional: Point.contratos[0].contrato.sucursal_instalacion.regionales_ciudades.regionales.nombre
       }));
     }));
   }
@@ -401,7 +403,7 @@ export class MessageService {
     return this.http.get<any[]>(`${this.url}puntos/relations/puntos-and-puntos-grupos/xgrupo/${id}`, { headers: this.headers }).pipe(
       map(Points => {
         if (Array.isArray(Points)) {
-          return Points.map((Point) => ({ ...Point }));
+          return Points.map((Point) => ({ ...Point, sucursal: Point.puntos.contratos[0].contrato.sucursal_instalacion.nombre }));
         } else {
           // Manejar el caso en el que Points no es un array
           // Puede ser un objeto u otro tipo de dato no iterable
@@ -432,7 +434,7 @@ export class MessageService {
     return this.http.get<any[]>(`${this.url}regionales/relations/regionales-and-puntos/xregional/${id}`, { headers: this.headers }).pipe(
       map(Points => {
         if (Array.isArray(Points)) {
-          return Points.map((Point) => ({ ...Point }));
+          return Points.map((Point) => ({ ...Point, sucursal: Point.puntos.contratos[0].contrato.sucursal_instalacion.nombre }));
         } else {
           // Manejar el caso en el que Points no es un array
           // Puede ser un objeto u otro tipo de dato no iterable
@@ -463,7 +465,8 @@ export class MessageService {
     let id = 1;
     return this.http.get<any[]>(`${this.url}mensajes/xaprobar/xcliente/${id}`, { headers: this.headers }).pipe(map(Aprobacions => {
       return Aprobacions.map((Aprobacion) => ({
-        ...Aprobacion
+        ...Aprobacion,
+        playing: false
       }));
     }));
   }

@@ -105,8 +105,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "demo:build"
           },
           "configurations": {
             "production": {
@@ -214,7 +213,7 @@
         }
       }
     }
-  },
+  },  
   "defaultProject": "demo",
   "cli": {
     "analytics": false

@@ -22,11 +22,14 @@
                               </audio>
                             <div class="col-md-2 col-6" *ngFor="let xAprobar of xaprobarAduios; let idx = index">
                                 <p class="text-center border pt-2">
-                                    <span class="material-symbols-outlined play" (click)="play(idx)">
+                                    <span *ngIf="xaprobarAduios[idx].playing === false" class="material-symbols-outlined play" (click)="play(idx)">
                                         play_circle
                                     </span>
+                                    <span *ngIf="xaprobarAduios[idx].playing === true" class="material-symbols-outlined play" (click)="pause(idx)">
+                                        pause_circle
+                                    </span>
                                 </p>
-                                <p style="cursor: pointer" (click)="open(xAprobar.id, xAprobar.nombre, xAprobar.texto, xAprobar.url_audio)"><strong>Referencia:</strong> {{xAprobar.nombre}}</p>
+                                <p style="cursor: pointer" (click)="open(xAprobar.id, xAprobar.nombre, xAprobar.texto, xAprobar.url_audio)"><strong>Referencia:</strong><br/> {{xAprobar.nombre}}</p>
                                 <p><strong>Id:</strong> {{xAprobar.id}}</p>
                                 <p>
                                     <button mat-raised-button class="btn button-green aprobar py-1" data-toggle="modal" data-target="#modalMensajeAprobado" (click)="aprobarApi(xAprobar.id)">

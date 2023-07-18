@@ -81,7 +81,7 @@
                                                 <img src="/assets/img/doc.png" width="70" style="background: #ddd;"/>
                                             </a>
                                         </div>
-                                        <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'xlsx'">
+                                        <div class="col-md-4 text-center" *ngIf="adjunto.ext === 'xlsx' || adjunto.ext === 'xls'">
                                             <span class="material-symbols-outlined ml-3 delete-file" (click)="cleanFile()">
                                                 clear
                                             </span>
