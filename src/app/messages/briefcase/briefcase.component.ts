@@ -65,7 +65,7 @@ export class BriefcaseComponent implements OnInit {
     
     this.messageService.getAudiosMensajes().subscribe(resp => {
       this.audios = resp;
-        
+      console.log(resp);
     })
   }
 
@@ -78,7 +78,8 @@ export class BriefcaseComponent implements OnInit {
     
     this.reproduciendo_id = idx;
     this.audioSrc = this.audios[idx].mensajes.url_audio;
-    const name = this.audios[idx].name;
+    const name = this.audios[idx].nombre;
+    //const name = "himno-nacional.mp3";
     console.log("name: " + name);
     this.http.get(this.audioSrc, { responseType: 'blob' }).subscribe((response: Blob) => {
     //this.http.get("https://mediosefectivos.co/himno-nacional.mp3", { responseType: 'blob' }).subscribe((response: Blob) => {
