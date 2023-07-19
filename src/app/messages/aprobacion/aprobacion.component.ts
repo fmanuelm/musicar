@@ -59,7 +59,7 @@ export class AprobacionComponent implements OnInit {
     this.xaprobarAduios[idx].playing = true;
     
     //this.http.get(this.audioSrc, { responseType: 'blob' }).subscribe((response: Blob) => {
-    this.http.get("http://localhost:4200/assets/audio/himno-nacional.mp3", { responseType: 'blob' }).subscribe((response: Blob) => {
+    this.http.get("/assets/audio/himno-nacional.mp3", { responseType: 'blob' }).subscribe((response: Blob) => {
       let file = new File([response], name);
       const reader = new FileReader();
       reader.onload = (event: any) => {
