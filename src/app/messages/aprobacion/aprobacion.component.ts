@@ -27,6 +27,7 @@ export class AprobacionComponent implements OnInit {
   formModalDevolver: FormGroup;
   playing:boolean = false;
   @ViewChild('audioPlayer') audioPlayer: any;
+  @ViewChild('audioPlayer2') audioPlayer2: any;
   ngOnInit(): void {
     this.getAprobarAudios();
     this.typeMotivo = [
@@ -58,20 +59,35 @@ export class AprobacionComponent implements OnInit {
     const name = this.xaprobarAduios[idx].nombre;
     this.xaprobarAduios[idx].playing = true;
     
-    this.http.get(this.audioSrc, { responseType: 'blob' }).subscribe((response: Blob) => {
-    //this.http.get("https://mediosefectivos.co/himno-nacional.mp3", { responseType: 'blob' }).subscribe((response: Blob) => {
-      let file = new File([response], name);
-      const reader = new FileReader();
-      reader.onload = (event: any) => {
-        const contenido = event.target.result;
-        this.audioPlayer.nativeElement.src = contenido;
+    
+      this.http.get(this.audioSrc, { responseType: 'blob' }).subscribe((response: Blob) => {
+      //this.http.get("https://mediosefectivos.co/himno-nacional.mp3", { responseType: 'blob' }).subscribe((response: Blob) => {
+        /*
+        let file = new File([response], name);
+        const reader = new FileReader();
+        reader.onload = (event: any) => {
+          const contenido = event.target.result;
+          this.audioPlayer.nativeElement.src = contenido;
+          this.audioPlayer.nativeElement.play();
+          
+          //this.audioUrl = contenido;
+        };
+        */
+        
+        //reader.readAsDataURL(file);
+        this.reproduciendo_id = idx;
+        const audioSrc = this.xaprobarAduios[idx].url_audio;
+        
+        const sourceElement = document.createElement('source');
+        sourceElement.src = audioSrc;
+        sourceElement.type = 'audio/mpeg'; // Tipo MIME para archivos MP3
+        
+        this.audioPlayer.nativeElement.innerHTML = ''; // Limpiamos cualquier fuente previa
+        this.audioPlayer.nativeElement.appendChild(sourceElement);
+        
+        this.audioPlayer.nativeElement.load();
         this.audioPlayer.nativeElement.play();
-        //this.audioUrl = contenido;
-      };
-      
-      
-      reader.readAsDataURL(file);
-    });
+      });
     
     
   }
@@ -99,6 +115,14 @@ export class AprobacionComponent implements OnInit {
     this.texto = texto;
     this.url_audio = url_audio;
 
+    const sourceElement = document.createElement('source');
+    sourceElement.src = url_audio;
+    sourceElement.type = 'audio/mpeg'; // Tipo MIME para archivos MP3
+    
+    this.audioPlayer2.nativeElement.innerHTML = ''; // Limpiamos cualquier fuente previa
+    this.audioPlayer2.nativeElement.appendChild(sourceElement);
+    
+    this.audioPlayer2.nativeElement.load();
     this.step = 'step2';
   }
   back() {
