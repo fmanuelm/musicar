@@ -106,17 +106,18 @@ export class AprobacionComponent implements OnInit {
   getCausalesDevolucion()
   {
     
-    
-    this.messageService.getCausalesDevolucion(this.id).subscribe(resp => {
-      let resp2: any = resp;
-      if (resp2.status !== 204)
-      {
-        this.typeMotivo = resp;
-      }
-      console.log("causales devolucion de mensajes");
-      console.log(resp);
+    this.messageService.getMensajeById(this.id).subscribe(resp0 => {
+      let id_dev = resp0.mensajes_estado.id;
+      this.messageService.getCausalesDevolucion(id_dev).subscribe(resp => {
+        let resp2: any = resp;
+        if (resp2.status !== 204)
+        {
+          this.typeMotivo = resp;
+        }
+        console.log("causales devolucion de mensajes");
+        console.log(resp);
+      });
     });
-    
   }
   aprobarApi(id: number)
   {
@@ -209,6 +210,21 @@ export class AprobacionComponent implements OnInit {
     console.log(data);
     this.messageService.storeDevolucionMensaje(data).subscribe(resp => {
       console.log(resp);
+      if (resp.status === 201 || resp.status === 200)
+      {
+        swal.fire({
+          title: 'Confirmación.',
+          text: resp.message,
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: "btn btn-success",
+          },
+          icon: 'success'
+        });
+        this.router.navigate(
+          ['mensajes/aprobacion']
+        );
+      }
       if (resp.status === 409)
       {
         swal.fire({
@@ -220,6 +236,7 @@ export class AprobacionComponent implements OnInit {
           }
         });
       }
+      
     });
   }
 }

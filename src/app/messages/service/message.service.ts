@@ -461,6 +461,10 @@ export class MessageService {
     }));
   }
 
+  getMensajeById(id:number)
+  {
+    return this.http.get<any>(`${this.url}mensajes/${id}`, { headers: this.headers });
+  }
   
   getAprobacionAudios() {
     let id = 1;
