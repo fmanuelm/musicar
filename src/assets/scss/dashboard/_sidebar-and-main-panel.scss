@@ -452,11 +452,35 @@
     }
 }
 
-
+.menu {
+    position: fixed;
+    top: 20px;
+    right: 20px; /* Cambia la posición a la derecha */
+    z-index: 1000;
+    /*
+    width: 100vw;
+    height: 100vh;*/
+    }
+    .menu button.menu-icon {
+    font-size: 34px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    right: -5px;
+    }
+    .menu .menu2.open {
+    transform: translateX(0);
+    }
+    
 .main-panel{
     position: relative;
-    float: right;
-    width: $sidebar-width;
+    float: left;
+    width: 100%;
+    /*float: right;
+    width: $sidebar-width;*/
+
     @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
 
     .main-content{

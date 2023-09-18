@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
-
+import { Router, NavigationEnd } from '@angular/router';
 declare const $: any;
 
 //Metadata
@@ -21,6 +21,28 @@ export interface ChildrenItems {
 }
 
 export const ROUTES: RouteInfo[] = [{
+    path: '/disponibilidad-usuario/',
+    title: 'Disponibilidad Usuario',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'disponibilidaduser',
+    children: [
+        { path: 'list', title: 'Listar disponibilidad Usuario', ab: 'LDU' },
+        { path: 'create', title: 'Crear disponibilidad Usuario', ab: 'CDU' },
+    ]
+},
+    {
+    path: '/clientes-grupos/',
+    title: 'Grupos Clientes',
+    type: 'sub',
+    icontype: 'apps',
+    collapse: 'clientsgroups',
+    children: [
+        { path: 'list', title: 'Listar grupos Cliente', ab: 'LGC' },
+        { path: 'create', title: 'Crear Grupo Cliente', ab: 'CGC' },
+    ]
+},
+    {
     path: '/clientes/',
     title: 'Clientes',
     type: 'sub',
@@ -125,11 +147,14 @@ export const ROUTES: RouteInfo[] = [{
 @Component({
     selector: 'app-sidebar-cmp',
     templateUrl: 'sidebar.component.html',
+    styleUrls: ['./sidebar.component.css']
 })
 
 export class SidebarComponent implements OnInit {
+    constructor(private router:Router) {}
     public menuItems: any[];
     ps: any;
+    isMenuOpen: boolean = true;
     isMobileMenu() {
         if ($(window).width() > 991) {
             return false;
@@ -137,12 +162,30 @@ export class SidebarComponent implements OnInit {
         return true;
     };
 
+    toggleMenu() {
+        this.isMenuOpen = !this.isMenuOpen;
+    }
+    logout()
+    {
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        this.router.navigate(['/auth/login']);
+    }
     ngOnInit() {
+        /*
         this.menuItems = ROUTES.filter(menuItem => menuItem);
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
             this.ps = new PerfectScrollbar(elemSidebar);
         }
+        */
+        
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.isMenuOpen = true;
+            }
+        });
+        
     }
     updatePS(): void {
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {

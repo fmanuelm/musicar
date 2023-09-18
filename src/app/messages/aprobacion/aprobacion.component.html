@@ -32,7 +32,7 @@
                                 <p style="cursor: pointer" (click)="open(xAprobar.id, xAprobar.nombre, xAprobar.texto, xAprobar.url_audio)"><strong>Referencia:</strong><br/> {{xAprobar.nombre}}</p>
                                 <p><strong>Id:</strong> {{xAprobar.id}}</p>
                                 <p>
-                                    <button mat-raised-button class="btn button-green aprobar py-1" data-toggle="modal" data-target="#modalMensajeAprobado" (click)="aprobarApi(xAprobar.id)">
+                                    <button mat-raised-button class="btn button-green aprobar py-1" (click)="aprobarApi(xAprobar.id)">
                                         Aprobar
                                         <span class="material-symbols-outlined">
                                             done
@@ -105,7 +105,7 @@
                             <div class="col-md-12 mt-5">
                                 <div class="row">
                                     <div class="col-6 text-center">
-                                        <button mat-raised-button class="btn ml-4 rounded aprobar shadow" pButton pRipple data-toggle="modal" data-target="#modalMensajeAprobado">
+                                        <button mat-raised-button class="btn ml-4 rounded aprobar shadow" pButton pRipple (click)="aprobarMensaje()">
                                             <span class="material-symbols-outlined">
                                                 check_circle
                                             </span>
@@ -137,22 +137,7 @@
         </div>
     </div>
 </div>
-<!-- modal mensaje aprobado -->
-<div id="modalMensajeAprobado" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header mb-3">
-                <h4 class="modal-title text-left" id="exampleModalLabel"><b>Aprobado</b></h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>El mensaje se ha aprobado</p>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- modal devolver -->
 <div id="modalDevolver" class="modal fade">
@@ -170,8 +155,8 @@
                         <mat-form-field class="example-full-width">
                             <mat-select placeholder="Motivo de devolución" name="typeMotivo"
                                 formControlName="motivo_devolucion">
-                                <mat-option *ngFor="let tMotivo of typeMotivo" [value]="tMotivo">
-                                    {{ tMotivo.tipo_contacto }}
+                                <mat-option *ngFor="let tMotivo of typeMotivo" [value]="tMotivo.id">
+                                    {{ tMotivo.descripcion }}
                                 </mat-option>
                             </mat-select>
                             <mat-error *ngIf="formModalDevolver.get('motivo_devolucion').hasError('required')">
@@ -188,9 +173,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger mr-3" data-dismiss="modal"
+                <button type="button" class="btn mr-3" data-dismiss="modal"
                     (click)="cancelModal()">Cancelar</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal"
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
                     (click)="aceptModal()">Aceptar</button>
             </div>
         </div>

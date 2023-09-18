@@ -1,0 +1,197 @@
+.main-content {
+    margin-top: 0px;
+    padding: 10px 15px;
+    min-height: calc(100vh);
+    background-image: url(/assets/img/home-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.aplicacion {
+    font-size: 5rem;
+    line-height: 30px;
+    /*line-height: 0.8rem;*/
+}
+.musicar {
+    font-size: 6.6rem;
+    /*line-height: 0.8rem;*/
+}
+
+.carousel-container2 {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+  
+  .carousel-item2 {
+    flex: 0 0 20%; /* For desktop, 5 columns */
+    padding: 10px;
+    text-align: center;
+    transition: transform 1s ease-in-out;
+  }
+  
+  .underlined {
+    /*text-decoration: underline;*/
+    border-bottom: 3px solid #48b6f5;
+    transition: transform 1s ease-in-out;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-item2 {
+      flex: 0 0 33.33%; /* For mobile, 3 columns */
+    }
+    .col-responsive {
+        height: auto;
+    }
+    .aplicacion {
+      font-size: 3.7rem;
+      line-height: 30px;
+      /*line-height: 0.8rem;*/
+    }
+    .musicar {
+        font-size: 4.9rem;
+        /*line-height: 0.8rem;*/
+    }
+  }
+  
+  @keyframes slide {
+    0%, 100% {
+      transform: translateX(0);
+    }
+  
+    16.67%, 33.33% {
+      transform: translateX(-100%);
+    }
+  
+    50%, 66.67% {
+      transform: translateX(-200%);
+    }
+  }
+
+  .menu {
+    position: fixed;
+    top: 20px;
+    right: 20px; /* Cambia la posición a la derecha */
+    z-index: 1000;
+    /*
+    width: 100vw;
+    height: 100vh;*/
+  }
+  
+  .menu button.menu-icon {
+    font-size: 34px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    right: -5px;
+  }
+  
+  .whatsapp
+  {
+    position: fixed;
+    bottom: 20px;
+    right: 7px;
+  }
+  .whatsapp a img {
+    width: 70px;
+  }
+  
+  .menu button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .menu .menu2 {
+    
+    background-color: #fff;
+    padding: 20px;
+    width: 100vw;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .options {
+    list-style: none;
+    color: #333;
+    margin-top: 5rem;
+  }
+  .options2 {
+    list-style: none;
+    color: #333;
+  }
+  .options li {
+    font-size: 4.5rem;
+    margin-bottom: 4.5rem;
+    font-weight: bold;
+  }
+  .options li a:hover {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    text-decoration: underline;
+  }
+  .options2 li {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    
+  }
+  .menu .menu2.open {
+    transform: translateX(0);
+  }
+  
+  .title-menu {
+    padding-top: 250px;
+  }
+  
+  .menu a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .col-responsive {
+    height: 100vh; 
+    border-right: 2px solid #333; 
+    border-left: 2px solid #333;
+  }
+  
+  @media (max-width: 768px) {
+    .col-responsive {
+        height: auto;
+        border:unset;
+    }
+    .options li {
+        font-size: 3rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .options2 li {
+        font-size: 1.3rem;
+    }
+
+    .options {
+        list-style: none;
+        color: #333;
+        margin-top: 3rem;
+    }
+    .title-menu {
+        padding-top: 0px;
+    }
+  }
+
+  @media (max-width: 850px) {
+    .icono-footer {
+        height: 35px;
+    }
+}
+@media (min-width: 851px) {
+    .icono-footer {
+        height: 50px;
+    }
+}

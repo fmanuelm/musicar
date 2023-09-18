@@ -1,0 +1,300 @@
+<div class="main-content">
+    <div class="container-fluid">
+        
+            <div class="row">
+                <app-breadcrumb view="detail"></app-breadcrumb>
+                <div class="col-md-12 mt-3">
+                    
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>{{ nombre }}</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-right">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<app-breadcrumb view="create"></app-breadcrumb>-->
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Datos de usuario</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            
+                            <div class="row ml-4 pl-4 mt-3">
+                                
+                            </div>
+                            <div class="row ml-4 pl-4 mt-2">
+                                <div class="col-sm-12">
+                                    <p-table [globalFilterFields]="['nombres', 'apellidos', 'tipo_usuario', 'disponibilidad']" id="tableUsuarios" #tableUsuarios
+                                        [value]="usuariosSelects" [paginator]="true" [rows]="10">
+                                        
+                                        <ng-template pTemplate="header" let-col>
+                                            <tr>
+                                                <th style="width: 4rem">
+                                                    <p-tableHeaderCheckbox>
+                                                    </p-tableHeaderCheckbox>
+                                                </th>
+                                                <th class="justify-content-center" pSortableColumn="nombres">
+                                                    Nombres
+                                                    <p-sortIcon field="nombres"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="nombres" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                                <th class="justify-content-center" pSortableColumn="apellidos">
+                                                    Apellidos
+                                                    <p-sortIcon field="apellidos"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="apellidos" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                                <th class="justify-content-center" pSortableColumn="tipo_usuario">
+                                                    Tipo usuario
+                                                    <p-sortIcon field="tipo_usuario"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="tipo_usuario" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                                <th class="justify-content-center" pSortableColumn="disponibilidad">
+                                                    Disponibilidad
+                                                    <p-sortIcon field="disponibilidad"></p-sortIcon>
+                                                    <p-columnFilter type="text" field="disponibilidad" display="menu">
+                                                    </p-columnFilter>
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-col>
+                                            <tr [pSelectableRow]="col">
+                                                <td>
+                                                    <p-tableCheckbox [value]="col">
+                                                    </p-tableCheckbox>
+                                                </td>
+                                                <td class="justify-content-center">
+                                                    {{ col.nombres}}
+                                                </td>
+                                                <td class="justify-content-center">
+                                                    {{ col.apellidos}}
+                                                </td>
+                                                <td class="justify-content-center">
+                                                    {{ col.tipo_usuario}}
+                                                </td>
+                                                <td class="justify-content-center">
+                                                    {{ col.disponibilidad}}
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="paginatorcenter">
+                                            <button type="button" pButton icon="pi-cloud-upload"></button>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                           
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12" *ngIf="openingHours">
+                    <div class="card ">
+                        <div class="card-header card-header-rose card-header-text">
+                            <div class="card-text">
+                                <h4 class="card-title">Horarios de disponibilidad</h4>
+                            </div>
+                        </div>
+                        <div class="card-body mt-2">
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Lunes</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input [value]="openingHours.lunes.hora_inicial" readonly matInput placeholder="Hora inicial"
+                                            type="time">                                       
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora final"
+                                            type="time" readonly [value]="openingHours.lunes.hora_final">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Martes</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora inicial"
+                                            type="time" [value]="openingHours.martes.hora_inicial" readonly>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora final"
+                                            type="time" [value]="openingHours.martes.hora_final" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Miercoles</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput
+                                            placeholder="Hora inicial" type="time" [value]="openingHours.miercoles.hora_inicial" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora final"
+                                            type="time" [value]="openingHours.miercoles.hora_final" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Jueves</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora inicial"
+                                            type="time" [value]="openingHours.jueves.hora_inicial" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora final"
+                                            type="time" [value]="openingHours.jueves.hora_final" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Viernes</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput
+                                            placeholder="Hora inicial" type="time" [value]="openingHours.viernes.hora_inicial" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora final"
+                                            type="time" [value]="openingHours.viernes.hora_final" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Sabado</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora inicial"
+                                            type="time" [value]="openingHours.sabado.hora_inicial" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora final"
+                                            type="time" [value]="openingHours.sabado.hora_final" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Domingo</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput
+                                            placeholder="Hora inicial" type="time" [value]="openingHours.domingo.hora_inicial" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora final"
+                                            type="time" [value]="openingHours.domingo.hora_final" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row d-flex px-4 mx-4 mt-2">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <b>Festivos</b>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput
+                                            placeholder="Hora inicial" type="time" [value]="openingHours.festivos.hora_inicial" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Hora final"
+                                            type="time" [value]="openingHours.festivos.hora_final" readonly>
+                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="text-center">
+                        <button mat-raised-button type="button" (click)="editUsuario()"
+                            class="btn btn-fill btn-warning mr-3">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                            Editar
+                        </button>
+                        <button mat-raised-button type="button" (click)="deleteUsuario()" class="btn btn-fill btn-rose">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>

@@ -1,0 +1,21 @@
+.times li {
+    padding: 7px 10px;
+    border-bottom: 2px solid #ddd;
+    cursor: pointer;
+}
+.times li:first-child {
+    border-top: none;
+}
+.times li i {
+    float: right;
+    color: #9b9494;
+}
+.times {
+    margin-top: 70px;
+    list-style-type: none;
+    padding-left: 0px;
+}
+.horasblock {
+    float: left;
+    width: calc(100% - 50px);
+}

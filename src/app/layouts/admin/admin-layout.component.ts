@@ -3,6 +3,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { NavItem, NavItemType } from '../../md/md.module';
 import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { MenuprincipalComponent } from '../../menuprincipal/menuprincipal.component';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -21,9 +22,10 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     private yScrollStack: number[] = [];
     url: string;
     location: Location;
-
+    isMenuOpen: boolean = true;
     @ViewChild('sidebar', {static: false}) sidebar: any;
     @ViewChild(NavbarComponent, {static: false}) navbar: NavbarComponent;
+    @ViewChild(MenuprincipalComponent, {static: false}) menuprincipal;
     constructor( private router: Router, location: Location ) {
       this.location = location;
     }
@@ -112,6 +114,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
           { type: NavItemType.NavbarLeft, title: 'Log out' }
         ];
     }
+
     ngAfterViewInit() {
         this.runOnRouteChange();
     }
@@ -137,5 +140,16 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
             bool = true;
         }
         return bool;
+    }
+
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    }
+  
+    logout()
+    {
+      localStorage.removeItem("token");
+      localStorage.removeItem("id");
+      this.router.navigate(['/auth/login']);
     }
 }

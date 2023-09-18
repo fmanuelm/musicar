@@ -57,7 +57,7 @@ export class MessageService {
   mod$ = this.moduleSubject.asObservable();
 
   private url: string = 'http://208.76.84.103:3000/api/v1/';
-  private token: string = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJlbWVfbWFya2V0aW5nQG11c2ljYXIuY29tIiwidWlkIjoic00yMV8yMl9JMjYiLCJyb2wiOjEsImlhdCI6MTY4NTExMTI5OSwiZXhwIjoxNzE2NjY4ODk5fQ.CpkXGiNHkRTvJnS8RmFtMCcYFMRLvDXpKFlYyWZ_SCk';
+  private token: string = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJyb290QHJvb3QuY29tIiwidWlkIjoic00yMV8yMl9JMyIsInJvbCI6MSwiaWF0IjoxNjc5NTE4ODk0LCJleHAiOjE3MTEwNzY0OTR9.5KtlrtHAZfsY1aKmxKf0NDHKonCkwwXDkhSA2rt89e0';
   boundary = this.generateBoundary();
   // 'Content-Type': `multipart/form-data; boundary=${this.boundary}`
   headers: HttpHeaders = new HttpHeaders({ 'Authorization': this.token });
@@ -190,7 +190,8 @@ export class MessageService {
   }
 
   xaprobarMensaje(id: number) {
-    return this.http.post<any[]>(`${this.url}mensajes/xaprobar-mensaje/${id}`, { headers: this.headers });
+    console.log(`id: ${id}`);
+    return this.http.post<any>(`${this.url}mensajes/xaprobar-mensaje/${id}`, {},{ headers: this.headers });
     
   }
   getAudiosMensajes() {
@@ -471,5 +472,26 @@ export class MessageService {
     }));
   }
 
+  getCausalesDevolucion(id)
+  {
+    //mensajes/causales-devolucion
+    return this.http.get<any[]>(`${this.url}mensajes/devolucion-cliente/xestado-actual/${id}`, { headers: this.headers });
+  }
+
+  storeDevolucionMensaje(data) {
+    /*
+    let formData = new FormData();
+    formData.append("id", data.id);
+    formData.append("observaciones", data.observaciones);
+
+    formData.append("mensajes", data.id);
+    formData.append("mensajes_devolucion_cliente", "1");
+    formData.append("usuario_apertura", "1");
+    formData.append("usuario_cierre", JSON.stringify({}));
+    */
+    ///logs/log-devolucion-mensajes-clientes
+    
+    return this.http.post<any>(`${this.url}logs/log-devolucion-mensajes-clientes`, data, { headers: this.headers });
+  }
   
 }

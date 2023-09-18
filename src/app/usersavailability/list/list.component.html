@@ -1,0 +1,130 @@
+<script src="https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"></script>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <app-breadcrumb view="list"></app-breadcrumb>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary card-header-icon">
+            <h2 class="card-title">
+              <b>
+                Listar usuarios disponibilidad
+              </b>
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="toolbar">
+              <!-- <div class="row">
+                <div class="col">
+                  <button class="btn btn-success mr-2" (click)="exportExcel()">
+                    Excel
+                  </button>
+                  <button class="btn btn-danger" (click)="exportExcel()">
+                    PDF
+                  </button>
+                </div>
+                <div class="col d-flex flex-row-reverse">
+                  <div class="form-group">
+                    <input type="text" value="" placeholder="Buscar" class="form-control" />
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <div class="material-datatables">
+              <p-table [globalFilterFields]="[
+              'nombres',
+              'apellidos',
+              'pais',
+              'cliente',
+              'tipo_usuario'              
+              ]" id="tableUsuarios" #tableUsuarios [value]="usuarios" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="caption">
+                  <div class="flex">
+                    <div class="row">
+                      <div class="col">
+                        <button class="btn btn-success mr-2" (click)="exportExcel()">
+                          Excel
+                        </button>
+                        <button class="btn btn-danger" (click)="exportPdf()">
+                          PDF
+                        </button>
+                      </div>
+                      <div class="col d-flex flex-row-reverse">
+                        <span class="p-input-icon-left ml-auto">
+                          <input pInputText type="text" class="form-control"
+                            (input)="tableUsuarios.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Global seach" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-cols>
+                    <tr>
+                        <th pSortableColumn="nombres">
+                            Nombres
+                            <p-sortIcon field="nombres"></p-sortIcon>
+                            <p-columnFilter type="text" field="nombres" display="menu">
+                            </p-columnFilter>
+                        </th>
+                        <th pSortableColumn="apellidos">
+                            Apellidos
+                            <p-sortIcon field="apellidos"></p-sortIcon>
+                            <p-columnFilter type="text" field="apellidos" display="menu">
+                            </p-columnFilter>
+                        </th>
+                        <th pSortableColumn="pais">
+                            País
+                            <p-sortIcon field="pais"></p-sortIcon>
+                            <p-columnFilter type="text" field="pais" display="menu">
+                            </p-columnFilter>
+                        </th>
+                        <th pSortableColumn="cliente">
+                            Cliente
+                            <p-sortIcon field="cliente"></p-sortIcon>
+                            <p-columnFilter type="text" field="cliente" display="menu">
+                            </p-columnFilter>
+                        </th>
+                        <th pSortableColumn="tipo_usuario">
+                            Tipo usuario
+                            <p-sortIcon field="tipo_usuario"></p-sortIcon>
+                            <p-columnFilter type="text" field="tipo_usuario" display="menu">
+                            </p-columnFilter>
+                        </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-col>
+                  <tr style="cursor: pointer;" (click)="viewUserAvailability(col.id)">
+                    
+                    <td>
+                        {{ col.nombres }}
+                    </td>
+                    <td>
+                        {{ col.apellidos }}
+                    </td>
+                    <td>
+                        {{ col.pais }}
+                    </td>
+                    <td>
+                        {{ col.cliente }}
+                    </td>
+                    <td>
+                        {{ col.tipo_usuario }}
+                    </td>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorcenter">
+                  <button type="button" pButton icon="pi-cloud-upload"></button>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+          <!-- end content-->
+        </div>
+        <!--  end card  -->
+      </div>
+      <!-- end col-md-12 -->
+    </div>
+    <!-- end row -->
+  </div>
+</div>

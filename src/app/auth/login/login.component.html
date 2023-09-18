@@ -1,0 +1,61 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-5">
+            
+            <form class="border p-4">
+                <div class="text-center">
+                    <img src="/assets/img/logo-musicar-white.png" width="200"/>
+                </div>
+                <div class="input-group bg-btn1 py-2 mt-4">
+                    <span class="input-group-text text-white" id="basic-addon1"><i class="material-icons">person</i></span>
+                    <input
+                    type="text"
+                    class="form-control not_underline text-white"
+                    placeholder="Username"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                    [(ngModel)]="email" 
+                    
+                    />
+                </div>
+                <div *ngIf="loginError" class="invalid-feedback d-block font-weight-bold pl-0">
+                    Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.
+                </div>
+                <div *ngIf="userVacio" class="invalid-feedback d-block font-weight-bold pl-2">
+                    Debe ingresar el usuario
+                </div>
+                <div class="input-group bg-btn1 py-2 mt-4">
+                    <span class="input-group-text text-white" id="basic-addon1"><i class="material-icons">lock</i></span>
+                    <input
+                    [type]="showPass"
+                    class="form-control not_underline text-white"
+                    placeholder="Password"
+                    aria-label="Password"
+                    [(ngModel)]="password"
+                    (keyup.enter)="handleLogin()" />
+                    <span class="input-group-text text-white"><i *ngIf="showPass === 'text'" class="material-icons" style="cursor: pointer" (click)="showPassword()">visibility</i><i *ngIf="showPass === 'password'" class="material-icons" style="cursor: pointer" (click)="showPassword()">visibility_off</i></span>
+                </div>
+                <div *ngIf="passVacio" class="invalid-feedback d-block font-weight-bold pl-2">
+                    Debe ingresar el password
+                </div>
+                <p class="text-white mt-4">
+                    <a class="text-white font-weight-bold" href="/#/auth/change_password">¿Olvidó Contraseña?</a>
+                </p>
+                <div class="text-center my-5">
+                    <button type="button" class="btn btn-primary bg-btn1" (click)="handleLogin()" style="padding: 20px 70px;">Ingresar</button>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center text-center text-white font-weight-bold">
+                        <p class="mb-0">¿No tienes una cuenta?</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a href="/#/auth/register" class="btn btn-primary bg-btn2 font-weight-bold">Crear cuenta</a>
+                    </div>
+                </div>    
+            </form>
+            
+            </div>
+        </div>
+    </div>
+</div>

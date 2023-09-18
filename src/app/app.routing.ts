@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { AuthGuard } from './auth.guard';
+import { Auth2Guard } from './auth2.guard';
 
 export const AppRoutes: Routes = [
     {
@@ -12,10 +14,11 @@ export const AppRoutes: Routes = [
         path: '',
         component: AdminLayoutComponent,
         children: [
+            /*
             {
                 path: '',
                 loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-            }, {
+            },*/ {
                 path: 'components',
                 loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule)
             }, {
@@ -40,6 +43,14 @@ export const AppRoutes: Routes = [
                 path: 'clientes',
                 loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule)
             }, {
+                path: 'clientes-grupos',
+                loadChildren: () => import('./clientsgroups/clientsgroups.module').then(m => m.ClientsgroupsModule)
+            },
+            {
+                path: 'disponibilidad-usuario',
+                loadChildren: () => import('./usersavailability/usersavailability.module').then(m => m.UsersavailabilityModule)
+            },
+            {
                 path: 'contratos',
                 loadChildren: () => import('./contrats/contrats.module').then(m => m.ContratsModule)
             }, {
@@ -77,6 +88,18 @@ export const AppRoutes: Routes = [
         children: [{
             path: 'pages',
             loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
-        }]
+        },
+
+    ]
+    },
+    {
+        path: '',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+        canActivate: [Auth2Guard]
     }
 ];

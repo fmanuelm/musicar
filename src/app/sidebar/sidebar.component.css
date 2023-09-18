@@ -1,0 +1,88 @@
+.menu .menu2.open {
+    transform: translateX(0);
+}
+  
+.title-menu {
+    padding-top: 250px;
+}
+
+.menu a {
+    color: #333;
+    text-decoration: none;
+}
+
+.menu {
+    position: fixed;
+    top: 20px;
+    right: 20px; /* Cambia la posición a la derecha */
+    z-index: 1000;
+    /*
+    width: 100vw;
+    height: 100vh;*/
+  }
+  
+button.menu-icon {
+    font-size: 34px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    position: absolute;
+    right: 20px;
+    color: #000;
+  }
+
+button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+  
+.menu .menu2 {    
+    background-color: #fff;
+    padding: 20px;
+    width: 100vw;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.options {
+    list-style: none;
+    color: #333;
+    margin-top: 5rem;
+  }
+  .options2 {
+    list-style: none;
+    color: #333;
+  }
+  .options li {
+    font-size: 4.5rem;
+    margin-bottom: 4.5rem;
+    font-weight: bold;
+  }
+  .options li a:hover {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    text-decoration: underline;
+  }
+  .options2 li {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    
+  }
+  @media (max-width: 850px) {
+    .icono-footer {
+        height: 35px;
+    }
+  }
+  @media (min-width: 851px) {
+    .icono-footer {
+      height: 50px;
+    }
+  }

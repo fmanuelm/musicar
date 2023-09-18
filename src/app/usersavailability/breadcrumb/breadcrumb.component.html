@@ -1,0 +1,24 @@
+<nav *ngIf="view == 'create'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['disponibilidad-usuario/list']);">Disponibilidad Usuario</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Crear Disponibilidad Usuario</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'list'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['disponibilidad-usuario/create']);">Crear Disponibilidad Usuario</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Listar Disponibilidad Usuario</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'edit'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['disponibilidad-usuario/detail',id]);">Ver Disponibilidad Usuario</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Editar Disponibilidad Usuario</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'detail'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['disponibilidad-usuario/list']);">Listar Disponibilidad Usuarios</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Ver Disponibilidad Usuario</b></li>
+    </ol>
+</nav>

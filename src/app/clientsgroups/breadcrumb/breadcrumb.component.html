@@ -1,0 +1,24 @@
+<nav *ngIf="view == 'create'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['clientes-grupos/list']);">Grupos de Clientes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Crear Grupo de Clientes</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'list'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['clientes-grupos/create']);">Crear Grupo de Clientes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Listar Grupo de Clientes</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'edit'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['clientes-grupos/detail',id]);">Ver Grupo de Clientes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Editar Grupo de Clientes</b></li>
+    </ol>
+</nav>
+<nav *ngIf="view == 'detail'" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['clientes-grupos/list']);">Listar Grupo de Clientes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><b> Ver Grupo de Clientes</b></li>
+    </ol>
+</nav>

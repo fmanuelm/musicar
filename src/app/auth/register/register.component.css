@@ -1,0 +1,33 @@
+.main-content {
+    margin-top: 0px;
+    padding: 100px 15px;
+    min-height: calc(100vh);
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(6,30,64,1) 16%, rgba(135,146,164,1) 96%);
+}
+form {
+    border-radius: 30px;
+    border: 3px solid #2d8cce !important;
+}
+.bg-btn1 {
+    text-transform: unset;
+    font-size: 1.3rem;
+    background: rgb(1,54,108);
+    background: linear-gradient(90deg, rgba(1,54,108,1) 0%, rgba(1,54,108,1) 16%, rgba(1,71,131,1) 96%);
+    border-radius: 15px;
+}
+.bg-btn2 {
+    text-transform: unset;
+    background: rgb(0,70,130);
+    background: linear-gradient(90deg, rgba(0,70,130,1) 0%, rgba(1,82,145,1) 16%, rgba(2,97,163,1) 96%);
+}
+.not_underline {
+    background-image: unset;
+}
+.btn-limpiar {
+    background: transparent;
+    color: #ddd;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    margin: 20px 0 10px;
+}

@@ -1,0 +1,16 @@
+.recovery_password_modal {
+    border-radius: 30px !important;
+}
+
+.bg-btn1 {
+    text-transform: unset;
+    font-size: 1.3rem;
+    background: rgb(1,54,108);
+    background: linear-gradient(90deg, rgba(1,54,108,1) 0%, rgba(1,54,108,1) 16%, rgba(1,71,131,1) 96%);
+    border-radius: 15px;
+}
+.bg-btn2 {
+    text-transform: unset;
+    background: rgb(0,70,130);
+    background: linear-gradient(90deg, rgba(0,70,130,1) 0%, rgba(1,82,145,1) 16%, rgba(2,97,163,1) 96%);
+}

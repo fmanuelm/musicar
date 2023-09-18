@@ -1,0 +1,208 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-5">
+            
+            <form [formGroup]="formRegistro" class="p-4">
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="text-white">Datos personales</h3>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button class="btn-limpiar" (click)="limpiarFormulario()">
+                            <span class="material-symbols-outlined" style="position: relative;top: 3px;">
+                            delete
+                            </span>
+                            <span>Limpiar Formulario</span>
+                        </button>
+                    </div>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Nombres*</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <span class="input-group-text text-white pl-0"><i class="material-icons"></i></span>
+                    <input
+                    type="text"
+                    class="form-control not_underline text-white"
+                    aria-label="Nombres"
+                    formControlName="nombre"
+                    />
+                </div>
+                <div *ngIf="formRegistro.get('nombre').invalid && (formRegistro.get('nombre').dirty || formRegistro.get('nombre').touched)" class="text-danger">
+                    <div *ngIf="formRegistro.get('nombre').errors.required" class="invalid-feedback d-block font-weight-bold ml-2">El nombre es requerido *</div>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Apellidos*</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <span class="input-group-text text-white pl-0"><i class="material-icons"></i></span>
+                    <input
+                    type="text"
+                    class="form-control not_underline text-white"
+                    placeholder=""
+                    aria-label="Apellidos"
+                    formControlName="apellido"
+                    />
+                </div>
+                <div *ngIf="formRegistro.get('apellido').invalid && (formRegistro.get('apellido').dirty || formRegistro.get('apellido').touched)" class="text-danger">
+                    <div *ngIf="formRegistro.get('apellido').errors.required" class="invalid-feedback d-block font-weight-bold ml-2">El apellido es requerido *</div>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Correo eléctronico*</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <span class="input-group-text text-white"><i class="material-icons">mail</i></span>
+                    <input
+                    type="email"
+                    class="form-control not_underline text-white"
+                    placeholder=""
+                    aria-label="Email"
+                    formControlName="correo"
+                    />
+                </div>
+                <div *ngIf="formRegistro.get('correo').invalid && (formRegistro.get('correo').dirty || formRegistro.get('correo').touched)" class="text-danger">
+                    <div *ngIf="formRegistro.get('correo').errors.required" class="invalid-feedback d-block font-weight-bold ml-2">El correo es requerido *</div>
+                    <div *ngIf="formRegistro.get('correo').hasError('email')" class="invalid-feedback d-block font-weight-bold ml-2">Por favor, ingresa un correo válido *</div>
+                    <div *ngIf="formRegistro.get('correo').hasError('correoExiste')" class="invalid-feedback d-block font-weight-bold ml-2">Este correo ya está siendo usado. Intente con otro *</div>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Teléfono*</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <span class="input-group-text text-white"><i class="material-icons">phone</i></span>
+                    <input
+                    type="text"
+                    class="form-control not_underline text-white"
+                    placeholder=""
+                    aria-label="Telefono"
+                    formControlName="telefono"
+                    />
+                </div>
+                <div *ngIf="formRegistro.get('telefono').invalid && (formRegistro.get('telefono').dirty || formRegistro.get('telefono').touched)" class="text-danger">
+                    <div *ngIf="formRegistro.get('telefono').errors.required" class="invalid-feedback d-block font-weight-bold ml-2">El teléfono es requerido *</div>
+                    <div *ngIf="formRegistro.get('telefono').hasError('telefonoExiste')" class="invalid-feedback d-block font-weight-bold ml-2">Este teléfono ya está siendo usado. Intente con otro *</div>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Usuario*</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <span class="input-group-text text-white"><i class="material-icons">person</i></span>
+                    <input
+                    type="text"
+                    class="form-control not_underline text-white"
+                    placeholder=""
+                    aria-label="Usuario"
+                    formControlName="usuario"
+                    />
+                </div>
+                <div *ngIf="formRegistro.get('usuario').invalid && (formRegistro.get('usuario').dirty || formRegistro.get('usuario').touched)" class="text-danger">
+                    <div *ngIf="formRegistro.get('usuario').errors.required" class="invalid-feedback d-block font-weight-bold ml-2">El usuario es requerido *</div>
+                    <div *ngIf="formRegistro.get('usuario').hasError('usuarioExiste')" class="invalid-feedback d-block font-weight-bold ml-2">Este usuario ya está siendo usado. Intente con otro *</div>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Contraseña*</label>
+                <div class="input-group mb-3 bg-btn1 py-2">
+                    <span class="input-group-text text-white"><i class="material-icons">lock</i></span>
+                    <input
+                    [type]="showPass"
+                    class="form-control not_underline text-white"
+                    placeholder="Password"
+                    aria-label="password"
+                    formControlName="password"
+                    />
+                    <span class="input-group-text text-white"><i *ngIf="showPass === 'text'" class="material-icons" style="cursor: pointer" (click)="showPassword()">visibility</i><i *ngIf="showPass === 'password'" class="material-icons" style="cursor: pointer" (click)="showPassword()">visibility_off</i></span>
+                </div>
+                <div *ngIf="formRegistro.get('password').invalid && (formRegistro.get('password').dirty || formRegistro.get('password').touched)" class="text-danger">
+                    <div *ngIf="formRegistro.get('password').errors.required" class="invalid-feedback d-block font-weight-bold ml-2">La contraseña es requerida *</div>
+                </div>
+                <h3 class="text-white">Datos empresa</h3>
+                <label class="form-label text-white mb-0 pl-2">Empresa*</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <span class="input-group-text text-white"><i class="material-icons">store</i></span>
+                    <input
+                    type="text"
+                    class="form-control not_underline text-white"
+                    placeholder=""
+                    aria-label="Empresa"
+                    formControlName="empresa"
+                    />
+                </div>
+                <div *ngIf="formRegistro.get('empresa').invalid && (formRegistro.get('empresa').dirty || formRegistro.get('empresa').touched)" class="text-danger">
+                    <div *ngIf="formRegistro.get('empresa').errors.required" class="invalid-feedback d-block font-weight-bold ml-2">La empresa es requerida *</div>
+                    <div *ngIf="formRegistro.get('empresa').hasError('razon_socialExiste')" class="invalid-feedback d-block font-weight-bold ml-2">Esta empresa ya está siendo usado. Intente con otra *</div>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Número registro empresa *</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <span class="input-group-text text-white"><i class="material-icons"></i></span>
+                    <input
+                    type="text"
+                    class="form-control not_underline text-white"
+                    placeholder=""
+                    aria-label="Company"
+                    formControlName="no_empresa"
+                    />
+                </div>
+                <div *ngIf="formRegistro.get('no_empresa').invalid && (formRegistro.get('no_empresa').dirty || formRegistro.get('no_empresa').touched)" class="text-danger">
+                    <div *ngIf="formRegistro.get('no_empresa').errors.required" class="invalid-feedback d-block font-weight-bold ml-2">El número de registro es requerido *</div>
+                    <div *ngIf="formRegistro.get('no_empresa').hasError('no_empresaExiste')" class="invalid-feedback d-block font-weight-bold ml-2">Este Nit ya está siendo usado. Intente con otro *</div>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Sector económico *</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <select class="form-control not_underline text-white px-2" formControlName="selectedSector" (change)="setSector($event.target.value)">
+                        <option value="0" selected (click)="setSector(0)" style="color: #636363">Seleccione un Sector</option>
+                        <option *ngFor="let sectorEconomico of sectoresEconomicos" style="color: #636363" [value]="sectorEconomico.id">{{sectorEconomico.nombre}}</option>
+                    </select>
+                </div>
+                <div *ngIf="formRegistro.get('selectedSector').hasError('seleccionRequerida')" class="invalid-feedback d-block font-weight-bold ml-2">
+                Por favor, selecciona un sector.
+                </div>
+                <label class="form-label text-white mb-0 pl-2">País *</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <select class="form-control not_underline text-white px-2" formControlName="selectedPais" (change)="setPais($event.target.value)">
+                        <option value="0" selected style="color: #636363">Selecione un País</option>
+                        <option *ngFor="let pais of paises" [value]="pais.id" style="color: #636363">{{ pais.nombre }}</option>
+                    </select>
+                </div>
+                <div *ngIf="formRegistro.get('selectedPais').hasError('seleccionRequerida')" class="invalid-feedback d-block font-weight-bold ml-2">
+                    Por favor, selecciona un país.
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Región *</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <select class="form-control not_underline text-white px-2" formControlName="selectedRegion" (change)="setRegion($event.target.value)">
+                        <option value="0" selected style="color: #636363">Seleccione una región</option>
+                        <option *ngFor="let region of regiones" [value]="region.id" style="color: #636363">{{ region.nombre }}</option>
+                    </select>
+                </div>
+                <label class="form-label text-white mb-0 pl-2">Ciudad *</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <select class="form-control not_underline text-white px-2" formControlName="selectedCiudad">
+                        <option value="0" selected style="color: #636363">Seleccione una ciudad</option>
+                        <option *ngFor="let ciudad of ciudades" [value]="ciudad.id" style="color: #636363">{{ ciudad.nombre }}</option>
+                    </select>
+                </div>
+                <div *ngIf="formRegistro.get('selectedCiudad').hasError('seleccionRequerida')" class="invalid-feedback d-block font-weight-bold ml-2">
+                    Por favor, selecciona una ciudad.
+                </div>
+                <h3 class="text-white">Información servicio</h3>
+                <label class="form-label text-white mb-0 pl-2">Sublinea de servicio *</label>
+                <div class="input-group mb-2 bg-btn1 py-2 mt-1">
+                    <select class="form-control not_underline text-white px-2" formControlName="selectedNegocioLinea">
+                        <option value="0" selected style="color: #636363">Seleccione una Línea</option>
+                        <option *ngFor="let Linea of negocios_lineas" [value]="Linea.id" style="color: #636363">{{ Linea.nombre }}</option>
+                    </select>
+                </div>
+                <div *ngIf="formRegistro.get('selectedNegocioLinea').hasError('seleccionRequerida')" class="invalid-feedback d-block font-weight-bold ml-2">
+                    Por favor, selecciona una línea de negocio.
+                </div>
+                <div class="text-center mt-4 mb-2">
+                    <button type="submit" class="btn btn-primary bg-btn1" style="padding: 20px 70px;" [disabled]="!aceptoCondicion" (click)="crearCuenta()">Crear Cuenta</button>
+                </div>
+                <div class="text-center my-2">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="flexCheckDefault" (change)="aceptarCondicion()">
+                    <label class="form-check-label text-white" for="flexCheckDefault">
+                        He leído y acepto los términos del servicio y la política de privacidad
+                    </label>
+                </div>
+                <div class="text-center my-2">
+                    <p>
+                        <a href="https://www.musicar.com/politica-privacidad/">
+                            Términos y condiciones de servicios de política de privacidad de datos
+                        </a>
+                    </p>
+                </div>
+            </form>
+            
+            </div>
+        </div>
+    </div>
+</div>
