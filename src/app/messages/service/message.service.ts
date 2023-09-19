@@ -57,7 +57,7 @@ export class MessageService {
   mod$ = this.moduleSubject.asObservable();
 
   private url: string = 'http://208.76.84.103:3000/api/v1/';
-  private token: string = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJyb290QHJvb3QuY29tIiwidWlkIjoic00yMV8yMl9JMyIsInJvbCI6MSwiaWF0IjoxNjc5NTE4ODk0LCJleHAiOjE3MTEwNzY0OTR9.5KtlrtHAZfsY1aKmxKf0NDHKonCkwwXDkhSA2rt89e0';
+  private token: string = 'Bearer ' + localStorage.getItem('token');//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJyb290QHJvb3QuY29tIiwidWlkIjoic00yMV8yMl9JMyIsInJvbCI6MSwiaWF0IjoxNjc5NTE4ODk0LCJleHAiOjE3MTEwNzY0OTR9.5KtlrtHAZfsY1aKmxKf0NDHKonCkwwXDkhSA2rt89e0';
   boundary = this.generateBoundary();
   // 'Content-Type': `multipart/form-data; boundary=${this.boundary}`
   headers: HttpHeaders = new HttpHeaders({ 'Authorization': this.token });

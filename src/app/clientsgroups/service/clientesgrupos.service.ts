@@ -9,7 +9,7 @@ import * as FileSaver from "file-saver";
 })
 export class ClientesgruposService {
 
-  token:string = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJlbWVfbWFya2V0aW5nQG11c2ljYXIuY29tIiwidWlkIjoic00yMV8yMl9JMjYiLCJyb2wiOjEsImlhdCI6MTY5Mjc5ODQ4NywiZXhwIjoxNzI0MzU2MDg3fQ.IlFr36wBO768_nAHfYe6xQkzFXE53FSyvfW-tA7B33A`;
+  token:string = 'Bearer ' + localStorage.getItem('token'); //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3JyZW8iOiJlbWVfbWFya2V0aW5nQG11c2ljYXIuY29tIiwidWlkIjoic00yMV8yMl9JMjYiLCJyb2wiOjEsImlhdCI6MTY5Mjc5ODQ4NywiZXhwIjoxNzI0MzU2MDg3fQ.IlFr36wBO768_nAHfYe6xQkzFXE53FSyvfW-tA7B33A`;
   url:string = 'http://208.76.84.103:3000/api/v1/';
   private headers: HttpHeaders = new HttpHeaders({ 'Authorization': this.token });
   constructor(private http: HttpClient) { }

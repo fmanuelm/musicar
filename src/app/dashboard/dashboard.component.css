@@ -92,10 +92,10 @@
   {
     position: fixed;
     bottom: 20px;
-    right: 7px;
+    right: 20px;
   }
   .whatsapp a img {
-    width: 70px;
+    width: 100px;
   }
   
   .menu button {
@@ -156,7 +156,7 @@
   }
 
   .col-responsive {
-    height: 100vh; 
+    /*height: 100vh;*/
     border-right: 2px solid #333; 
     border-left: 2px solid #333;
   }
@@ -185,13 +185,13 @@
     }
   }
 
-  @media (max-width: 850px) {
-    .icono-footer {
-        height: 35px;
-    }
+@media (max-width: 850px) {
+  .icono-footer {
+      height: 35px;
+  }
 }
 @media (min-width: 851px) {
-    .icono-footer {
-        height: 50px;
-    }
+  .icono-footer {
+    height: 50px;
+  }
 }

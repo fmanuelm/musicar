@@ -28,7 +28,8 @@ button.menu-icon {
     cursor: pointer;
     z-index: 1000;
     position: absolute;
-    right: 20px;
+    right: 40px;
+    top: 40px;
     color: #000;
   }
 
