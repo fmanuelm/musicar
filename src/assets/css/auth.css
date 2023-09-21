@@ -1,5 +1,14 @@
 .recovery_password_modal {
     border-radius: 30px !important;
+    padding: 40px 0 1.25em !important;
+}
+
+.recovery_password_modal button.swal2-close {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    right: 10px;
+    position: absolute;
+    top: 10px;
 }
 
 .bg-btn1 {

@@ -69,6 +69,7 @@
                     placeholder=""
                     aria-label="Telefono"
                     formControlName="telefono"
+                    (input)="soloNumeros($event)"
                     />
                 </div>
                 <div *ngIf="formRegistro.get('telefono').invalid && (formRegistro.get('telefono').dirty || formRegistro.get('telefono').touched)" class="text-danger">
@@ -162,6 +163,9 @@
                         <option value="0" selected style="color: #636363">Seleccione una región</option>
                         <option *ngFor="let region of regiones" [value]="region.id" style="color: #636363">{{ region.nombre }}</option>
                     </select>
+                </div>
+                <div *ngIf="formRegistro.get('selectedRegion').hasError('seleccionRequerida')" class="invalid-feedback d-block font-weight-bold ml-2">
+                    Por favor, selecciona una región.
                 </div>
                 <label class="form-label text-white mb-0 pl-2">Ciudad *</label>
                 <div class="input-group mb-2 bg-btn1 py-2 mt-1">

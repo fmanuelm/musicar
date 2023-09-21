@@ -20,6 +20,7 @@ export class CreateComponent implements OnInit {
   public clientesTemp = [];
   public principalSelected : number;
   public clientesSelects : any = [];
+  public clientesSelectsTemp : any[] = [];
   public principal : number = null;
   constructor(private _formBuilder: FormBuilder, private _clientsgroupsservice: ClientesgruposService, private router: Router) { }
 
@@ -60,28 +61,30 @@ export class CreateComponent implements OnInit {
     
   }
   selectClient(client) {
-    let tempClientesSelects = this.clientesSelects;
-    if (this.clientesSelects.length > 0)
+    let encontrado = -1;
+    let tempClientesSelects = this.clientesSelectsTemp;
+    if (this.clientesSelectsTemp.length > 0)
     {
-      
-      for(let i = 0; i < this.clientesSelects.length; i++)
+      for(let i = 0; i < this.clientesSelectsTemp.length; i++)
       {
-        const id = this.clientesSelects[i].id;
-        
-        if (id === client.id)
-        {
-          tempClientesSelects.splice(i, 1);
+        const id = this.clientesSelectsTemp[i].id; 
+        if (id === client.id || id == client.id)
+        { 
+          encontrado = i;
         }
-        else {
-          
-          tempClientesSelects.push(client);
-        }
+      }
+      if (encontrado !== -1)
+      {
+        tempClientesSelects.splice(encontrado, 1);
+      }
+      else {
+        tempClientesSelects.push(client);
       }
     }
     else {
       tempClientesSelects.push(client);
     }
-    this.clientesSelects = tempClientesSelects;
+    this.clientesSelectsTemp = tempClientesSelects;
   }
 
   selectPrincipal(id)
@@ -106,73 +109,89 @@ export class CreateComponent implements OnInit {
   sendForm() {
     let datos = {nombre:this.form.get('nombre_grupo').value};
     console.log(datos);
+  
+    /*
     for(let clienteAgregado of this.clientesAgregados)
     {
       console.log(clienteAgregado);
     }
-    
-    this._clientsgroupsservice.createClienteGrupo(datos).subscribe(resp=>{
-      console.log(resp);
-      if (resp.status === 201)
-      {
-        let id_grupo = resp.response;
-        // leer todos los grupos
-        for(let clienteAgregado of this.clientesAgregados)
+    */
+    if (this.principal !== null)
+    {
+      this._clientsgroupsservice.createClienteGrupo(datos).subscribe(resp=>{
+        console.log(resp);
+        if (resp.status === 201)
         {
-          let datos2 = {};
-
-          if (clienteAgregado.id == this.principal)
+          let id_grupo = resp.response;
+          // leer todos los grupos
+          for(let clienteAgregado of this.clientesAgregados)
           {
-            datos2 = {
-              clientes_principal: true,
-              cliente: clienteAgregado.id,
-              cliente_grupo: id_grupo
+            let datos2 = {};
+
+            if (clienteAgregado.id == this.principal)
+            {
+              datos2 = {
+                clientes_principal: true,
+                cliente: clienteAgregado.id,
+                cliente_grupo: id_grupo
+              }
+              
             }
+            else {
+              datos2 = {
+                clientes_principal: false,
+                cliente: clienteAgregado.id,
+                cliente_grupo: id_grupo
+              }
+              
+            }
+            // aqui llamo la otra funcion para asignarle clientes
+            
+            this._clientsgroupsservice.createRelationClienteGrupo(datos2).subscribe(resp2=>{
+              console.log(resp2);
+              
+              if (resp.status == 201) {
+                swal.fire({
+                  title: 'Confirmación.',
+                  text: resp.message,
+                  buttonsStyling: false,
+                  customClass: {
+                    confirmButton: "btn btn-success",
+                  },
+                  icon: 'success'
+                });
+                this.router.navigate(
+                  ['clientes-grupos/list']
+                );
+              } else {
+                swal.fire({
+                  title: 'Error.',
+                  text: resp.message,
+                  buttonsStyling: false,
+                  customClass: {
+                    confirmButton: "btn btn-success",
+                  },
+                  icon: 'error'
+                });
+              }
+              
+            });
             
           }
-          else {
-            datos2 = {
-              clientes_principal: false,
-              cliente: clienteAgregado.id,
-              cliente_grupo: id_grupo
-            }
-            
-          }
-          // aqui llamo la otra funcion para asignarle clientes
-          
-          this._clientsgroupsservice.createRelationClienteGrupo(datos2).subscribe(resp2=>{
-            console.log(resp2);
-            
-            if (resp.status == 201) {
-              swal.fire({
-                title: 'Confirmación.',
-                text: resp.message,
-                buttonsStyling: false,
-                customClass: {
-                  confirmButton: "btn btn-success",
-                },
-                icon: 'success'
-              });
-              this.router.navigate(
-                ['clientes-grupos/list']
-              );
-            } else {
-              swal.fire({
-                title: 'Error.',
-                text: resp.message,
-                buttonsStyling: false,
-                customClass: {
-                  confirmButton: "btn btn-success",
-                },
-                icon: 'error'
-              });
-            }
-             
-          });
-          
         }
-      }
-    });
+      });
+    }
+    else {
+      swal.fire({
+        title: 'Error.',
+        text: "Debe indicar un cliente principal",
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: "btn btn-success",
+        },
+        icon: 'error'
+      });
+    }
   }
   cancelModal() {
 
@@ -192,22 +211,23 @@ export class CreateComponent implements OnInit {
     
   }
   deleteCliente() { // clientesAgregados
-    console.log(this.clientesSelects);
-    console.log(this.clientesSelects.length);
-    
-    for(let i = 0; i < this.clientesSelects.length; i++)
-    {
-      const id = this.clientesSelects[i].id;
-      console.log(id);
-      let tempClientes = this.clientesAgregados.filter(elem => elem.id !== id);
-      this.clientesAgregados = tempClientes;
-
-    }
-    this.clientesSelects = [];
+    this.clientesAgregados = this.clientesAgregados.filter(cliente =>
+      !this.clientesSelectsTemp.some(tempCliente => {
+        if (tempCliente.id === cliente.id)
+        {
+          if (this.principal === cliente.id)
+          {
+            this.principal = null;
+          }
+          return tempCliente;
+        }
+      })
+    );
   }
 
   selectAll(elementos)
   {
-    this.clientesSelects = elementos;
+    //this.clientesSelects = elementos;
+    this.clientesSelectsTemp = elementos;
   }
 }

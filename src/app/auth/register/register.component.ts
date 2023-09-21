@@ -50,6 +50,11 @@ export class RegisterComponent implements OnInit {
       selectedCiudad: [0]
     });
   }
+  soloNumeros(event: any) {
+    const input = event.target.value;
+    const soloNumeros = input.replace(/[^0-9]/g, ''); // Elimina todo excepto números
+    this.formRegistro.controls['telefono'].setValue(soloNumeros); // Actualiza el valor del control del formulario
+  }
   seleccionRequerida(control: AbstractControl): { [key: string]: any } | null {
     if (control.value === 0) {
       return { 'seleccionRequerida': true };

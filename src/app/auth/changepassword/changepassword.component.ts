@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-changepassword',
@@ -8,7 +9,7 @@ import swal from 'sweetalert2';
 })
 export class ChangepasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
   private email: string = 'fmanuelm@hotmail.com';
   ngOnInit(): void {
   }
@@ -16,13 +17,16 @@ export class ChangepasswordComponent implements OnInit {
   submitHandle()
   {
     swal.fire({
-      title: 'Confirmación.',
+      title: 'Solicitaste cambiar tu contraseña',
       text: `Hola, hemos enviado un correo electrónico a ${this.email} con un enlace para que realices el cambio de tu contraseña.`,
       buttonsStyling: false,
       showCloseButton: true,
       customClass: {
         popup: 'recovery_password_modal',
         confirmButton: "btn bg-btn1",
+      },
+      preConfirm: ()=> {
+        this.router.navigate(['/auth']);
       },
       confirmButtonText: 'Iniciar sesión',
       color: '#fff',
