@@ -19,7 +19,28 @@ export class UsersavailabilityService {
 
   getUsuariosDisponibilidad(): Observable<any[]> {
     const id_user = localStorage.getItem("id");
-    
+    return this.http.get<any[]>(`${this.url}usuarios/relations/usuarios-and-clientes/xcliente/${id_user}`, { headers: this.headers }).pipe(map(users => {
+      console.log(users);
+      let usuarios: any = users;
+      if (usuarios.status === 200 || usuarios.status === 201)
+      {
+        return users.map((user: any) => ({
+            ...user,
+            id: user.id,
+            nombres: user.usuario.nombre,
+            apellidos: user.usuario.apellido,
+            tipo_usuario: user.usuarios_tipo.tipo_usuario,
+            disponibilidad: user.usuarios_disponibilidad.estado_usuario,
+            pais: user.cliente.paises.nombre,
+            cliente:user.cliente.nit
+          }));
+        }
+        else {
+          return [];
+        }
+        
+      }));
+    /*
     return from(this.getAllUsuarios()).pipe(
       switchMap(() => {
         console.log(this.allUsuarios);
@@ -43,6 +64,7 @@ export class UsersavailabilityService {
         );
       })
     );
+    */
   }
   
   getNit(id)

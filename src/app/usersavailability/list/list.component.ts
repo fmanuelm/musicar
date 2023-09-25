@@ -17,7 +17,15 @@ export class ListComponent implements OnInit {
   getUsuariosDisponibilidad()
   {
     this.userAvability.getUsuariosDisponibilidad().subscribe(resp=>{
-      this.usuarios = resp;
+      let respuesta:any = resp;
+      if (respuesta.length > 0)
+      {
+        if (respuesta.status === 200 || respuesta.respuesta === 201)
+        {
+          this.usuarios = resp;
+        }
+      }
+      
     });
   }
   getUsuariosById()

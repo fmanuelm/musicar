@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientesgruposService } from '../service/clientesgrupos.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import swal from 'sweetalert2';
 declare var $: any;
 @Component({
@@ -28,6 +28,7 @@ export class EditComponent implements OnInit {
   public datosCliente: any = {};
   public id_relacion_clientes:any[]=[];
   public principal:number=null;
+  public errorGuardando = '';
   constructor(private _formBuilder: FormBuilder, private _clientsgroupsservice: ClientesgruposService, private router: Router, private route: ActivatedRoute) { }
   
   ngOnInit(): void {
@@ -119,15 +120,19 @@ export class EditComponent implements OnInit {
   sendForm() {
     if (this.principal !== null)
     {
+      
       let datos = { id: this.id_grupo, nombre: this.form.get('nombre_grupo').value };
       this._clientsgroupsservice.modifyClienteGrupo(datos).subscribe(resp=>{
+        console.log("guarda cambios");
+        console.log(resp);
         if (resp.status === 202)
         {
           // eliminar todas las relaciones
+          console.log("eliminar todas las relaciones: ");
           const observables = this.id_relacion_clientes.map(id => this._clientsgroupsservice.deleteRelationClienteGrupo(id));
           forkJoin(observables).subscribe(
             () => {            
-              console.log('Todas las llamadas se han completado');
+              
               for(let clienteAgregado of this.clientesAgregados)
               {
                 let datos2 = {};
@@ -190,7 +195,90 @@ export class EditComponent implements OnInit {
               console.error('Ocurrió un error:', error);
             }
           );
-          
+          if (this.id_relacion_clientes.length === 0)
+          {
+            console.log("crea las relaciones " + this.clientesAgregados.length);
+
+            //for(let clienteAgregado of this.clientesAgregados)
+            let observables2 = this.clientesAgregados.map((clienteAgregado) => {
+              
+              let datos2 = {};
+
+              if (clienteAgregado.id == this.principal)
+              {
+                datos2 = {
+                  clientes_principal: true,
+                  cliente: clienteAgregado.id,
+                  cliente_grupo: this.id_grupo
+                }
+                console.log("principal");
+              }
+              else {
+                datos2 = {
+                  clientes_principal: false,
+                  cliente: clienteAgregado.id,
+                  cliente_grupo: this.id_grupo
+                }
+                console.log("no principal");
+              }
+
+              return this._clientsgroupsservice.createRelationClienteGrupo(datos2);/*.subscribe(resp2=>{
+                console.log(resp2);
+                
+                if (resp2.status == 201) {
+                  
+                } else {
+                  this.errorGuardando = "Se ha producido un error inesperado. Talvés no se han podido guardar todos los clientes.";
+                }
+                return resp2;
+              });
+              */
+            });
+            forkJoin(observables2).subscribe(
+              () => {
+                swal.fire({
+                  title: 'Confirmación.',
+                  text: "Actualizado con exito",
+                  buttonsStyling: false,
+                  customClass: {
+                    confirmButton: "btn btn-success",
+                  },
+                  icon: 'success'
+                });
+                this.router.navigate(
+                  ['clientes-grupos/detail', this.id_grupo]
+                );
+                /*
+                if (this.errorGuardando === '') {
+                  swal.fire({
+                    title: 'Confirmación.',
+                    text: "resp.message",
+                    buttonsStyling: false,
+                    customClass: {
+                      confirmButton: "btn btn-success",
+                    },
+                    icon: 'success'
+                  });
+                  this.router.navigate(
+                    ['clientes-grupos/detail', this.id_grupo]
+                  );
+                } else {
+                  swal.fire({
+                    title: 'Error.',
+                    text: this.errorGuardando,
+                    buttonsStyling: false,
+                    customClass: {
+                      confirmButton: "btn btn-success",
+                    },
+                    icon: 'error'
+                  });
+                }
+                */
+              },
+              error => {
+                console.error('Ocurrió un error:', error);
+              });
+          }
         }
       });
     }

@@ -4,6 +4,7 @@ import { map, switchMap } from 'rxjs/operators'
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable'
 import * as FileSaver from "file-saver";
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -56,6 +57,10 @@ export class ClientesgruposService {
     return this.http.patch<any>(`${this.url}clientes/clientes-grupos`, datos, { headers: this.headers });
   }
   createRelationClienteGrupo(datos)
+  {
+    return this.http.post<any>(`${this.url}clientes/relations/clientes-and-clientes-grupo`, datos, { headers: this.headers });
+  }
+  createRelationClienteGrupoObs(datos):Observable<any>
   {
     return this.http.post<any>(`${this.url}clientes/relations/clientes-and-clientes-grupo`, datos, { headers: this.headers });
   }
