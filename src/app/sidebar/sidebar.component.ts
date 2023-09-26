@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import PerfectScrollbar from 'perfect-scrollbar';
+//import PerfectScrollbar from 'perfect-scrollbar';
 import { Router, NavigationEnd } from '@angular/router';
 declare const $: any;
 

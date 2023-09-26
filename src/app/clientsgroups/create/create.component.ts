@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientesgruposService } from '../service/clientesgrupos.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+declare var $: any;
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',

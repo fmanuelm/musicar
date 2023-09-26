@@ -26,7 +26,7 @@ export class ClientesgruposService {
 
   getClientes()
   {
-    return this.http.get<any[]>(`${this.url}clientes/all`, { headers: this.headers }).pipe(map(Clientes => {
+    return this.http.get<any[]>(`${this.url}clientes/singrupo`, { headers: this.headers }).pipe(map(Clientes => {
       console.log("datos enteros:");
       console.log(Clientes);
       return Clientes.map((Client) => ({
@@ -34,7 +34,7 @@ export class ClientesgruposService {
         razon_social: Client.razon_social,
         razon_comercial: Client.razon_comercial,
         nit: Client.nit,
-        pais: Client.paises.nombre
+        pais: Client.pais
       }));
     }));
   }

@@ -37,7 +37,6 @@ export class ListComponent implements OnInit {
   viewClientGroup(id: number)
   {
     //alert(id);
-    
     this.router.navigate(
       ['clientes-grupos/detail', id]
     );

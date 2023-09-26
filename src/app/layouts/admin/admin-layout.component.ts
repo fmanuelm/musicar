@@ -4,7 +4,7 @@ import { NavItem, NavItemType } from '../../md/md.module';
 import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { MenuprincipalComponent } from '../../menuprincipal/menuprincipal.component';
-import PerfectScrollbar from 'perfect-scrollbar';
+//import PerfectScrollbar from 'perfect-scrollbar';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -53,6 +53,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
              elemSidebar.scrollTop = 0;
         });
         const html = document.getElementsByTagName('html')[0];
+        /*
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             let ps = new PerfectScrollbar(elemMainPanel);
             ps = new PerfectScrollbar(elemSidebar);
@@ -61,6 +62,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         else {
             html.classList.add('perfect-scrollbar-off');
         }
+        */
         this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
           this.navbar.sidebarClose();
         });
@@ -129,9 +131,9 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
       if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
         const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
         const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-        let ps = new PerfectScrollbar(elemMainPanel);
-        ps = new PerfectScrollbar(elemSidebar);
-        ps.update();
+        //let ps = new PerfectScrollbar(elemMainPanel);
+        //ps = new PerfectScrollbar(elemSidebar);
+        //ps.update();
       }
     }
     isMac(): boolean {

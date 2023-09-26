@@ -29,6 +29,7 @@ export class EditComponent implements OnInit {
   public id_relacion_clientes:any[]=[];
   public principal:number=null;
   public errorGuardando = '';
+  
   constructor(private _formBuilder: FormBuilder, private _clientsgroupsservice: ClientesgruposService, private router: Router, private route: ActivatedRoute) { }
   
   ngOnInit(): void {

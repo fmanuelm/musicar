@@ -77,6 +77,30 @@ button {
     margin-bottom: 2rem;
     
   }
+  @media (max-width: 768px) {
+    .col-responsive {
+        height: auto;
+        border:unset;
+    }
+    .options li {
+        font-size: 3rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .options2 li {
+        font-size: 1.3rem;
+    }
+
+    .options {
+        list-style: none;
+        color: #333;
+        margin-top: 3rem;
+    }
+    .title-menu {
+        padding-top: 0px;
+    }
+  }
+  
   @media (max-width: 850px) {
     .icono-footer {
         height: 35px;
