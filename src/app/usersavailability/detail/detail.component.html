@@ -2,7 +2,7 @@
     <div class="container-fluid">
         
             <div class="row">
-                <app-breadcrumb view="detail"></app-breadcrumb>
+                <app-breadcrumb view="detail" [id]="idUsuario"></app-breadcrumb>
                 <div class="col-md-12 mt-3">
                     
                 </div>
@@ -28,10 +28,10 @@
                         </div>
                         <div class="card-body ">
                             
-                            <div class="row ml-4 pl-4 mt-3">
+                            <div class="row mt-3">
                                 
                             </div>
-                            <div class="row ml-4 pl-4 mt-2">
+                            <div class="row mt-2">
                                 <div class="col-sm-12">
                                     <p-table [globalFilterFields]="['nombres', 'apellidos', 'tipo_usuario', 'disponibilidad']" id="tableUsuarios" #tableUsuarios
                                         [value]="usuariosSelects" [paginator]="true" [rows]="10">
