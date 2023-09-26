@@ -34,7 +34,7 @@
                         </div>
                         <div class="card-body ">
                             
-                            <div class="row ml-4 pl-4 mt-3">
+                            <div class="row mt-3">
                                 <div class="col-sm-5">
                                     <button mat-raised-button type="button" class="btn btn-fill btn-success"
                                         data-toggle="modal" data-target="#modalUsuarios">Agregar
@@ -44,7 +44,7 @@
                                         usuario</button>
                                 </div>
                             </div>
-                            <div class="row ml-4 pl-4 mt-2">
+                            <div class="row mt-2">
                                 <div class="col-sm-12">
                                     <p-table [globalFilterFields]="['nombres', 'apellidos', 'tipo_usuario', 'disponibilidad']" id="tableUsuarios" #tableUsuarios
                                         [value]="usuariosSelects" [paginator]="true" [rows]="10">
