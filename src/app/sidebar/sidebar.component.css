@@ -41,7 +41,7 @@ button {
 }
   
 .menu .menu2 {    
-    background-color: #fff;
+    background-color: #f2f2f2;
     padding: 20px;
     width: 100vw;
     position: absolute;
@@ -54,24 +54,32 @@ button {
 }
 
 .options {
-    list-style: none;
-    color: #333;
-    margin-top: 5rem;
+  list-style: none;
+  color: #333;
+  /*margin-top: 5rem;*/
   }
   .options2 {
     list-style: none;
     color: #333;
   }
   .options li {
-    font-size: 4.5rem;
-    margin-bottom: 4.5rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .lineas-musicar {
+    margin-top: 0px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    font-size: 2rem;
     font-weight: bold;
   }
+  /*
   .options li a:hover {
     color: white;
     text-shadow: 2px 2px 4px #000000;
     text-decoration: underline;
   }
+  */
   .options2 li {
     font-size: 2rem;
     margin-bottom: 2rem;

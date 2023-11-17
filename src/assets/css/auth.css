@@ -1,6 +1,8 @@
 .recovery_password_modal {
     border-radius: 30px !important;
     padding: 40px 0 1.25em !important;
+    border: 2px solid #c1e7f6 !important;
+    background: url(/assets/img/login-07.jpg) !important;
 }
 
 .recovery_password_modal button.swal2-close {
@@ -11,12 +13,27 @@
     top: 10px;
 }
 
+.swal2-close {
+    color: #fff !important;
+}
 .bg-btn1 {
     text-transform: unset;
     font-size: 1.3rem;
-    background: rgb(1,54,108);
-    background: linear-gradient(90deg, rgba(1,54,108,1) 0%, rgba(1,54,108,1) 16%, rgba(1,71,131,1) 96%);
+    /*background: rgb(1,54,108);*/
+    /*background: linear-gradient(90deg, rgba(1,54,108,1) 0%, rgba(1,54,108,1) 16%, rgba(1,71,131,1) 96%);*/
     border-radius: 15px;
+    background: #22a4db;
+    border: 1px solid #4dbde9;
+}
+.bg-btn1:focus {
+    color: #fff !important;
+    background-color: transparent !important;
+    border-color: #fff !important;
+}
+.bg-btn1:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: #fff;
 }
 .bg-btn2 {
     text-transform: unset;

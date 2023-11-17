@@ -7,7 +7,7 @@
     background-repeat: no-repeat;
 }
 .aplicacion {
-    font-size: 5rem;
+    font-size: 4.7rem;
     line-height: 30px;
     /*line-height: 0.8rem;*/
 }
@@ -36,6 +36,26 @@
     font-weight: bold;
   }
   
+  @media (max-width: 1071px) {
+    .aplicacion {
+      font-size: 3.7rem;
+    }
+
+    .musicar {
+      font-size: 5.2rem;
+    }
+  }
+
+  @media (max-width: 861px) {
+    .aplicacion {
+      font-size: 3.4rem;
+    }
+
+    .musicar {
+      font-size: 4.7rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .carousel-item2 {
       flex: 0 0 33.33%; /* For mobile, 3 columns */
@@ -44,16 +64,27 @@
         height: auto;
     }
     .aplicacion {
-      font-size: 3.7rem;
+      font-size: 3.3rem;
       line-height: 30px;
       /*line-height: 0.8rem;*/
     }
     .musicar {
-        font-size: 4.9rem;
+        font-size: 4.6rem;
         /*line-height: 0.8rem;*/
     }
   }
   
+  @media (max-width: 410px) {
+    .aplicacion {
+      font-size: 2.8rem;
+      line-height: 30px;
+      /*line-height: 0.8rem;*/
+    }
+    .musicar {
+        font-size: 4rem;
+        /*line-height: 0.8rem;*/
+    }
+  }
   @keyframes slide {
     0%, 100% {
       transform: translateX(0);
@@ -107,7 +138,7 @@
   
   .menu .menu2 {
     
-    background-color: #fff;
+    background-color: #f2f2f2;
     padding: 20px;
     width: 100vw;
     position: absolute;
@@ -121,22 +152,23 @@
   .options {
     list-style: none;
     color: #333;
-    margin-top: 5rem;
+    /*margin-top: 5rem;*/
   }
   .options2 {
     list-style: none;
     color: #333;
   }
   .options li {
-    font-size: 4.5rem;
-    margin-bottom: 4.5rem;
-    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
+  /*
   .options li a:hover {
     color: white;
     text-shadow: 2px 2px 4px #000000;
     text-decoration: underline;
   }
+  */
   .options2 li {
     font-size: 2rem;
     margin-bottom: 2rem;
@@ -157,20 +189,49 @@
 
   .col-responsive {
     /*height: 100vh;*/
+    /*
     border-right: 2px solid #333; 
     border-left: 2px solid #333;
+    */
   }
-  
+  .lineas-musicar {
+    margin-top: 0px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .thumbnail {
+    max-width: 500px;
+  }
+  @media (max-width: 420px) {
+    .thumbnail {
+      max-width: 360px !important;
+    }
+  }
+  .show-only-mobile {
+    display: none;
+  }
   @media (max-width: 768px) {
     .col-responsive {
         height: auto;
         border:unset;
     }
+    .thumbnail {
+      max-width: 412px;
+    }
+    .show-only-pc {
+      display: none;
+    }
+    .show-only-mobile {
+      display: initial;
+    }
+    /*
     .options li {
         font-size: 3rem;
         margin-bottom: 2.5rem;
     }
-
+    */
     .options2 li {
         font-size: 1.3rem;
     }

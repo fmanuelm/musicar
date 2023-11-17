@@ -1,27 +1,27 @@
 <div class="menu">
   <div class="menu2" [ngClass]="{'open': isMenuOpen}">
-    <img src="/assets/img/logo-musicar.png" style="max-width: 200px;"/>
-    <div class="row">
+    <div class="row" style="margin-top: 5rem !important;">
       <div class="col-md-6">
+        <h3 class="lineas-musicar">Lineas musicar</h3>
         <ul class="options">
           <li>
-            <a href="/#/mensajes/home">VOICE</a>
+            <a href="/#/mensajes/home">Voice</a>
           </li>
           <li>
-            <a href="">MUSICAL</a>
+            <a href="">Musical</a>
           </li>
           <li>
-            <a href="">VISUAL</a>
+            <a href="">Visual</a>
           </li>
           <li>
-            <a href="">EQUIPMENT</a>
+            <a href="">Equipment</a>
           </li>
           <li>
-            <a href="">OLFA</a>
+            <a href="">Olfa</a>
           </li>
         </ul>
       </div>
-      <div class="col-md-3 col-responsive">
+      <div class="col-md-6 col-responsive">
         <div class="row">
           <div class="col-6 col-md-12">
             <ul class="options2">
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 d-flex align-items-end">
+      <div class="col-md-3 d-none align-items-end">
         <div class="w-100">
         <div class="row">
           <div class="col-md-12 col-4 align-items-center mb-3">
@@ -82,7 +82,7 @@
   <span *ngIf="isMenuOpen === true" class="material-symbols-outlined" style="font-size: 80px; color: #000">
   menu
   </span>
-  <span *ngIf="isMenuOpen === false" class="material-symbols-outlined" style="font-size: 80px;">
-    cancel
+  <span *ngIf="isMenuOpen === false" class="material-symbols-outlined" style="font-size: 80px; color: #aaa">
+    close
     </span>
 </button>

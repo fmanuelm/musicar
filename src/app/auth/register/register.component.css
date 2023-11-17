@@ -2,8 +2,21 @@
     margin-top: 0px;
     padding: 100px 15px;
     min-height: calc(100vh);
+    /*
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(6,30,64,1) 16%, rgba(135,146,164,1) 96%);
+    */
+    background: url(/assets/img/login-07.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+@media (max-width: 768px)
+{
+    .crear_cuenta {
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
 }
 form {
     border-radius: 40px;
@@ -12,10 +25,15 @@ form {
 .bg-btn1 {
     text-transform: unset;
     font-size: 1.3rem;
-    background: rgb(1,54,108);
-    background: linear-gradient(90deg, rgba(1,54,108,1) 0%, rgba(1,54,108,1) 16%, rgba(1,71,131,1) 96%);
+    background: #029ff0;
     border-radius: 15px;
+    border-color: transparent;
 }
+.btn.btn-primary:hover {
+    color: #fff;
+    background-color: #01adef;
+    border-color: #01acf1;
+  }
 .bg-btn2 {
     text-transform: unset;
     background: rgb(0,70,130);
@@ -23,6 +41,9 @@ form {
 }
 .not_underline {
     background-image: unset;
+}
+.not_underline::placeholder {
+    color: #fff;
 }
 .btn-limpiar {
     background: transparent;

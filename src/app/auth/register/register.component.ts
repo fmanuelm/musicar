@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
       selectedRegion: [0],
       selectedCiudad: [0]
     });
+
   }
   soloNumeros(event: any) {
     const input = event.target.value;
@@ -106,16 +107,25 @@ export class RegisterComponent implements OnInit {
           {
             swal.fire(
               {
-                title: 'Confirmación',
-                text: resp.message,
-                icon: 'success',
+                
+                text: "Hola, gracias por crear una nueva cuenta para acceder a Musicar. Para usar todos los servicios de Musicar, hemos enviado un enlace a tu correo electrónico el cual debes verificar.",
+                imageUrl: "/assets/img/logo-musicar-white-small.png",
+                showCloseButton: true,
+                /*background: "#83cfef",*/
+                color: "#ffffff",
+                
                 customClass: {
-                  confirmButton: "btn btn-success",
+                  popup: 'recovery_password_modal',
+                  confirmButton: "btn bg-btn1 iniciar_session",
                 },
+                preConfirm: ()=> {
+                  this.router.navigate(['/auth']);
+                },
+                confirmButtonColor: "#fff",
+                confirmButtonText: "Iniciar sesión",
                 buttonsStyling: false
               }
             )
-            this.router.navigate(['/auth/']);
           }
           else {
             if (resp.message.indexOf("correo") !== -1)
@@ -138,21 +148,24 @@ export class RegisterComponent implements OnInit {
             {
               this.formRegistro.get('no_empresa').setErrors({ 'no_empresaExiste': true });
             }
-            /*
-            swal.fire(
-              {
-                title: 'Error',
-                text: resp.message,
-                icon: 'error',
-                customClass: {
-                  confirmButton: "btn btn-success",
-                },
-                buttonsStyling: false
-              }
-            )
-            */
+            
+            //swal.fire(
+            //  {
+            //    title: 'Error',
+            //    text: resp.message,
+            //    icon: 'error',
+            //    customClass: {
+            //      confirmButton: "btn btn-success",
+            //    },
+            //    buttonsStyling: false
+            //  }
+            //)
+            
           }
         });
+      
+        
+        
     }
     else {
       this.marcarCamposTocados(this.formRegistro);
@@ -184,10 +197,11 @@ export class RegisterComponent implements OnInit {
   }
   setPais(id: number)
   {
-    
+    const id_str : string = id.toString();
     // las condicones para la regiones
-    if (id !== 0)
+    if (id_str !== '0')
     {
+      console.log(`diferente de cero ${id}`);
       this.authService.getRegiones(id).subscribe((resp)=>{
         console.log("regiones...");
         console.log(resp);
@@ -202,8 +216,11 @@ export class RegisterComponent implements OnInit {
       });
     }
     else {
-      this.regiones=[];
-      this.ciudades=[];
+      this.ciudades = [];
+      this.regiones = [];
+            
+      
+
     }
   }
   setRegion(id: number) {
