@@ -5,15 +5,15 @@
             
             <form class="border" style="padding: 4rem 1rem !important;">
                 <div class="text-center">
-                    <img src="/assets/img/logo-musicar-white.png" width="200"/>
+                    <a href="/"><img src="/assets/img/logo-musicar-white.png" width="200"/></a>
                 </div>
                 <div class="input-group bg-btn1 py-2 mt-4">
                     <span class="input-group-text text-white" id="basic-addon1"><i class="material-icons">person</i></span>
                     <input
                     type="text"
                     class="form-control not_underline text-white"
-                    placeholder="Username"
-                    aria-label="Username"
+                    placeholder="Usuario"
+                    aria-label="Usuario"
                     aria-describedby="basic-addon1"
                     [(ngModel)]="email" 
                     
@@ -43,14 +43,14 @@
                     <a class="text-white font-weight-bold" href="/#/auth/change_password">¿Olvidó Contraseña?</a>
                 </p>
                 <div class="text-center my-3">
-                    <button type="button" class="btn btn-primary bg-btn1" (click)="handleLogin()" style="padding: 12px 70px;">Ingresar</button>
+                    <button type="button" class="btn btn-primary bg-btn1" (click)="handleLogin()" style="padding: 12px 70px;border-width: 0px; background: linear-gradient(to right, #51ddfb, #58bfe6, #1a7cbe);">Ingresar</button>
                 </div>
                 <div class="row">
                     <div class="col-md-6 d-flex align-items-center justify-content-center text-center text-white font-weight-bold">
                         <p class="mb-0">¿No tienes una cuenta?</p>
                     </div>
                     <div class="col-md-6 text-center">
-                        <a href="/#/auth/register" class="btn btn-primary bg-btn2 font-weight-bold">Crear cuenta</a>
+                        <a href="/#/auth/register" class="btn btn-primary bg-btn2 font-weight-bold" style="border-width: 0px; background: linear-gradient(to right, #51ddfb, #58bfe6, #1a7cbe);">Crear cuenta</a>
                     </div>
                 </div>    
             </form>

@@ -40,7 +40,7 @@ form {
     background: linear-gradient(90deg, rgba(0,70,130,1) 0%, rgba(1,82,145,1) 16%, rgba(2,97,163,1) 96%);
     */
     box-shadow: none;
-    background: #029ff0;
+    background: linear-gradient(to right, #51ddfb, #58bfe6, #1a7cbe);
     border: 1px solid #ebe2ec8f;
     border-radius: 15px;
     font-size: 1rem;

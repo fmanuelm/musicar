@@ -1,5 +1,7 @@
 <div class="main-content" *ngIf="images.length > 0" [style.background]="images[itemUnderline].color">
-  <img src="/assets/img/logo-musicar-white.png" width="200"/>
+  <div class="logo">
+    <img src="/assets/img/logo-musicar-white.png" width="200"/>
+  </div>
   <div class="menu">
     <div class="menu2" [ngClass]="{'open': isMenuOpen}">
       

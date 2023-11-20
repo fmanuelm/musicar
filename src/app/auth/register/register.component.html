@@ -9,7 +9,7 @@
                         <h2 class="text-white crear_cuenta">Crear cuenta</h2>
                     </div>
                     <div class="col-5">
-                        <img src="/assets/img/logo-musicar-white.png" class="w-100"/>
+                        <a href="/"><img src="/assets/img/logo-musicar-white.png" class="w-100"/></a>
                     </div>
                     <div class="col-7">
                         <h3 class="text-white">Datos personales</h3>
@@ -195,7 +195,7 @@
                     Por favor, selecciona una línea de negocio.
                 </div>
                 <div class="text-center mt-4 mb-2">
-                    <button type="submit" class="btn btn-primary bg-btn1" style="padding: 20px 70px;" [disabled]="!aceptoCondicion" (click)="crearCuenta()">Crear Cuenta</button>
+                    <button type="submit" class="btn btn-primary bg-btn1 btn-create" style="padding: 20px 70px; border-width: 0px;" [disabled]="!aceptoCondicion" (click)="crearCuenta()">Crear Cuenta</button>
                 </div>
                 <div class="text-center my-2">
                     <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="flexCheckDefault" (change)="aceptarCondicion()">

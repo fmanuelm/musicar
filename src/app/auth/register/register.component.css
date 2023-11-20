@@ -29,6 +29,9 @@ form {
     border-radius: 15px;
     border-color: transparent;
 }
+.btn-create {
+    background: linear-gradient(to right, #51ddfb, #58bfe6, #1a7cbe);
+}
 .btn.btn-primary:hover {
     color: #fff;
     background-color: #01adef;
