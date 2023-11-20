@@ -161,6 +161,9 @@
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+  .options li a {
+    line-height: 1.2;
+  }
   /*
   .options li a:hover {
     color: white;
@@ -233,6 +236,9 @@
     .show-only-mobile {
       display: initial;
     }
+    .options li {
+      font-size: 1.5rem;
+    }
     /*
     .options li {
         font-size: 3rem;
@@ -252,6 +258,7 @@
         padding-top: 0px;
     }
   }
+
 @media (min-width: 914px)
 {
   .logo {

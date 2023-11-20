@@ -39,7 +39,17 @@ button {
     border: none;
     cursor: pointer;
 }
-  
+.options li a {
+  line-height: 1.2;
+}
+@media (min-width: 1024px)
+{
+  .menu .menu2 {
+    width: 50vw !important;
+    height: 90vh !important;
+    border-radius: 30px;
+  }
+}
 .menu .menu2 {    
     background-color: #f2f2f2;
     padding: 20px;
@@ -106,6 +116,9 @@ button {
     }
     .title-menu {
         padding-top: 0px;
+    }
+    .options li {
+      font-size: 1.5rem;
     }
   }
   

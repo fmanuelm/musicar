@@ -1,6 +1,6 @@
 .main-content {
     margin-top: 0px;
-    padding: 100px 15px;
+    padding: 7% 15px;
     min-height: calc(100vh);
     /*
     background: rgb(2,0,36);
@@ -28,6 +28,12 @@ form {
     border-radius: 15px;
     border-color: #ebe2ec8f;
     box-shadow: none;
+}
+@media (max-width: 1400px)
+{
+  .main-content {
+    padding: 5% 15px;
+  }
 }
 .btn.btn-primary:hover {
     color: #fff;
