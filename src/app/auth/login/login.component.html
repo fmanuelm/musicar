@@ -30,8 +30,8 @@
                     <input
                     [type]="showPass"
                     class="form-control not_underline text-white"
-                    placeholder="Password"
-                    aria-label="Password"
+                    placeholder="Contraseña"
+                    aria-label="Contraseña"
                     [(ngModel)]="password"
                     (keyup.enter)="handleLogin()" />
                     <span class="input-group-text text-white"><i *ngIf="showPass === 'text'" class="material-icons" style="cursor: pointer" (click)="showPassword()">visibility</i><i *ngIf="showPass === 'password'" class="material-icons" style="cursor: pointer" (click)="showPassword()">visibility_off</i></span>
