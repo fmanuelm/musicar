@@ -28,11 +28,22 @@ button.menu-icon {
     cursor: pointer;
     z-index: 1000;
     position: absolute;
-    right: 40px;
-    top: 40px;
+    right: -5px;
+    /*top: 40px;*/
     color: #000;
   }
-
+  
+/*
+  button.menu-icon {
+    font-size: 34px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    right: -5px;
+  }
+  */
 button {
     font-size: 24px;
     background: none;
@@ -121,10 +132,40 @@ button {
       font-size: 1.5rem;
     }
   }
+  .menu-opciones-derecha {
+    margin-top: 5rem !important;
+  }
   
+  @media (max-height: 768px) and (max-width: 1400px) {
+    .menu-opciones-derecha {
+      margin-top: 20px !important;
+    }
+    .options2 li {
+      font-size: 1.5rem;
+      margin-bottom: 0.7rem;
+    }
+    .options li {
+      font-size: 1.7rem;
+      margin-bottom: 1.5rem;
+    }
+    .title-menu {
+      padding-top: 100px;
+    }
+  }
+  .logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+  .logo a img {
+    width: 200px;
+  }
   @media (max-width: 850px) {
     .icono-footer {
         height: 35px;
+    }
+    .logo a img {
+      width: 120px;
     }
   }
   @media (min-width: 851px) {

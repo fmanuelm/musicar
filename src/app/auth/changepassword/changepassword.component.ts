@@ -30,7 +30,7 @@ export class ChangepasswordComponent implements OnInit {
       },
       confirmButtonText: 'Iniciar sesión',
       color: '#fff',
-      background: 'linear-gradient(90deg, rgba(31,90,132,1) 0%, rgba(31,90,132,1) 31%, rgba(86,167,214,1) 96%)'
+      /*background: 'linear-gradient(90deg, rgba(31,90,132,1) 0%, rgba(31,90,132,1) 31%, rgba(86,167,214,1) 96%)'*/
     });
   }
 }

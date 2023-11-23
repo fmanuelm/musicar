@@ -47,7 +47,7 @@ export class BriefcaseComponent implements OnInit {
     this.categoria_id = this.messageService.getCategorySelect().id;
     this.loadMessagesAudios();
     
-    //this.getAudioDuration("http://208.76.84.103:3000/api/v1/client/file/mensajes-externo/Amor%20De%20Una%20Noche%20(N_Klabe%20feat%20Voltio)(MP3_320K).mp3");      
+    //this.getAudioDuration("https://musicar-backend-test.duckdns.org:3000/api/v1client/file/mensajes-externo/Amor%20De%20Una%20Noche%20(N_Klabe%20feat%20Voltio)(MP3_320K).mp3");      
   }
 
   atras() {

@@ -298,7 +298,7 @@ export class CreateComponent implements OnInit {
         icon: 'error'
       });
     }
-    else {    
+    else {
       let datos = {};
       
       const observables = this.usuariosSelects.map(usuario => {

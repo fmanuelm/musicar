@@ -12,7 +12,7 @@
 </nav>
 <nav *ngIf="view == 'edit'" aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['/disponibilidad-usuario/detail',id]);">Ver Disponibilidad Usuario</a></li>
+        <li class="breadcrumb-item pointer"><a (click)="router.navigate(['disponibilidad-usuario/detail',id]);">Ver Disponibilidad Usuario</a></li>
         <li class="breadcrumb-item active" aria-current="page"><b> Editar Disponibilidad Usuario</b></li>
     </ol>
 </nav>
