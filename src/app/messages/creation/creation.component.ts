@@ -39,7 +39,7 @@ export class CreationComponent implements OnInit {
   
   constructor(private messageService: MessageService) {
     //this.activeIndex = this.messageService.getStep();
-    this.messageService.setStep("1");
+    
   }
   next1()
   {
@@ -65,18 +65,104 @@ export class CreationComponent implements OnInit {
   {
     this.messageService.setStep("formulario");
   }
+  changeStep(param:any)
+  {
+    
+    //if (param === 0)
+    //{
+      //this.messageService.setStep("1");
+    //}
+    //else {
+      this.messageService.step$.subscribe(value => {
+        this.step = value;
+        
+        if (value === "-1" || value === "1")
+        {
+          //this.activeIndex = 0;
+        }
+        if(value === 'formulario') {
+          //this.activeIndex = 1;
+          if (param === 0)
+          {
+            this.messageService.setStep("1");
+            this.activeIndex = param;
+          }
+        }
+        if(value === 'puntos') {
+          //this.activeIndex = 3;
+          
+        }
+        if(value === 'horas_fijas') {
+          //this.activeIndex = 2;
+          if (param === 0)
+          {
+            this.messageService.setStep("1");
+            this.activeIndex = param;
+          }
+          if (param === 1)
+          {
+            this.messageService.setStep("formulario");
+            this.activeIndex = param;
+          }
+        }
+        if(value === 'secuencia') {
+          //this.activeIndex = 2;
+          if (param === 0)
+          {
+            this.messageService.setStep("1");
+            this.activeIndex = param;
+          }
+          if (param === 1)
+          {
+            this.messageService.setStep("formulario");
+            this.activeIndex = param;
+          }
+        }
+        if(value === 'rushhours') {
+          //this.activeIndex = 2;
+          if (param === 0)
+          {
+            this.messageService.setStep("1");
+            this.activeIndex = param;
+          }
+          if (param === 1)
+          {
+            this.messageService.setStep("formulario");
+            this.activeIndex = param;
+          }
+        }
+        
+        if (value === 'puntos' || value === 'grupo' || value === 'regional' || value === 'puntos_grupo_regional')
+        {
+          this.activeIndex = 3;
+        }
+        if(value === 'resumen1' || value === 'resumen2') {
+          this.activeIndex = 4;
+        }
+      });
+    //}
+    /*
+    this.messageService.setStep("puntos");
+    this.messageService.setStep("grupo");
+    this.messageService.setStep("regional");
+    this.messageService.setStep("puntos_grupo_regional");
+    this.messageService.setStep("formulario");
+    */
+  }
   ngOnInit(): void {
     //this.step = this.messageService.getStep();
     //let tipo_usuario = "Cliente Administrador Punto";
     let tipo_usuario = "Cliente Grupo Puntos";
-
+    
     //let tipo_usuario = "Cliente Regional Puntos";
     //let tipo_usuario = "Cliente Administrador";
     localStorage.setItem("tipo_usuario", tipo_usuario);
     this.step = this.messageService.getStep();
     this.messageService.step$.subscribe(value => {
-      this.step = value;
       
+      this.step = value;
+      console.log(`inside step is ${this.step}`);
+      console.log(`inside value is ${this.value}`);
       if (value === "-1" || value === "1")
       {
         this.activeIndex = 0;

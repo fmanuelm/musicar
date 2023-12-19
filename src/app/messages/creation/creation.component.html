@@ -1,6 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <!--
             <app-breadcrumb *ngIf="step === '1' || step === '-1'" view="creation"></app-breadcrumb>
             <app-breadcrumb *ngIf="step === 'formulario'" view="formulario"></app-breadcrumb>
             <app-breadcrumb *ngIf="step === 'horas_fijas'" view="horas_fijas"></app-breadcrumb>
@@ -9,17 +10,17 @@
             <app-breadcrumb *ngIf="step === 'puntos' || step === 'grupo'|| step === 'regional' || step === 'puntos_grupo_regional'" view="puntos"></app-breadcrumb>
             <app-breadcrumb *ngIf="step === 'resumen1' || step === 'resumen2'" view="resumen"></app-breadcrumb>
             <app-breadcrumb *ngIf="step === 'briefcase'" view="briefcase"></app-breadcrumb>
+        -->
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-body">
                         <div class="row mb-4 mt-3">
                             <div class="col-12" id="topDiv">
-                                <a href="/#/mensajes/home"><img src="/assets/img/logo-musicar.png" width="200"/></a>
                                 <h1 class="font-weight-bold">Voice Experience</h1>
                                 <p>Voces que encantan, voces que enamoran.</p>
                             </div>
                             <div class="col-12">
-                                <p-steps [model]="items" [readonly]="true" [activeIndex]="activeIndex" class="paso"></p-steps>
+                                <p-steps [model]="items" [readonly]="false" [activeIndex]="activeIndex" (activeIndexChange)="changeStep($event)" class="paso"></p-steps>
                                 
                                 <div *ngIf="step === '-1'">
                                     <app-stepa1></app-stepa1>

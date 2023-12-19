@@ -15,6 +15,7 @@ export class Step1Component implements OnInit {
   titleTree3:string;
   ngOnInit(): void {
     this.getMessagesOutline();
+    this.messageService.setStep("1");
   }
 
   getMessagesOutline() {
@@ -26,11 +27,16 @@ export class Step1Component implements OnInit {
     })
   }
   horas_fijas() {
-    
+    //alert();
     //this.messageService.setStep("3");
     this.storeData(1);
-    this.messageService.setStep("formulario");
+    this.messageService.step$.subscribe(value => {
+      console.log(value);
+    })
     this.messageService.setModule("horas_fijas");
+    this.messageService.setStep("formulario");
+    
+    
   }
   secuencia() {
     //this.messageService.setStep("4");
